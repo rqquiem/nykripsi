@@ -1,0 +1,17 @@
+out/
+*.aux
+*.log
+*.toc
+*.out
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+__pycache__/
+.promote-backups/
+
+# Corpus PDFs are third-party copyrighted (journals, LibGen books) and must not
+# be redistributed. Only the manifests are tracked; re-fetch locally with
+# `make corpus`, `make corpus-hi`, or `make corpus-libgen`.
+docs/*-corpus/*.pdf
