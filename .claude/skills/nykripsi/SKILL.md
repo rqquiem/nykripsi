@@ -46,8 +46,14 @@ violate the register rules — `make check` will reject them.
 | `docs/kamus-bahasa-artikel.md` | Generated human-readable dictionary |
 | `docs/kamus-riset-korpus.md` | Corpus research notes (29 Sinta PDFs) |
 | `docs/workflow.md` | Numbered build walkthrough |
+| `docs/fulltext-framework.md` | Full-text acquisition + verification framework (F1–F8) |
+| `docs/subject-framework.md` | Subject-sweep framework (S1–S8) |
+| `docs/argument-framework.md` | Kerangka alur argumen & kohesi paragraf (K1–K5) |
+| `docs/diagram-framework.md` | Kerangka diagram, tabel & caption (D1–D6) |
+| `docs/sintesa-diagram-framework.md` | Kerangka diagram sintesa teori (TS1–TS6) |
 | `sources/registry.json` | Multi-source search store (JSON array of source records) |
 | `sources/index.md` | Generated index of the registry (`make sources`) |
+| `subjects/registry.json` | Per-subject secondary-coverage registry |
 | `research/judul.json` | Judul-availability registry (title verdicts: `available`/`too-similar`/`duplicate`) |
 | `research/gap-<slug>.md` | Research-gap report scaffold (weakness dimensions + angle + novelty) |
 | `research/index.md` | Generated index of the judul registry (`make research`) |
@@ -56,8 +62,8 @@ violate the register rules — `make check` will reject them.
 | `tools/check.sh`, `tools/check-bahasa.sh` | Build + register linters run by `make check` |
 
 **Make targets:** `setup`, `skripsi`, `artikel`, `check`, `kamus`, `corpus`,
-`check-drafts`, `promote`, `sources`, `research`, `validate`, `validate-agent`,
-`validate-offline`, `clean`.
+`fulltext`, `check-drafts`, `promote`, `sources`, `subjects`, `scrape`,
+`research`, `validate`, `validate-agent`, `validate-offline`, `clean`.
 
 Chapter skeleton spec: [`references/skripsi-structure.md`](references/skripsi-structure.md).
 
@@ -66,15 +72,28 @@ Chapter skeleton spec: [`references/skripsi-structure.md`](references/skripsi-st
 1. **Never fabricate a reference or DOI.** Every record written to
    `assets/refs.bib` must come from a tool call in this session. If it was not
    retrieved, do not write it.
-2. **Respect the Indonesian academic register.** No first/second-person pronouns
+2. **Obtain the full text before concluding.** Never draw a conclusion about a
+   work's content, findings, methods, or limitations from its abstract, title,
+   or a search-result snippet alone. Follow the acquisition ladder in
+   [`docs/fulltext-framework.md`](../../../docs/fulltext-framework.md) and
+   record `access_level`/`fulltext_*` in `sources/registry.json`; an
+   `abstract-only`/`inaccessible` work may not be used as evidence.
+3. **Sweep every secondary source about the subject.** Declare the research
+   subject and sweep all its secondary channels (press release, news, article,
+   official, web) until saturation, following
+   [`docs/subject-framework.md`](../../../docs/subject-framework.md); tag each
+   source with `subject`/`channel` in `sources/registry.json` and track
+   coverage in `subjects/registry.json`. Only the writer's own interview is
+   primary data.
+4. **Respect the Indonesian academic register.** No first/second-person pronouns
    (`saya`, `aku`, `kami`, `kita`, `anda`, `kamu`, `kalian`); use passive forms
    and baku diction (EYD Edisi V). Enforced by `make check` via
    `tools/check-bahasa.sh`.
-3. **Write BAB headings in ALL-CAPS** in Markdown (`# PENDAHULUAN`), e.g. `#
+5. **Write BAB headings in ALL-CAPS** in Markdown (`# PENDAHULUAN`), e.g. `#
    TINJAUAN PUSTAKA`, `# METODOLOGI PENELITIAN`.
-4. **Keep the abstract free of citations** (and of abbreviations and footnotes) —
+6. **Keep the abstract free of citations** (and of abbreviations and footnotes) —
    enforced by the `papers` validator.
-5. **Run `make check` before declaring anything done**, and keep
+7. **Run `make check` before declaring anything done**, and keep
    `python3 tools/validate.py` green.
 
 ## Workflow A — Google Scholar references

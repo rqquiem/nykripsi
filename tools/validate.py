@@ -23,12 +23,17 @@ from validators import base  # noqa: E402
 import validators.workflow  # noqa: E402,F401
 import validators.journals  # noqa: E402,F401
 import validators.papers  # noqa: E402,F401
+import validators.article_framework  # noqa: E402,F401
+import validators.argument_flow  # noqa: E402,F401
+import validators.figures_tables  # noqa: E402,F401
+import validators.sintesa_diagram  # noqa: E402,F401
 import validators.research_notes  # noqa: E402,F401
 import validators.ir_journals  # noqa: E402,F401
 import validators.ir_research_notes  # noqa: E402,F401
 import validators.libgen_corpus  # noqa: E402,F401
 import validators.doi  # noqa: E402,F401
 import validators.sources  # noqa: E402,F401
+import validators.subjects  # noqa: E402,F401
 import validators.research  # noqa: E402,F401
 
 LABEL = {"ok": "OK", "warn": "PERINGATAN", "fail": "GAGAL"}

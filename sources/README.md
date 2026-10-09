@@ -30,6 +30,13 @@ Every record carries **every** key below; unknown values are `[]` (authors) or
   "backend": "gdelt|googlenews|scholar|crossref|openalex|openlibrary|googlebooks|datacite|zenodo|worldbank|wikidata|sec-edgar|openalex-oa|core|duckduckgo|ddg-instant|wikipedia|stackexchange|hackernews|invidious|piped",
   "source_class": "primary|secondary",
   "class_origin": "auto|manual",
+  "subject": null,
+  "channel": null,
+  "access_level": "fulltext|abstract-only|inaccessible",
+  "fulltext_url": null,
+  "fulltext_sha256": null,
+  "fulltext_pages": null,
+  "fulltext_verified": false,
   "notes": "",
   "cite_key": null
 }
@@ -57,6 +64,65 @@ mediated/third-party material). The class defaults from `type`
 `--class {primary,secondary}` or recomputed with the `classify` subcommand. See
 [`docs/source-classification.md`](../docs/source-classification.md) for the full
 framework.
+
+## Subject and channel
+
+Every record also carries **`subject`** and **`channel`** for the subject sweep
+(provenance). Both default to `null` and are filled when a source is gathered
+for a named research subject:
+
+- `subject` — the research subject the source belongs to (a company, actor,
+  institution, or state). `null` when the source is not tied to a swept subject.
+- `channel` — the sweep channel the source came from, one of
+  `press` (first-party press release), `news`, `article`, `official` (official
+  or company documents), or `web` (general web). `null` when not swept.
+
+Both are set from the CLI with `--subject` / `--channel` (see the `search.py`
+subcommands) and are preserved for existing records. The subject registry
+(`subjects/registry.json`) counts sources per channel and per subject. See
+[`docs/subject-framework.md`](../docs/subject-framework.md) for the full
+framework.
+
+## Full-text access level
+
+Every record also carries an **`access_level`** describing how much of the
+source's body text is actually available to the writer. It is one of
+`fulltext`, `abstract-only`, or `inaccessible`; the default is the most
+conservative value, `inaccessible`. Only a **verified** full text may be
+recorded as `fulltext`. See
+[`docs/fulltext-framework.md`](../docs/fulltext-framework.md) for the full
+framework.
+
+- `fulltext` — a real PDF body was obtained and verified (page count ≥ 2,
+  contains a body marker such as `PENDAHULUAN`/`INTRODUCTION`/`METHOD`/`RESULTS`
+  /`REFERENCES`, and is not a paywall page). Records at this level MUST carry
+  `fulltext_url` (non-empty string), `fulltext_sha256` (64-char hex digest),
+  `fulltext_pages` (integer ≥ 2), and `fulltext_verified: true`.
+- `abstract-only` — only the abstract/metadata is reachable; the body text is
+  not available.
+- `inaccessible` — no lawful access (paywalled, dead link, or credential
+  required). Never fabricate a file or URL to fill this gap.
+
+The F1–F8 rules enforced here and by `tools/validators/sources.py`:
+
+- **F1** — every record must have `access_level` ∈ {`fulltext`,
+  `abstract-only`, `inaccessible`}; the default is `inaccessible`.
+- **F2** — `fulltext` may be claimed only after verification of the downloaded
+  PDF (pages ≥ 2, body marker present, not a paywall page).
+- **F3** — a `fulltext` record must have `fulltext_url` (non-empty string),
+  `fulltext_sha256` (64-hex), `fulltext_pages` (int ≥ 2), and
+  `fulltext_verified: true`; any missing/invalid field is a validation failure.
+- **F4** — `fulltext_sha256` is computed from the PDF actually downloaded; the
+  PDF itself stays local and git-ignored, only the record/manifest is tracked.
+- **F5** — `abstract-only` means only abstract/metadata is available; no body
+  text was obtained.
+- **F6** — `abstract-only` and `inaccessible` records MUST NOT be used as the
+  basis for substantive conclusions or claims; they may only be cited for their
+  existence/metadata.
+- **F7** — `inaccessible` means no lawful access; never invent a PDF, hash,
+  page count, or URL.
+- **F8** — shadow libraries (Sci-Hub / Anna's Archive) are a last resort only,
+  must not bypass captchas, and any retrieved PDF remains git-ignored.
 
 ## Subcommands
 

@@ -93,6 +93,8 @@ chmod +x ~/.local/bin/pandoc
 | `make check-drafts` | Lint the Indonesian register of drafts in `content/drafts/`. |
 | `make promote` | Promote a finished draft (`DRAFT=<file>`) into its final location. |
 | `make sources` | Regenerate `sources/index.md` from `sources/registry.json`. |
+| `make subjects` | Regenerate `subjects/index.md` from `subjects/registry.json`. |
+| `make scrape` | Sweep secondary channels for a subject (`S=<nama>`) into `subjects/registry.json`. |
 | `make research` | Regenerate `research/index.md` (title availability + research-gap index). |
 | `make corpus` | Download the Sinta journal study corpus into `docs/sinta-corpus/`. |
 | `make corpus-hi` | Download the Hubungan Internasional journal corpus into `docs/ir-corpus/`. |
@@ -165,6 +167,14 @@ Write BAB headings in the Markdown source in **ALL CAPS**, e.g.:
   title is still available (blocking `duplicate`/`too-similar` verdicts),
   records browser cross-check findings, and scaffolds the gap report
   (`research/judul.json`, `scripts/research_gap.py`, `docs/research-gap.md`).
+- **Full-text rule** — obtain and verify the full text before concluding: follow
+  the acquisition ladder, and record `access_level`/`fulltext_*` in
+  `sources/registry.json`.
+- **Subject sweep** — declare a research subject and sweep every secondary
+  channel (press release, news, article, official, web) until saturation,
+  tagging each source with `subject`/`channel` in `sources/registry.json` and
+  tracking per-subject coverage in `subjects/registry.json`
+  (`scripts/search.py`, `tools/scrape.py`, `docs/subject-framework.md`).
 
 Claude Code auto-discovers the skill from the project directory, so it is
 available in any session opened in this workspace. `make check` enforces the
@@ -181,6 +191,11 @@ resulting structure, register, and citations.
 - [docs/kamus-riset-korpus.md](docs/kamus-riset-korpus.md) / [docs/kamus-riset-korpus-hi.md](docs/kamus-riset-korpus-hi.md) — corpus research dictionaries.
 - [docs/source-classification.md](docs/source-classification.md) — primary/secondary source framework.
 - [docs/research-gap.md](docs/research-gap.md) — title-availability + research-gap method.
+- [docs/fulltext-framework.md](docs/fulltext-framework.md) — full-text acquisition + verification framework.
+- [docs/subject-framework.md](docs/subject-framework.md) — subject-sweep (secondary-source) framework.
+- [docs/argument-framework.md](docs/argument-framework.md) — kerangka alur argumen & kohesi paragraf (drafting jurnal/riset/paper).
+- [docs/diagram-framework.md](docs/diagram-framework.md) — kerangka diagram, tabel & fungsi keluaran (caption, penomoran, D1–D6).
+- [docs/sintesa-diagram-framework.md](docs/sintesa-diagram-framework.md) — kerangka diagram sintesa teori / lensa terpadu (TS1–TS6).
 - [CONTRIBUTING.md](CONTRIBUTING.md) — development workflow and conventions.
 
 ## License & status

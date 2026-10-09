@@ -4,4 +4,10 @@
 
 | id | judul | verdict | kemiripan maks | diperiksa |
 | --- | --- | --- | --- | --- |
+| judul-2026-10-09-strategi-pemasaran-kyt-indonesia-pt-tarakusuma-indah-dalam-menembus-pasar-eropa-tahun-20202025 | Strategi Pemasaran KYT Indonesia (PT Tarakusuma Indah) dalam Menembus Pasar Eropa Tahun 2020–2025 | available | 0.31 | 2026-10-09 |
+
+## candidate
+
+| id | judul | verdict | kemiripan maks | diperiksa |
+| --- | --- | --- | --- | --- |
 | judul-2026-10-08-kerangka-baru-analisis-citra-negara-98765 | Kerangka Baru Analisis Citra Negara 98765 | available | 0.23 | 2026-10-08 |

@@ -3,7 +3,7 @@
     "id": "judul-2026-10-08-kerangka-baru-analisis-citra-negara-98765",
     "judul": "Kerangka Baru Analisis Citra Negara 98765",
     "judul_norm": "kerangka baru analisis citra negara 98765",
-    "status": "selected",
+    "status": "candidate",
     "verdict": "available",
     "threshold": 0.8,
     "origin": "auto",
@@ -188,6 +188,110 @@
         "year": 2026,
         "backend": "scholar",
         "similarity": 0.0,
+        "kind": "similar"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "id": "judul-2026-10-09-strategi-pemasaran-kyt-indonesia-pt-tarakusuma-indah-dalam-menembus-pasar-eropa-tahun-20202025",
+    "judul": "Strategi Pemasaran KYT Indonesia (PT Tarakusuma Indah) dalam Menembus Pasar Eropa Tahun 2020–2025",
+    "judul_norm": "strategi pemasaran kyt indonesia pt tarakusuma indah dalam menembus pasar eropa tahun 20202025",
+    "status": "selected",
+    "verdict": "available",
+    "threshold": 0.8,
+    "origin": "auto",
+    "checked": "2026-10-09",
+    "query": "Strategi Pemasaran KYT Indonesia (PT Tarakusuma Indah) dalam Menembus Pasar Eropa Tahun 2020–2025",
+    "matches": [
+      {
+        "title": "Kerangka Baru Analisis Citra Negara 98765",
+        "url": "registry:judul-2026-10-08-kerangka-baru-analisis-citra-negara-98765",
+        "doi": null,
+        "year": null,
+        "backend": "registry",
+        "similarity": 0.0,
+        "kind": "similar"
+      },
+      {
+        "title": "PENDAMPINGAN UMKM KOPI PATI DALAM MENEMBUS PASAR  EKSPOR MELALUI INOVASI PRODUK DAN STRATEGI  PEMASARAN BERKELANJUTAN",
+        "url": "https://doi.org/10.52429/saj.v4i1.4",
+        "doi": "10.52429/saj.v4i1.4",
+        "year": 2026,
+        "backend": "crossref",
+        "similarity": 0.21739130434782608,
+        "kind": "similar"
+      },
+      {
+        "title": "Strategi Pemasaran Philippine Airlines dalam Menghadapi Persaingan Penerbangan pada Pasar Indonesia Tahun 2020",
+        "url": "https://doi.org/10.36418/sosains.v1i9.209",
+        "doi": "10.36418/sosains.v1i9.209",
+        "year": 2021,
+        "backend": "crossref",
+        "similarity": 0.3,
+        "kind": "similar"
+      },
+      {
+        "title": "STRATEGI PEMASARAN INDUSTRI KELOR PT TRI UTAMI JAYA UNTUK MENEMBUS PASAR INTERNASIONAL",
+        "url": "https://doi.org/10.31764/jabb.v3i1.7626",
+        "doi": "10.31764/jabb.v3i1.7626",
+        "year": 2022,
+        "backend": "crossref",
+        "similarity": 0.25,
+        "kind": "similar"
+      },
+      {
+        "title": "EFEKTIFITAS PENERAPAN STRATEGI MANAJEMEN ACCOUNTING  DAN STRATEGI BAURAN PEMASARAN DALAM MENINGKATKAN PANGSA PASAR DAN PROFITABILITAS (STUDI KASUS PT ARNOTTâ€™S INDONESIA)",
+        "url": "https://doi.org/10.32493/jabi.v2i2.y2019.p241-261",
+        "doi": "10.32493/jabi.v2i2.y2019.p241-261",
+        "year": 2019,
+        "backend": "crossref",
+        "similarity": 0.24,
+        "kind": "similar"
+      },
+      {
+        "title": "ANALISIS MATRIKS BCG (BOSTON CONSULTING GROUP) DALAM STRATEGI MEMPERTAHANKAN PANGSA PASAR PADA SMARTPHONE MEREK SAMSUNG (STUDI KASUS PADA PT. SAMSUNG ELEKTRONIK INDONESIA TAHUN 2019)",
+        "url": "https://doi.org/10.35334/jek.v11i2.1436",
+        "doi": "10.35334/jek.v11i2.1436",
+        "year": 2020,
+        "backend": "crossref",
+        "similarity": 0.20689655172413793,
+        "kind": "similar"
+      },
+      {
+        "title": "PENERAPAN STRATEGI PEMASARAN DALAM PERSAINGAN BISNIS PASAR DI PT. ASH SHOFWAH GROUP TOUR HAJI DAN TRAVEL",
+        "url": "https://doi.org/10.35316/idarah.2023.v4i1.138-150",
+        "doi": "10.35316/idarah.2023.v4i1.138-150",
+        "year": 2023,
+        "backend": "crossref",
+        "similarity": 0.20833333333333334,
+        "kind": "similar"
+      },
+      {
+        "title": "Strategi Pemasaran Pt. Huawei Dalam Meningkatkan  Pangsa Pasar",
+        "url": "https://doi.org/10.24912/jmbk.v3i1.4928",
+        "doi": "10.24912/jmbk.v3i1.4928",
+        "year": 2019,
+        "backend": "crossref",
+        "similarity": 0.3125,
+        "kind": "similar"
+      },
+      {
+        "title": "STRATEGI PEMASARAN PENJUALAN ONLINE DAN OFFLINE PADA PASAR TRADISIONAL DALAM PERSPEKTIF EKONOMI ISLAM",
+        "url": "https://doi.org/10.66596/f8tmw467",
+        "doi": "10.66596/f8tmw467",
+        "year": 2025,
+        "backend": "crossref",
+        "similarity": 0.18181818181818182,
+        "kind": "similar"
+      },
+      {
+        "title": "Penyuluhan Strategi Pemasaran Kerajinan Rotan Melalui Digital Marketing di Rumbai Pesisir Kota Pekanbaru Menembus Pasar Asean",
+        "url": "https://doi.org/10.58794/jdt.v5i1.1271",
+        "doi": "10.58794/jdt.v5i1.1271",
+        "year": 2025,
+        "backend": "crossref",
+        "similarity": 0.16,
         "kind": "similar"
       }
     ],

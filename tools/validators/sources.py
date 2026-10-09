@@ -1,6 +1,7 @@
 """Validator sumber: ``sources/registry.json`` + ``sources/index.md``."""
 
 import json
+import re
 
 from .base import Context, Finding, read, register
 
@@ -9,6 +10,8 @@ ALLOWED = {"news", "article", "book", "interview", "dataset", "publicdata", "com
 REQUIRED = ("id", "type", "title", "url", "backend", "accessed", "source_class")
 CLASSES = {"primary", "secondary"}
 ORIGINS = {"auto", "manual"}
+ACCESS_LEVELS = {"fulltext", "abstract-only", "inaccessible"}
+FULLTEXT_FIELDS = ("fulltext_url", "fulltext_sha256", "fulltext_pages", "fulltext_verified")
 
 
 @register("sources", "sources/registry.json + sources/index.md")
@@ -55,6 +58,35 @@ def run(ctx: Context) -> list[Finding]:
             findings.append(Finding("fail",
                                     f"sumber '{label}' punya class_origin tidak dikenal '{origin}'"))
 
+        level = rec.get("access_level")
+        if "access_level" not in rec:
+            findings.append(Finding("fail", f"sumber '{label}' tidak punya kunci 'access_level'"))
+        elif level not in ACCESS_LEVELS:
+            findings.append(Finding("fail",
+                                    f"sumber '{label}' punya access_level tidak dikenal '{level}'"))
+        elif level == "fulltext":
+            for key in FULLTEXT_FIELDS:
+                if key not in rec:
+                    findings.append(Finding("fail",
+                                            f"sumber '{label}' fulltext tidak punya kunci '{key}'"))
+            ft_url = rec.get("fulltext_url")
+            if not isinstance(ft_url, str) or not ft_url.strip():
+                findings.append(Finding("fail",
+                                        f"sumber '{label}' fulltext_url kosong / bukan string"))
+            sha = rec.get("fulltext_sha256")
+            if not isinstance(sha, str) or not re.fullmatch(r"[0-9a-fA-F]{64}", sha):
+                findings.append(Finding("fail",
+                                        f"sumber '{label}' fulltext_sha256 bukan hex 64 karakter"))
+            pages = rec.get("fulltext_pages")
+            if not isinstance(pages, int) or isinstance(pages, bool) or pages < 2:
+                findings.append(Finding("fail",
+                                        f"sumber '{label}' fulltext_pages bukan int >= 2"))
+            if rec.get("fulltext_verified") is not True:
+                findings.append(Finding("fail",
+                                        f"sumber '{label}' fulltext_verified bukan True"))
+        # abstract-only / inaccessible: tidak ada syarat tambahan (aturan F6
+        # melarang keduanya dipakai sebagai dasar kesimpulan).
+
         url = rec.get("url")
         if not isinstance(url, str) or not url.strip():
             findings.append(Finding("fail", f"sumber '{label}' punya url kosong"))
@@ -80,5 +112,11 @@ def run(ctx: Context) -> list[Finding]:
     if not any(f.level == "fail" for f in findings):
         p = sum(1 for r in data if isinstance(r, dict) and r.get("source_class") == "primary")
         s = sum(1 for r in data if isinstance(r, dict) and r.get("source_class") == "secondary")
-        findings.append(Finding("ok", f"{len(data)} sumber tervalidasi ({p} primer, {s} sekunder)"))
+        f = sum(1 for r in data if isinstance(r, dict) and r.get("access_level") == "fulltext")
+        a = sum(1 for r in data if isinstance(r, dict) and r.get("access_level") == "abstract-only")
+        i = sum(1 for r in data if isinstance(r, dict) and r.get("access_level") == "inaccessible")
+        findings.append(Finding(
+            "ok",
+            f"{len(data)} sumber tervalidasi ({p} primer, {s} sekunder; "
+            f"{f} fulltext, {a} abstract-only, {i} inaccessible)"))
     return findings

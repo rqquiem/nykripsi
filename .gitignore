@@ -15,3 +15,4 @@ __pycache__/
 # be redistributed. Only the manifests are tracked; re-fetch locally with
 # `make corpus`, `make corpus-hi`, or `make corpus-libgen`.
 docs/*-corpus/*.pdf
+docs/fulltext-corpus/*.pdf

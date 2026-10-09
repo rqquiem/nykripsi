@@ -950,6 +950,13 @@ def _make_record(raw: dict, rtype: str, query: str, accessed: str) -> dict | Non
         "backend": (raw.get("backend") or "").strip(),
         "source_class": default_class(rtype),
         "class_origin": "auto",
+        "subject": None,
+        "channel": None,
+        "access_level": "inaccessible",
+        "fulltext_url": None,
+        "fulltext_sha256": None,
+        "fulltext_pages": None,
+        "fulltext_verified": False,
         "notes": "",
         "cite_key": None,
     }
@@ -1009,6 +1016,8 @@ def _run_search(args, rtype: str, batch: Batch) -> int:
             else:
                 rec["source_class"] = default_class(rtype)
                 rec["class_origin"] = "auto"
+            rec["subject"] = getattr(args, "subject", None)
+            rec["channel"] = getattr(args, "channel", None)
             records.append(rec)
 
     if not records:
@@ -1165,17 +1174,19 @@ def _cell(value: str) -> str:
 
 def _render_table(records: list[dict]) -> list[str]:
     lines = [
-        "| id | kelas | title | author/tahun | penerbit | url | backend | diakses |",
-        "| --- | --- | --- | --- | --- | --- | --- | --- |",
+        "| id | kelas | akses | subjek | title | author/tahun | penerbit | url | backend | diakses |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
     for rec in records:
         authors = ", ".join(rec.get("authors") or []) or "-"
         year = rec.get("year")
         year = year if year is not None else "-"
         lines.append(
-            "| {id} | {kelas} | {title} | {at} | {pub} | {url} | {backend} | {accessed} |".format(
+            "| {id} | {kelas} | {akses} | {subjek} | {title} | {at} | {pub} | {url} | {backend} | {accessed} |".format(
                 id=_cell(str(rec.get("id") or "")),
                 kelas=_cell(str(rec.get("source_class") or "-")),
+                akses=_cell(str(rec.get("access_level") or "-")),
+                subjek=_cell(str(rec.get("subject") or "-")),
                 title=_cell(str(rec.get("title") or "")),
                 at=_cell(f"{authors} ({year})"),
                 pub=_cell(str(rec.get("publisher") or "-")),
@@ -1268,6 +1279,9 @@ def build_parser() -> argparse.ArgumentParser:
     )
     sub = parser.add_subparsers(dest="command", required=True)
 
+    parser.add_argument("--subject", default=None, help="subjek riset (provenans)")
+    parser.add_argument("--channel", default=None, help="kanal sapuan (provenans)")
+
     def add_common(p):
         p.add_argument("query", help="kueri pencarian")
         p.add_argument("--limit", type=int, default=10, help="jumlah maksimum hasil (default: 10)")
@@ -1282,6 +1296,8 @@ def build_parser() -> argparse.ArgumentParser:
                        help="alamat surel (polite pool / SEC); env SCHOLAR_EMAIL")
         p.add_argument("--class", dest="source_class", choices=["primary", "secondary"],
                        default=None, help="kelas sumber (override manual)")
+        p.add_argument("--subject", default=None, help="subjek riset (provenans)")
+        p.add_argument("--channel", default=None, help="kanal sapuan (provenans)")
 
     commands = {
         "news": cmd_news,

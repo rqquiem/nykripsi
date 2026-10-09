@@ -2,63 +2,63 @@
 
 ## news
 
-| id | kelas | title | author/tahun | penerbit | url | backend | diakses |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| news-2026-10-08-why-malaysia-is-hosting-f1-relocated-bahrain-grand-prix-with-rain-and-haze-likely | secondary | Why Malaysia is hosting F1 relocated Bahrain Grand Prix , with rain and haze likely | - (2026) | mymotherlode.com | https://mymotherlode.com/news/world/11182156/why-malaysia-is-hosting-f1s-relocated-bahrain-grand-prix-with-rain-and-haze-likely.html | gdelt | 2026-10-08 |
-| news-2026-10-08-why-indonesians-feel-increasingly-bitter-today | secondary | Why Indonesians Feel Increasingly Bitter Today | - (2026) | thediplomat.com | https://thediplomat.com/2026/09/why-indonesians-feel-increasingly-bitter-today/ | gdelt | 2026-10-08 |
-| news-2026-10-08-brics-in-style-decoding-the-diplomatic-dress-code-of-world-leaders | secondary | BRICS In Style : Decoding The Diplomatic Dress Code Of World Leaders | - (2026) | luxe.outlookindia.com | https://luxe.outlookindia.com/fashion-beauty/couture/brics-in-style-decoding-the-diplomatic-dress-code-of-world-leaders | gdelt | 2026-10-08 |
-| news-2026-10-08-a-nation-in-motion-indonesias-global-footprint-expands-with-cultural-wins-and-economic-momentum-brand-finance | secondary | A nation in motion: Indonesia’s global footprint expands with cultural wins and economic momentum - Brand Finance | - (2025) | Brand Finance | https://news.google.com/rss/articles/CBMiowFBVV95cUxPZ2Q3R0p3S3VBUjU5UU94dnRIdDBZanZpNUo0VUVmZWhkYWdZRWdMSzcyUDJ2QTJvZ3pYR2FFaXNhMno4YUl0R01KWHl3WlNkUEVQQlJwLWJjNEd2cjhKS1FwVzFOelVHcTUwX1IyazZMRXA0NW1VTEEySzhzTjY5aFFFa3dZLTl5M2ZDTlFETS1wMmYtSmZvbmp4bFBWV1NaMFpj?oc=5 | googlenews | 2026-10-08 |
-| news-2026-10-08-spreading-indonesias-nation-branding-through-kopi-kenangan-modern-diplomacy | secondary | Spreading Indonesia’s Nation Branding Through “Kopi Kenangan” - Modern Diplomacy | - (2022) | Modern Diplomacy | https://news.google.com/rss/articles/CBMingFBVV95cUxQNlZMRlY5VGIwM2pnRG55eWNmSC03NVhNSTljZ0hFaFJ4WHFLcVA0dFlQT05RNEVZSVJhUkIxWk1XaFR0bXJ2MFZVUHpRYVlheGlTWWV6bWdsV2ZDT1U4R3MxQy1LOXMxaFJELUNVYUhWTzMwLTh1MlZIOURfZEh0LWxLbTBxM2dPdExlX2IzMk1UTVp1RURHUWdYa0kwUQ?oc=5 | googlenews | 2026-10-08 |
-| news-2026-10-08-andrea-bocelli-arrives-at-borobudur-bringing-a-world-class-music-experience-to-indonesia-s-heritage-destination-pt-taman-wisata-candi | secondary | Andrea Bocelli arrives at Borobudur, bringing a world-class music experience to Indonesia's heritage destination - PT Taman Wisata Candi | - (2026) | PT Taman Wisata Candi | https://news.google.com/rss/articles/CBMi5gFBVV95cUxPQWlHdGF3RWVEWkthdzRrMkhVQUx6bEhqZnBzN212UHlVVmZieDh3UVFkbmVhQ1pKZGU4b1VISF82MFhJZXQ1YllnV2o2NWJLY1NCTlF3Rm53ZVdkV0hDQ2JZTDdRN1RkUnVfVXAzNGs3QkZFRWdNYUd5Ung4a1dEaWNVUkVnSmFoek5hSl9aWXBfZXhRMlZmSnB3SDAyZkpMaktEemdRQXNHRldNTXgtaTlVLUdRRHowT0ZFdFc4WEQ1VWZCMmF1OWtSblptbl9yRkptUXNSdFIyM0ZBVE9TbDdTZXkzZw?oc=5 | googlenews | 2026-10-08 |
+| id | kelas | akses | subjek | title | author/tahun | penerbit | url | backend | diakses |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| news-2026-10-08-why-malaysia-is-hosting-f1-relocated-bahrain-grand-prix-with-rain-and-haze-likely | secondary | inaccessible | - | Why Malaysia is hosting F1 relocated Bahrain Grand Prix , with rain and haze likely | - (2026) | mymotherlode.com | https://mymotherlode.com/news/world/11182156/why-malaysia-is-hosting-f1s-relocated-bahrain-grand-prix-with-rain-and-haze-likely.html | gdelt | 2026-10-08 |
+| news-2026-10-08-why-indonesians-feel-increasingly-bitter-today | secondary | inaccessible | - | Why Indonesians Feel Increasingly Bitter Today | - (2026) | thediplomat.com | https://thediplomat.com/2026/09/why-indonesians-feel-increasingly-bitter-today/ | gdelt | 2026-10-08 |
+| news-2026-10-08-brics-in-style-decoding-the-diplomatic-dress-code-of-world-leaders | secondary | inaccessible | - | BRICS In Style : Decoding The Diplomatic Dress Code Of World Leaders | - (2026) | luxe.outlookindia.com | https://luxe.outlookindia.com/fashion-beauty/couture/brics-in-style-decoding-the-diplomatic-dress-code-of-world-leaders | gdelt | 2026-10-08 |
+| news-2026-10-08-a-nation-in-motion-indonesias-global-footprint-expands-with-cultural-wins-and-economic-momentum-brand-finance | secondary | inaccessible | - | A nation in motion: Indonesia’s global footprint expands with cultural wins and economic momentum - Brand Finance | - (2025) | Brand Finance | https://news.google.com/rss/articles/CBMiowFBVV95cUxPZ2Q3R0p3S3VBUjU5UU94dnRIdDBZanZpNUo0VUVmZWhkYWdZRWdMSzcyUDJ2QTJvZ3pYR2FFaXNhMno4YUl0R01KWHl3WlNkUEVQQlJwLWJjNEd2cjhKS1FwVzFOelVHcTUwX1IyazZMRXA0NW1VTEEySzhzTjY5aFFFa3dZLTl5M2ZDTlFETS1wMmYtSmZvbmp4bFBWV1NaMFpj?oc=5 | googlenews | 2026-10-08 |
+| news-2026-10-08-spreading-indonesias-nation-branding-through-kopi-kenangan-modern-diplomacy | secondary | inaccessible | - | Spreading Indonesia’s Nation Branding Through “Kopi Kenangan” - Modern Diplomacy | - (2022) | Modern Diplomacy | https://news.google.com/rss/articles/CBMingFBVV95cUxQNlZMRlY5VGIwM2pnRG55eWNmSC03NVhNSTljZ0hFaFJ4WHFLcVA0dFlQT05RNEVZSVJhUkIxWk1XaFR0bXJ2MFZVUHpRYVlheGlTWWV6bWdsV2ZDT1U4R3MxQy1LOXMxaFJELUNVYUhWTzMwLTh1MlZIOURfZEh0LWxLbTBxM2dPdExlX2IzMk1UTVp1RURHUWdYa0kwUQ?oc=5 | googlenews | 2026-10-08 |
+| news-2026-10-08-andrea-bocelli-arrives-at-borobudur-bringing-a-world-class-music-experience-to-indonesia-s-heritage-destination-pt-taman-wisata-candi | secondary | inaccessible | - | Andrea Bocelli arrives at Borobudur, bringing a world-class music experience to Indonesia's heritage destination - PT Taman Wisata Candi | - (2026) | PT Taman Wisata Candi | https://news.google.com/rss/articles/CBMi5gFBVV95cUxPQWlHdGF3RWVEWkthdzRrMkhVQUx6bEhqZnBzN212UHlVVmZieDh3UVFkbmVhQ1pKZGU4b1VISF82MFhJZXQ1YllnV2o2NWJLY1NCTlF3Rm53ZVdkV0hDQ2JZTDdRN1RkUnVfVXAzNGs3QkZFRWdNYUd5Ung4a1dEaWNVUkVnSmFoek5hSl9aWXBfZXhRMlZmSnB3SDAyZkpMaktEemdRQXNHRldNTXgtaTlVLUdRRHowT0ZFdFc4WEQ1VWZCMmF1OWtSblptbl9yRkptUXNSdFIyM0ZBVE9TbDdTZXkzZw?oc=5 | googlenews | 2026-10-08 |
 
 ## book
 
-| id | kelas | title | author/tahun | penerbit | url | backend | diakses |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| book-2026-10-08-nation-branding | secondary | Nation branding | Keith Dinnie (2007) | Routledge | https://openlibrary.org/works/OL9487177W | openlibrary | 2026-10-08 |
-| book-2026-10-08-advances-in-national-brand-and-private-label-marketing | secondary | Advances in National Brand and Private Label Marketing | Francisco J. Martínez-López, Juan Carlos Gázquez-Abad, Els Gijsbrecht (2015) | Springer International Publishing AG | https://openlibrary.org/works/OL20775747W | openlibrary | 2026-10-08 |
-| book-2026-10-08-nation-branding-public-relations-and-soft-power | secondary | Nation Branding, Public Relations and Soft Power | Pawel Surowiec (2016) | Taylor & Francis Group | https://openlibrary.org/works/OL21297584W | openlibrary | 2026-10-08 |
+| id | kelas | akses | subjek | title | author/tahun | penerbit | url | backend | diakses |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| book-2026-10-08-nation-branding | secondary | inaccessible | - | Nation branding | Keith Dinnie (2007) | Routledge | https://openlibrary.org/works/OL9487177W | openlibrary | 2026-10-08 |
+| book-2026-10-08-advances-in-national-brand-and-private-label-marketing | secondary | inaccessible | - | Advances in National Brand and Private Label Marketing | Francisco J. Martínez-López, Juan Carlos Gázquez-Abad, Els Gijsbrecht (2015) | Springer International Publishing AG | https://openlibrary.org/works/OL20775747W | openlibrary | 2026-10-08 |
+| book-2026-10-08-nation-branding-public-relations-and-soft-power | secondary | inaccessible | - | Nation Branding, Public Relations and Soft Power | Pawel Surowiec (2016) | Taylor & Francis Group | https://openlibrary.org/works/OL21297584W | openlibrary | 2026-10-08 |
 
 ## dataset
 
-| id | kelas | title | author/tahun | penerbit | url | backend | diakses |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| dataset-2026-10-08-uae-national-benchmark-for-uncertainty-aware-trip-planning-measured-corpus-frozen-route-caches-and-reproduction-bundle | secondary | UAE National Benchmark for Uncertainty-Aware Trip Planning: Measured Corpus, Frozen Route Caches and Reproduction Bundle | Anonymous (2026) | Zenodo | https://zenodo.org/doi/10.5281/zenodo.21694736 | datacite | 2026-10-08 |
-| dataset-2026-10-08-uae-national-benchmark-for-uncertainty-aware-trip-planning-measured-corpus-frozen-route-caches-and-reproduction-bundle-1 | secondary | UAE National Benchmark for Uncertainty-Aware Trip Planning: Measured Corpus, Frozen Route Caches and Reproduction Bundle | Anonymous (2026) | Zenodo | https://zenodo.org/doi/10.5281/zenodo.23226273 | datacite | 2026-10-08 |
-| dataset-2026-10-08-identity-continuous-reconfiguration-rethinking-dynamic-change-in-tourism-destinations | secondary | Identity-Continuous Reconfiguration: Rethinking Dynamic Change in Tourism Destinations | Savaedi, Sadegh (2026) | Zenodo | https://zenodo.org/doi/10.5281/zenodo.23226134 | datacite | 2026-10-08 |
-| dataset-2026-10-08-in-depth-analysis-of-18-case-studies-on-state-of-the-art-of-cultural-tourism-interventions | secondary | In-depth analysis of 18 case studies on state-of-the-art of cultural tourism interventions | Moretti, Simone, Klijs, Jeroen, Çakmak, Erdinç, Neuts, Bart, van der Donk, Mylene, Mainil, Tomas, Björn, Ella, Lüthje, Monika, Calvi, Licia, van Ouwekerk, Frederike, Mzembe, Andrew, Petrić, Lidija, Pivčević, Smiljana, Šimundić, Blanka, Bertocchi, Dario, Camargo-Borges, Celiane, Matteucci, Xavier, Fidelbo, Costanza, Koens, Ko (2021) | Zenodo | https://zenodo.org/records/5643728 | zenodo | 2026-10-08 |
-| dataset-2026-10-08-german-tourism-knowledge-graph | secondary | German Tourism Knowledge Graph | German National Tourism Board (2024) | Zenodo | https://zenodo.org/records/10912185 | zenodo | 2026-10-08 |
-| dataset-2026-10-08-smart-tourism-as-a-basis-for-the-digital-transformation-of-tourism-destinations-in-uzbekistan | secondary | SMART TOURISM AS A BASIS FOR THE DIGITAL TRANSFORMATION OF TOURISM DESTINATIONS IN UZBEKISTAN | Murodullaeva Guljakhon Azamjon kizi (2026) | Zenodo | https://zenodo.org/records/22022994 | zenodo | 2026-10-08 |
+| id | kelas | akses | subjek | title | author/tahun | penerbit | url | backend | diakses |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| dataset-2026-10-08-uae-national-benchmark-for-uncertainty-aware-trip-planning-measured-corpus-frozen-route-caches-and-reproduction-bundle | secondary | inaccessible | - | UAE National Benchmark for Uncertainty-Aware Trip Planning: Measured Corpus, Frozen Route Caches and Reproduction Bundle | Anonymous (2026) | Zenodo | https://zenodo.org/doi/10.5281/zenodo.21694736 | datacite | 2026-10-08 |
+| dataset-2026-10-08-uae-national-benchmark-for-uncertainty-aware-trip-planning-measured-corpus-frozen-route-caches-and-reproduction-bundle-1 | secondary | inaccessible | - | UAE National Benchmark for Uncertainty-Aware Trip Planning: Measured Corpus, Frozen Route Caches and Reproduction Bundle | Anonymous (2026) | Zenodo | https://zenodo.org/doi/10.5281/zenodo.23226273 | datacite | 2026-10-08 |
+| dataset-2026-10-08-identity-continuous-reconfiguration-rethinking-dynamic-change-in-tourism-destinations | secondary | inaccessible | - | Identity-Continuous Reconfiguration: Rethinking Dynamic Change in Tourism Destinations | Savaedi, Sadegh (2026) | Zenodo | https://zenodo.org/doi/10.5281/zenodo.23226134 | datacite | 2026-10-08 |
+| dataset-2026-10-08-in-depth-analysis-of-18-case-studies-on-state-of-the-art-of-cultural-tourism-interventions | secondary | inaccessible | - | In-depth analysis of 18 case studies on state-of-the-art of cultural tourism interventions | Moretti, Simone, Klijs, Jeroen, Çakmak, Erdinç, Neuts, Bart, van der Donk, Mylene, Mainil, Tomas, Björn, Ella, Lüthje, Monika, Calvi, Licia, van Ouwekerk, Frederike, Mzembe, Andrew, Petrić, Lidija, Pivčević, Smiljana, Šimundić, Blanka, Bertocchi, Dario, Camargo-Borges, Celiane, Matteucci, Xavier, Fidelbo, Costanza, Koens, Ko (2021) | Zenodo | https://zenodo.org/records/5643728 | zenodo | 2026-10-08 |
+| dataset-2026-10-08-german-tourism-knowledge-graph | secondary | inaccessible | - | German Tourism Knowledge Graph | German National Tourism Board (2024) | Zenodo | https://zenodo.org/records/10912185 | zenodo | 2026-10-08 |
+| dataset-2026-10-08-smart-tourism-as-a-basis-for-the-digital-transformation-of-tourism-destinations-in-uzbekistan | secondary | inaccessible | - | SMART TOURISM AS A BASIS FOR THE DIGITAL TRANSFORMATION OF TOURISM DESTINATIONS IN UZBEKISTAN | Murodullaeva Guljakhon Azamjon kizi (2026) | Zenodo | https://zenodo.org/records/22022994 | zenodo | 2026-10-08 |
 
 ## publicdata
 
-| id | kelas | title | author/tahun | penerbit | url | backend | diakses |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| publicdata-2026-10-08-1-0-hcount-1-90usd-poverty-headcount-1-90-a-day | secondary | 1.0.HCount.1.90usd Poverty Headcount ($1.90 a day) | - (-) | World Bank | https://data.worldbank.org/indicator/1.0.HCount.1.90usd | worldbank | 2026-10-08 |
-| publicdata-2026-10-08-1-0-hcount-2-5usd-poverty-headcount-2-50-a-day | secondary | 1.0.HCount.2.5usd Poverty Headcount ($2.50 a day) | - (-) | World Bank | https://data.worldbank.org/indicator/1.0.HCount.2.5usd | worldbank | 2026-10-08 |
-| publicdata-2026-10-08-1-0-hcount-mid10to50-middle-class-10-50-a-day-headcount | secondary | 1.0.HCount.Mid10to50 Middle Class ($10-50 a day) Headcount | - (-) | World Bank | https://data.worldbank.org/indicator/1.0.HCount.Mid10to50 | worldbank | 2026-10-08 |
-| publicdata-2026-10-08-tourism | secondary | tourism | - (-) | Wikidata | http://www.wikidata.org/entity/Q49389 | wikidata | 2026-10-08 |
-| publicdata-2026-10-08-tourism-1 | secondary | Tourism | - (-) | Wikidata | http://www.wikidata.org/entity/Q778920 | wikidata | 2026-10-08 |
-| publicdata-2026-10-08-tourism-jurnal-pariwisata | secondary | Tourism - Jurnal Pariwisata | - (-) | Wikidata | http://www.wikidata.org/entity/Q96738205 | wikidata | 2026-10-08 |
+| id | kelas | akses | subjek | title | author/tahun | penerbit | url | backend | diakses |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| publicdata-2026-10-08-1-0-hcount-1-90usd-poverty-headcount-1-90-a-day | secondary | inaccessible | - | 1.0.HCount.1.90usd Poverty Headcount ($1.90 a day) | - (-) | World Bank | https://data.worldbank.org/indicator/1.0.HCount.1.90usd | worldbank | 2026-10-08 |
+| publicdata-2026-10-08-1-0-hcount-2-5usd-poverty-headcount-2-50-a-day | secondary | inaccessible | - | 1.0.HCount.2.5usd Poverty Headcount ($2.50 a day) | - (-) | World Bank | https://data.worldbank.org/indicator/1.0.HCount.2.5usd | worldbank | 2026-10-08 |
+| publicdata-2026-10-08-1-0-hcount-mid10to50-middle-class-10-50-a-day-headcount | secondary | inaccessible | - | 1.0.HCount.Mid10to50 Middle Class ($10-50 a day) Headcount | - (-) | World Bank | https://data.worldbank.org/indicator/1.0.HCount.Mid10to50 | worldbank | 2026-10-08 |
+| publicdata-2026-10-08-tourism | secondary | inaccessible | - | tourism | - (-) | Wikidata | http://www.wikidata.org/entity/Q49389 | wikidata | 2026-10-08 |
+| publicdata-2026-10-08-tourism-1 | secondary | inaccessible | - | Tourism | - (-) | Wikidata | http://www.wikidata.org/entity/Q778920 | wikidata | 2026-10-08 |
+| publicdata-2026-10-08-tourism-jurnal-pariwisata | secondary | inaccessible | - | Tourism - Jurnal Pariwisata | - (-) | Wikidata | http://www.wikidata.org/entity/Q96738205 | wikidata | 2026-10-08 |
 
 ## company
 
-| id | kelas | title | author/tahun | penerbit | url | backend | diakses |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| company-2026-10-08-indonesia-energy-corp-ltd-indo-cik-0001757840 | secondary | Indonesia Energy Corp Ltd  (INDO)  (CIK 0001757840) | - (2019) | SEC EDGAR | https://www.sec.gov/Archives/edgar/data/0001757840/000114420419040868/tv527118_ex10-7.htm | sec-edgar | 2026-10-08 |
-| company-2026-10-08-geopetro-resources-co-cik-0001116927 | secondary | GEOPETRO RESOURCES CO  (CIK 0001116927) | - (2001) | SEC EDGAR | https://www.sec.gov/Archives/edgar/data/0001116927/000091205701536472/a2060296zex-10_5.htm | sec-edgar | 2026-10-08 |
-| company-2026-10-08-geopetro-resources-co-cik-0001116927-1 | secondary | GEOPETRO RESOURCES CO  (CIK 0001116927) | - (2006) | SEC EDGAR | https://www.sec.gov/Archives/edgar/data/0001116927/000110465906044708/a06-6646_1ex10d2.htm | sec-edgar | 2026-10-08 |
-| company-2026-10-08-pertamina | secondary | Pertamina | - (-) | Wikidata | http://www.wikidata.org/entity/Q1641044 | wikidata | 2026-10-08 |
-| company-2026-10-08-pertamina-1 | secondary | Pertamina | - (-) | Wikidata | http://www.wikidata.org/entity/Q12912784 | wikidata | 2026-10-08 |
-| company-2026-10-08-pertamina-2 | secondary | Pertamina | - (-) | Wikidata | http://www.wikidata.org/entity/Q12488894 | wikidata | 2026-10-08 |
+| id | kelas | akses | subjek | title | author/tahun | penerbit | url | backend | diakses |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| company-2026-10-08-indonesia-energy-corp-ltd-indo-cik-0001757840 | secondary | inaccessible | - | Indonesia Energy Corp Ltd  (INDO)  (CIK 0001757840) | - (2019) | SEC EDGAR | https://www.sec.gov/Archives/edgar/data/0001757840/000114420419040868/tv527118_ex10-7.htm | sec-edgar | 2026-10-08 |
+| company-2026-10-08-geopetro-resources-co-cik-0001116927 | secondary | inaccessible | - | GEOPETRO RESOURCES CO  (CIK 0001116927) | - (2001) | SEC EDGAR | https://www.sec.gov/Archives/edgar/data/0001116927/000091205701536472/a2060296zex-10_5.htm | sec-edgar | 2026-10-08 |
+| company-2026-10-08-geopetro-resources-co-cik-0001116927-1 | secondary | inaccessible | - | GEOPETRO RESOURCES CO  (CIK 0001116927) | - (2006) | SEC EDGAR | https://www.sec.gov/Archives/edgar/data/0001116927/000110465906044708/a06-6646_1ex10d2.htm | sec-edgar | 2026-10-08 |
+| company-2026-10-08-pertamina | secondary | inaccessible | - | Pertamina | - (-) | Wikidata | http://www.wikidata.org/entity/Q1641044 | wikidata | 2026-10-08 |
+| company-2026-10-08-pertamina-1 | secondary | inaccessible | - | Pertamina | - (-) | Wikidata | http://www.wikidata.org/entity/Q12912784 | wikidata | 2026-10-08 |
+| company-2026-10-08-pertamina-2 | secondary | inaccessible | - | Pertamina | - (-) | Wikidata | http://www.wikidata.org/entity/Q12488894 | wikidata | 2026-10-08 |
 
 ## web
 
-| id | kelas | title | author/tahun | penerbit | url | backend | diakses |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| web-2026-10-08-presidential-council-on-nation-branding | secondary | Presidential Council on Nation Branding | - (-) | Wikipedia (en) | https://en.wikipedia.org/wiki/Presidential_Council_on_Nation_Branding | wikipedia | 2026-10-08 |
-| web-2026-10-08-ades-brand | secondary | Ades (brand) | - (-) | Wikipedia (en) | https://en.wikipedia.org/wiki/Ades_%28brand%29 | wikipedia | 2026-10-08 |
-| web-2026-10-08-indonesia-national-football-team | secondary | Indonesia national football team | - (-) | Wikipedia (en) | https://en.wikipedia.org/wiki/Indonesia_national_football_team | wikipedia | 2026-10-08 |
-| web-2026-10-08-indonesia-smart-nation-awards | secondary | Indonesia Smart Nation Awards | - (-) | Wikipedia (id) | https://id.wikipedia.org/wiki/Indonesia_Smart_Nation_Awards | wikipedia | 2026-10-08 |
-| web-2026-10-08-garuda-indonesia | secondary | Garuda Indonesia | - (-) | Wikipedia (id) | https://id.wikipedia.org/wiki/Garuda_Indonesia | wikipedia | 2026-10-08 |
-| web-2026-10-08-citiasia-inc | secondary | Citiasia Inc. | - (-) | Wikipedia (id) | https://id.wikipedia.org/wiki/Citiasia_Inc. | wikipedia | 2026-10-08 |
+| id | kelas | akses | subjek | title | author/tahun | penerbit | url | backend | diakses |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| web-2026-10-08-presidential-council-on-nation-branding | secondary | inaccessible | - | Presidential Council on Nation Branding | - (-) | Wikipedia (en) | https://en.wikipedia.org/wiki/Presidential_Council_on_Nation_Branding | wikipedia | 2026-10-08 |
+| web-2026-10-08-ades-brand | secondary | inaccessible | - | Ades (brand) | - (-) | Wikipedia (en) | https://en.wikipedia.org/wiki/Ades_%28brand%29 | wikipedia | 2026-10-08 |
+| web-2026-10-08-indonesia-national-football-team | secondary | inaccessible | - | Indonesia national football team | - (-) | Wikipedia (en) | https://en.wikipedia.org/wiki/Indonesia_national_football_team | wikipedia | 2026-10-08 |
+| web-2026-10-08-indonesia-smart-nation-awards | secondary | inaccessible | - | Indonesia Smart Nation Awards | - (-) | Wikipedia (id) | https://id.wikipedia.org/wiki/Indonesia_Smart_Nation_Awards | wikipedia | 2026-10-08 |
+| web-2026-10-08-garuda-indonesia | secondary | inaccessible | - | Garuda Indonesia | - (-) | Wikipedia (id) | https://id.wikipedia.org/wiki/Garuda_Indonesia | wikipedia | 2026-10-08 |
+| web-2026-10-08-citiasia-inc | secondary | inaccessible | - | Citiasia Inc. | - (-) | Wikipedia (id) | https://id.wikipedia.org/wiki/Citiasia_Inc. | wikipedia | 2026-10-08 |
