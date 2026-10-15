@@ -172,7 +172,7 @@ Catatan: `hi-brunel-softpower.pdf` (esai berbahasa Tionghoa) **berhasil dibaca**
 
 ## Reproduce
 
-Dijalankan dari akar repo (`/home/zhu/Proyek/Nykripsi v2`):
+Dijalankan dari akar repo:
 
 ```sh
 # 1. Ekstraksi teks setiap PDF (poppler pdftotext), lalu ulang dengan -raw.

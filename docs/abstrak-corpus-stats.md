@@ -165,7 +165,7 @@ _Note: the Sinta corpus had **no** retrieval gaps inside this task — the four 
 
 ## 4. Reproduce
 
-Run from the repository root (`/home/zhu/Proyek/Nykripsi v2`):
+Run from the repository root:
 
 ```sh
 # 1. Extract text from every PDF (poppler pdftotext).
