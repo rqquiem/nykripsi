@@ -1,13 +1,15 @@
 """Validator diagram sintesa teori (kerangka TS1-TS6).
 
 Menegakkan docs/sintesa-diagram-framework.md pada blok berkode berkelas
-``sintesa`` di ``content/artikel/*.md`` + ``content/skripsi/1[0-5]-*.md``
-(level fail) dan ``content/drafts/*.md`` (level warn):
-  TS1 blok sintesa ber-YAML sah (mapping dengan kunci wajib);
-  TS2 >= 2 teori, tiap teori punya nama + peran;
-  TS3 lensa.nama + lensa.gabungan >= 2 yang menunjuk teori yang ada;
-  TS4 lintas_tahap (bila ada) punya nama + peran, tidak tumpang-tindih gabungan;
-  TS5 tahap >= 2 entri unik;
+``sintesa`` di ``content/artikel/*.md`` + ``content/artikel-en/*.md`` +
+``content/skripsi/1[0-5]-*.md`` (level fail) dan ``content/drafts/*.md``
+(level warn). Skema berlapis empat:
+Teori Utama -> Teori Pendukung -> Cabang Bukti -> Lingkup, ditutup lensa.
+  TS1 blok sintesa ber-YAML sah (mapping dengan kunci wajib lapis empat);
+  TS2 teori_utama bernama + berperan; teori_pendukung >= 1 bernama + berperan;
+  TS3 cabang_bukti >= 1 tiap entri bernama + berperan;
+  TS4 lingkup >= 1 string tak kosong dan unik;
+  TS5 lensa.nama + lensa.gabungan >= 2 yang menunjuk teori_utama/teori_pendukung;
   TS6 nama lensa disebut di prosa berkas yang sama (di luar fence).
 """
 
@@ -19,7 +21,7 @@ import yaml
 
 from .base import Context, Finding, register
 
-FINAL_GLOBS = ("content/artikel/*.md", "content/skripsi/1[0-5]-*.md")
+FINAL_GLOBS = ("content/artikel/*.md", "content/artikel-en/*.md", "content/skripsi/1[0-5]-*.md")
 DRAFT_GLOBS = ("content/drafts/*.md",)
 SINTESA_OPEN_RE = re.compile(r"^```\{\.sintesa\b([^}]*)\}")
 
@@ -59,52 +61,63 @@ def _periksa(path: str, rel: str, level: str, findings: list[Finding]) -> bool:
             tambah(f"sintesa TS1: badan bukan mapping (baris {buka + 1})")
             continue
 
-        teori = spec.get("teori")
-        if not isinstance(teori, list) or len(teori) < 2:
-            tambah("sintesa TS2: 'teori' harus list >= 2")
-            teori = []
-        nama_teori = []
-        for t in teori:
-            if not isinstance(t, dict) or not str(t.get("nama", "")).strip() \
-                    or not str(t.get("peran", "")).strip():
-                tambah("sintesa TS2: setiap teori butuh 'nama' dan 'peran'")
-            else:
-                nama_teori.append(str(t["nama"]).strip())
+        wajib = ("teori_utama", "teori_pendukung", "cabang_bukti", "lingkup", "lensa")
+        hilang = [k for k in wajib if k not in spec]
+        if hilang:
+            tambah(f"sintesa TS1: kunci wajib hilang: {', '.join(hilang)}")
+
+        utama = spec.get("teori_utama")
+        nama_teori: list[str] = []
+        if not isinstance(utama, dict) or not str(utama.get("nama", "")).strip() \
+                or not str(utama.get("peran", "")).strip():
+            tambah("sintesa TS2: 'teori_utama' butuh 'nama' dan 'peran' tak kosong")
+        else:
+            nama_teori.append(str(utama["nama"]).strip())
+
+        pendukung = spec.get("teori_pendukung")
+        if not isinstance(pendukung, list) or len(pendukung) < 1:
+            tambah("sintesa TS2: 'teori_pendukung' harus list >= 1")
+        else:
+            for t in pendukung:
+                if not isinstance(t, dict) or not str(t.get("nama", "")).strip() \
+                        or not str(t.get("peran", "")).strip():
+                    tambah("sintesa TS2: setiap teori_pendukung butuh 'nama' dan 'peran'")
+                else:
+                    nama_teori.append(str(t["nama"]).strip())
+
+        cabang = spec.get("cabang_bukti")
+        if not isinstance(cabang, list) or len(cabang) < 1:
+            tambah("sintesa TS3: 'cabang_bukti' harus list >= 1")
+        else:
+            for c in cabang:
+                if not isinstance(c, dict) or not str(c.get("nama", "")).strip() \
+                        or not str(c.get("peran", "")).strip():
+                    tambah("sintesa TS3: setiap cabang_bukti butuh 'nama' dan 'peran'")
+
+        lingkup = spec.get("lingkup")
+        if not isinstance(lingkup, list) or len(lingkup) < 1:
+            tambah("sintesa TS4: 'lingkup' harus list >= 1")
+        else:
+            nilai = [str(s).strip() for s in lingkup]
+            if any(not v for v in nilai):
+                tambah("sintesa TS4: 'lingkup' memuat string kosong")
+            if len(set(nilai)) != len(nilai):
+                tambah("sintesa TS4: 'lingkup' memuat entri duplikat")
 
         lensa = spec.get("lensa")
-        gabungan: list[str] = []
+        nama_lensa = ""
         if not isinstance(lensa, dict) or not str(lensa.get("nama", "")).strip():
-            tambah("sintesa TS3: 'lensa.nama' wajib")
-            lensa = {}
+            tambah("sintesa TS5: 'lensa.nama' wajib")
         else:
+            nama_lensa = str(lensa["nama"]).strip()
             raw = lensa.get("gabungan")
             if not isinstance(raw, list) or len(raw) < 2:
-                tambah("sintesa TS3: 'lensa.gabungan' harus list >= 2")
+                tambah("sintesa TS5: 'lensa.gabungan' harus list >= 2")
             else:
                 for g in raw:
                     if str(g).strip() not in nama_teori:
-                        tambah(f"sintesa TS3: gabungan '{g}' tidak ada di teori")
-                    else:
-                        gabungan.append(str(g).strip())
+                        tambah(f"sintesa TS5: gabungan '{g}' tidak ada di teori_utama/teori_pendukung")
 
-        lintas = spec.get("lintas_tahap") or []
-        if not isinstance(lintas, list):
-            tambah("sintesa TS4: 'lintas_tahap' harus list")
-            lintas = []
-        for l in lintas:
-            if not isinstance(l, dict) or not str(l.get("nama", "")).strip() \
-                    or not str(l.get("peran", "")).strip():
-                tambah("sintesa TS4: setiap lintas_tahap butuh 'nama' dan 'peran'")
-            elif str(l["nama"]).strip() in gabungan:
-                tambah(f"sintesa TS4: '{l['nama']}' tumpang-tindih dengan gabungan")
-
-        tahap = spec.get("tahap")
-        if not isinstance(tahap, list) or len(tahap) < 2:
-            tambah("sintesa TS5: 'tahap' harus list >= 2")
-        elif len({str(s).strip() for s in tahap}) != len(tahap):
-            tambah("sintesa TS5: 'tahap' memuat entri duplikat")
-
-        nama_lensa = str(lensa.get("nama", "")).strip()
         if nama_lensa:
             prosa = "\n".join(ln for k, ln in enumerate(lines) if k not in tertutup)
             if nama_lensa not in prosa:

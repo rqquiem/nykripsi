@@ -1,8 +1,9 @@
 # Kerangka Diagram Sintesa Teori — Menggabungkan Beberapa Teori menjadi Satu Lensa Terpadu (Sinta, HI/IR, Skripsi, Proposal)
 
 Kerangka ini menetapkan cara menyusun **diagram sintesa teori** — penggabungan
-beberapa teori menjadi **satu lensa terpadu** plus kerangka yang dipertahankan
-sebagai **tingkat analisis lintas tahap** — dari **sumber Markdown**. Setiap
+beberapa teori menjadi **satu lensa terpadu** yang disusun sebagai **kerangka
+berlapis empat** (*Teori Utama -> Teori Pendukung -> Cabang Bukti -> Lingkup*)
+— dari **sumber Markdown**. Setiap
 klaim dalam dokumen ini bersumber pada **berkas repositori ini** (URL/berkas
 repo) atau **literatur/dokumen eksternal** yang terekam sesi ini — tidak ada
 aturan tanpa sumber.
@@ -22,22 +23,29 @@ mesin dari sumber Markdown.
 ## 1. Definisi dan Fungsi
 
 **Definisi.** *Sintesa teori* adalah penggabungan **dua teori atau lebih**
-menjadi **satu lensa terpadu** yang menjawab **satu pertanyaan**. *Lensa
-terpadu* adalah **nama gabungan** yang menyatukan teori-teori tersebut, mis.
-"lensa diplomasi publik–soft power terpadu". *Teori* adalah kerangka konseptual
-yang dicatat dengan `nama` + `peran`. *Tingkat analisis lintas tahap* adalah
-kerangka yang **tidak** digabung ke dalam lensa tetapi **menelusuri setiap
-tahap** analisis. *Diagram sintesa* adalah **blok kode berpagar (*fenced code
-block*) Markdown** berkelas `sintesa` yang badannya berupa **YAML**.
+menjadi **satu lensa terpadu** yang menjawab **satu pertanyaan**, disusun
+sebagai **kerangka berlapis empat** yang menghubungkan teori ke bukti:
+**Teori Utama -> Teori Pendukung -> Cabang Bukti -> Lingkup**. *Teori utama*
+adalah kerangka pokok yang dicatat dengan `nama` + `peran`. *Teori pendukung*
+adalah kerangka pelengkap (≥ 1) yang dicatat dengan `nama` + `peran`. *Cabang
+bukti* adalah poros bukti empiris (≥ 1) yang dicatat dengan `nama` + `peran`.
+*Lingkup* adalah batas kajian (≥ 1 string) yang menandai ruang dan waktu
+penelaahan. *Lensa terpadu* adalah **nama gabungan** yang menyatukan
+teori-teori tersebut, mis. "lensa diplomasi publik–soft power terpadu".
+*Diagram sintesa* adalah **blok kode berpagar (*fenced code block*) Markdown**
+berkelas `sintesa` yang badannya berupa **YAML** dan digambar sebagai **pohon
+terhubung**: setiap kotak teori utama disambung ke kotak teori pendukung, ke
+kotak cabang bukti, lalu ke kotak lingkup.
 
 **Fungsi kerangka.** Pertama, **menjadikan sintesa dapat direproduksi dari
 teks**: penggabungan teori dibangun ulang dari blok Markdown, bukan disisipkan
 sebagai prosa yang tak dapat diperiksa. Kedua, **menegakkan bahwa setiap teori
 punya peran** dan bahwa **lensa terpadu menamai ≥ 2 teori gabungan**. Ketiga,
-**menautkan nama lensa ke prosa** sehingga diagram tertaut ke narasi. Sumber:
-`docs/skripsi-pedoman.md`; `docs/conversion-skripsi-to-article.md`;
-`docs/diagram-framework.md`; Pandoc Lua filters
-<https://pandoc.org/lua-filters.html>.
+**menautkan nama lensa ke prosa** sehingga diagram tertaut ke narasi. Keempat,
+**menghubungkan teori ke bukti** melalui lapis cabang bukti dan lingkup yang
+tergambar sebagai pohon tersambung. Sumber: `docs/skripsi-pedoman.md`;
+`docs/conversion-skripsi-to-article.md`; `docs/diagram-framework.md`; Pandoc
+Lua filters <https://pandoc.org/lua-filters.html>.
 
 ---
 
@@ -51,22 +59,23 @@ Tabel 2.2 merangkum **contoh terattestasi** yang sudah ada di naskah.
 
 |Unsur|Kunci YAML|Wajib|Keterangan|
 |---|---|---|---|
-|Teori|`teori[].nama`, `teori[].peran`|ya|≥ 2 teori, tiap teori bernama dan berperan|
-|Lensa terpadu|`lensa.nama`, `lensa.gabungan`|ya|nama lensa + ≥ 2 teori yang digabung|
-|Tingkat lintas tahap|`lintas_tahap[].nama`, `lintas_tahap[].peran`|tidak|kerangka yang tetap terpisah dari lensa|
-|Tahap analisis|`tahap[]`|ya|≥ 2 tahap berurutan|
+|Teori utama|`teori_utama.nama`, `teori_utama.peran`|ya|satu kerangka pokok bernama dan berperan|
+|Teori pendukung|`teori_pendukung[].nama`, `teori_pendukung[].peran`|ya|≥ 1 kerangka pelengkap, tiap entri bernama dan berperan|
+|Cabang bukti|`cabang_bukti[].nama`, `cabang_bukti[].peran`|ya|≥ 1 poros bukti empiris, tiap entri bernama dan berperan|
+|Lingkup|`lingkup[]`|ya|≥ 1 string tak kosong dan unik (ruang dan waktu)|
+|Lensa terpadu|`lensa.nama`, `lensa.gabungan`|ya|nama lensa + ≥ 2 teori utama/pendukung yang digabung|
 
 ### Tabel 2.2 — Contoh terattestasi
 
 |Unsur|Nilai|Sumber|
 |---|---|---|
-|Teori|Diplomasi Publik; Soft Power dan Nation Branding; Analisis Kebijakan Luar Negeri (FPA)|`11-bab-02` §Kajian Teori|
-|Lensa terpadu|"lensa diplomasi publik–soft power terpadu"|`11-bab-02` L78|
-|Gabungan|Diplomasi Publik + Soft Power dan Nation Branding|`11-bab-02` L78|
-|Tingkat lintas tahap|Analisis Kebijakan Luar Negeri (FPA)|`11-bab-02` L78|
-|Tahap|Instrumen → Paparan → Persepsi → Implikasi|`11-bab-02` Tabel 2.1|
+|Teori utama|Ekuitas Merek|`artikel-arai` blok `#fig-sintesa-arai`|
+|Teori pendukung|Negara Asal; Daya Saing Porter|`artikel-arai` blok `#fig-sintesa-arai`|
+|Cabang bukti|Kesadaran Merek; Persepsi Asal; Posisi Bersaing|`artikel-arai` blok `#fig-sintesa-arai`|
+|Lingkup|Saluran impor dan distribusi di Indonesia; Pasar helm Indonesia; Periode 2015–2025|`artikel-arai` blok `#fig-sintesa-arai`|
+|Lensa terpadu|"lensa ekuitas merek–negara asal–daya saing terpadu"|`artikel-arai` L25|
 
-Sumber: `content/skripsi/11-bab-02-tinjauan-pustaka.md` §Kerangka Pemikiran.
+Sumber: `content/artikel/artikel-arai.md` blok `#fig-sintesa-arai`.
 
 > **Bentuk fence lengkap (contoh):** fence dibuka dengan tiga *backtick* lalu
 > ``{.sintesa #fig-slug}`` pada baris yang sama, diikuti badan YAML, lalu
@@ -82,19 +91,21 @@ disebut memiliki sintesa teori yang reprodusibel. Setiap butir menyebut
 definisi, penegak, dan sumbernya. Penegak: `tools/validators/sintesa_diagram.py`.
 
 1. **TS1 — Blok sintesa ber-YAML sah.** Badan setiap blok `sintesa` **wajib**
-   dapat diurai sebagai *mapping* YAML dengan kunci `teori`, `lensa`, `tahap`
-   (`lintas_tahap` opsional). YAML tak sah atau bukan mapping → gagal.
-2. **TS2 — Setiap teori bernama dan berperan.** `teori` **wajib** *list* dengan
-   **≥ 2** entri; setiap entri **wajib** memuat `nama` dan `peran` tak kosong.
-3. **TS3 — Lensa terpadu menamai ≥ 2 teori gabungan.** `lensa.nama` **wajib**
+   dapat diurai sebagai *mapping* YAML dengan kunci `teori_utama`,
+   `teori_pendukung`, `cabang_bukti`, `lingkup`, `lensa`. YAML tak sah, bukan
+   mapping, atau kunci wajib hilang → gagal.
+2. **TS2 — Teori utama dan teori pendukung bernama dan berperan.**
+   `teori_utama` **wajib** *mapping* dengan `nama` dan `peran` tak kosong;
+   `teori_pendukung` **wajib** *list* dengan **≥ 1** entri, setiap entri
+   **wajib** memuat `nama` dan `peran` tak kosong.
+3. **TS3 — Cabang bukti bernama dan berperan.** `cabang_bukti` **wajib** *list*
+   dengan **≥ 1** entri; setiap entri **wajib** memuat `nama` dan `peran` tak
+   kosong.
+4. **TS4 — Lingkup unik dan tak kosong.** `lingkup` **wajib** *list* dengan
+   **≥ 1** string tak kosong dan unik (menandai ruang dan waktu kajian).
+5. **TS5 — Lensa terpadu menamai ≥ 2 teori gabungan.** `lensa.nama` **wajib**
    tak kosong; `lensa.gabungan` **wajib** *list* **≥ 2** entri dan setiap entri
-   **wajib** menunjuk `nama` teori yang ada di `teori`.
-4. **TS4 — Tingkat lintas tahap terpisah.** Bila `lintas_tahap` ada, setiap
-   entri **wajib** memuat `nama` + `peran` tak kosong dan `nama`-nya **tidak
-   boleh** muncul di `lensa.gabungan` (satu kerangka digabung **atau** lintas
-   tahap, tidak keduanya).
-5. **TS5 — Tahap analisis berurutan dan unik.** `tahap` **wajib** *list* dengan
-   **≥ 2** entri unik.
+   **wajib** menunjuk `nama` pada `teori_utama` atau `teori_pendukung`.
 6. **TS6 — Nama lensa disebut di prosa.** `lensa.nama` **wajib** muncul sebagai
    substring di prosa berkas yang sama (**di luar** seluruh blok `sintesa`),
    sehingga diagram tertaut ke narasi.
@@ -106,11 +117,12 @@ definisi, penegak, dan sumbernya. Penegak: `tools/validators/sintesa_diagram.py`
 Menulis diagram sintesa teori yang reprodusibel mengikuti prosedur tujuh
 langkah:
 
-1. **Daftarkan teori** (`nama` + `peran`).
-2. **Pilih ≥ 2 teori yang digabung**, tetapkan `lensa.nama` +
-   `lensa.gabungan`.
-3. Bila ada kerangka yang tetap terpisah, **tulis `lintas_tahap`**.
-4. **Daftar `tahap`** analisis (≥ 2, berurutan).
+1. **Daftarkan teori utama** (`nama` + `peran`) dan **teori pendukung**
+   (`nama` + `peran`).
+2. **Daftar cabang bukti** (`nama` + `peran`) sebagai poros bukti empiris.
+3. **Daftar lingkup** (≥ 1 string) sebagai batas ruang dan waktu kajian.
+4. **Pilih ≥ 2 teori yang digabung**, tetapkan `lensa.nama` +
+   `lensa.gabungan` yang menunjuk teori utama/pendukung.
 5. **Tulis blok** `` ```{.sintesa #fig-<slug>} `` + caption
    `Gambar <bab>.<n> <Judul>` **di bawah** blok.
 6. **Sebut nama lensa di prosa**.
@@ -123,14 +135,17 @@ Sumber: `docs/skripsi-pedoman.md`; `docs/diagram-framework.md` §4.
 
 ## 5. Model Komponen (Anatomi Blok Sintesa)
 
-Sebuah sintesa teori yang sehat tersusun dari delapan komponen fungsional:
+Sebuah sintesa teori yang sehat tersusun dari sembilan komponen fungsional:
 
 - **Blok sumber** — kode berkelas `{.sintesa #fig-<slug>}` dengan badan YAML.
-- **Teori** — daftar `teori[]` dengan `nama` + `peran`.
+- **Teori utama** — `teori_utama` dengan `nama` + `peran`.
+- **Teori pendukung** — daftar `teori_pendukung[]` dengan `nama` + `peran`.
+- **Cabang bukti** — daftar `cabang_bukti[]` dengan `nama` + `peran`.
+- **Lingkup** — daftar `lingkup[]` string ruang dan waktu.
 - **Lensa terpadu** — `lensa` dengan `nama` + `gabungan`.
-- **Tingkat lintas tahap** — `lintas_tahap` (bila ada) dengan `nama` + `peran`.
-- **Tahap** — daftar `tahap[]` berurutan.
-- **Perender** — `tools/diagrams.py` `_render_sintesa` (matplotlib).
+- **Perender** — `tools/diagrams.py` `_render_sintesa` (matplotlib), yang
+  menggambar lima lapis (judul, teori utama, teori pendukung, cabang bukti,
+  lingkup) sebagai **pohon tersambung** dengan panah antarlapis.
 - **Filter** — `tools/pandoc_filters/figure_table.lua` yang mengubah caption dan
   menggantikan blok sintesa dengan gambar.
 - **Penegak** — `tools/validators/sintesa_diagram.py` (TS1–TS6) +
@@ -147,14 +162,15 @@ Sumber: `docs/skripsi-pedoman.md`; `docs/diagram-framework.md` §5; Matplotlib
 
 |Parameter|Nilai|Tingkat|
 |---|---|---|
-|Jumlah teori|**≥ 2**|fail (TS2)|
-|Jumlah gabungan|**≥ 2**|fail (TS3)|
-|Jumlah tahap unik|**≥ 2**|fail (TS5)|
-|`lintas_tahap[].nama` ∉ `lensa.gabungan`|**benar**|fail (TS4)|
+|Teori utama bernama + berperan|**benar**|fail (TS2)|
+|Jumlah teori pendukung|**≥ 1**|fail (TS2)|
+|Jumlah cabang bukti|**≥ 1**|fail (TS3)|
+|Jumlah lingkup unik|**≥ 1**|fail (TS4)|
+|Jumlah gabungan|**≥ 2**|fail (TS5)|
 |Nama lensa ada di prosa|**ada**|fail (TS6)|
 
-Ambang pada (a) dikalibrasi pada **8 berkas** repositori ini (**0 blok sintesa**
-saat ini) dan **lulus** (validator mengembalikan `ok` bila tak ada blok);
+Ambang pada (a) dikalibrasi pada **12 berkas** repositori ini (**4 blok sintesa**
+saat ini) dan **lulus** (validator mengembalikan `ok` bila semua blok patuh);
 sebaliknya, blok cacat buatan **gagal**. Bila kelak muncul berkas sah yang
 melampaui ambang, konstanta di `tools/validators/sintesa_diagram.py` **dan**
 tabel (a) di dokumen ini harus diubah **bersamaan** agar tetap selaras.
@@ -166,10 +182,10 @@ tabel (a) di dokumen ini harus diubah **bersamaan** agar tetap selaras.
 |Aturan|Sinta 1–2|Sinta 3–6|Scopus|Skripsi HI|Proposal|
 |---|---|---|---|---|---|
 |TS1 — Blok sintesa ber-YAML sah|wajib|wajib|unverified — confirm first|wajib|wajib|
-|TS2 — Setiap teori bernama dan berperan|wajib|wajib|unverified — confirm first|wajib|wajib|
-|TS3 — Lensa terpadu menamai ≥ 2 teori gabungan|wajib|wajib|unverified — confirm first|wajib|wajib|
-|TS4 — Tingkat lintas tahap terpisah|wajib|wajib|unverified — confirm first|wajib|wajib|
-|TS5 — Tahap analisis berurutan dan unik|wajib|wajib|unverified — confirm first|wajib|wajib|
+|TS2 — Teori utama + teori pendukung bernama dan berperan|wajib|wajib|unverified — confirm first|wajib|wajib|
+|TS3 — Cabang bukti bernama dan berperan|wajib|wajib|unverified — confirm first|wajib|wajib|
+|TS4 — Lingkup unik dan tak kosong|wajib|wajib|unverified — confirm first|wajib|wajib|
+|TS5 — Lensa terpadu menamai ≥ 2 teori gabungan|wajib|wajib|unverified — confirm first|wajib|wajib|
 |TS6 — Nama lensa disebut di prosa|wajib|wajib|unverified — confirm first|wajib|wajib|
 
 TS1–TS6 **wajib** untuk semua kolom: sintesa teori yang reprodusibel adalah
@@ -186,8 +202,8 @@ eksplisit.
 |Lakukan (Do)|Hindari (Don't)|
 |---|---|
 |Gabung ≥ 2 teori jadi satu lensa bernama|Menumpuk teori tanpa menyebut lensa|
-|Beri peran tiap teori|Mendaftar teori tanpa peran|
-|Pisahkan kerangka lintas tahap dari lensa|Memasukkan kerangka lintas tahap ke dalam lensa|
+|Beri peran tiap teori utama/pendukung|Mendaftar teori tanpa peran|
+|Susun cabang bukti dan lingkup di bawah teori|Menaruh bukti tanpa cabang yang bernama|
 |Sebut nama lensa di prosa|Menaruh diagram tanpa menyebut lensa di teks|
 
 ---
@@ -199,10 +215,10 @@ Nilai **0–2** untuk setiap komponen TS1–TS6; skor maksimum **12**.
 |Komponen|0|1|2|
 |---|---|---|---|
 |TS1 — Blok sintesa ber-YAML sah|YAML tak sah / bukan mapping|Mapping tanpa kunci wajib lengkap|Mapping dengan kunci wajib lengkap|
-|TS2 — Setiap teori bernama dan berperan|< 2 teori / tanpa nama|Sebagian teori tanpa peran|≥ 2 teori, semua bernama + berperan|
-|TS3 — Lensa terpadu menamai ≥ 2 teori gabungan|Tanpa `lensa.nama` / < 2 gabungan|Gabungan menunjuk teori tak ada|`lensa.nama` + ≥ 2 gabungan sah|
-|TS4 — Tingkat lintas tahap terpisah|Lintas tahap tumpang-tindih gabungan|Entri lintas tahap tanpa peran|Lintas tahap bernama + berperan, terpisah|
-|TS5 — Tahap analisis berurutan dan unik|< 2 tahap|Tahap duplikat|≥ 2 tahap unik berurutan|
+|TS2 — Teori utama + teori pendukung bernama dan berperan|Tanpa `teori_utama` / tanpa nama|Sebagian entri tanpa peran|Teori utama + ≥ 1 pendukung, semua bernama + berperan|
+|TS3 — Cabang bukti bernama dan berperan|Tanpa `cabang_bukti` / < 1|Entri cabang bukti tanpa peran|≥ 1 cabang bukti bernama + berperan|
+|TS4 — Lingkup unik dan tak kosong|Tanpa `lingkup` / string kosong|Lingkup memuat duplikat|≥ 1 lingkup unik tak kosong|
+|TS5 — Lensa terpadu menamai ≥ 2 teori gabungan|Tanpa `lensa.nama` / < 2 gabungan|Gabungan menunjuk teori tak ada|`lensa.nama` + ≥ 2 gabungan sah|
 |TS6 — Nama lensa disebut di prosa|Nama lensa tak ada di prosa|—|Nama lensa muncul di prosa|
 
 **Tafsiran:** **12** = patuh penuh; **9–11** = revisi ringan; **5–8** = perlu

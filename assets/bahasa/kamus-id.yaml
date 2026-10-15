@@ -4,6 +4,11 @@ catatan: "Diturunkan dari PDF jurnal Sinta 1-6 di docs/sinta-corpus/ (lihat docs
 korpus_hi: docs/ir-corpus/
 catatan_riset_hi: docs/kamus-riset-korpus-hi.md
 
+# --- Bahasa dokumen (dipakai filter bilingual) ---
+bahasa:
+  utama: id
+  kedua: en
+
 # --- Struktur artikel: urutan kepala bagian + formula pemandu ---
 kepala_bagian:
   - {id: pendahuluan, judul: Pendahuluan, formula_id: tujuan}
@@ -35,6 +40,175 @@ kepala_tambahan:
   - {judul: "ACKNOWLEDGMENT", sumber: "s2-jptk, s2-ilkom"}
   - {judul: "Limitations and Future Works", sumber: "s3-jsi-ui"}
   - {judul: "PENUTUP", sumber: "s6-jupiter (4.6. PENUTUP)"}
+
+# --- Registri judul (aturan JD1-JD6; kerangka: docs/judul-framework.md) ---
+# Dibaca oleh tools/validators/judul.py. Pencocokan: judul dinormalkan (huruf
+# kecil, lipat-ASCII, tokenisasi spasi) lalu setiap penanda dicari sebagai
+# token/frasa utuh. Berkas yang diperiksa: research/judul.json,
+# templates/artikel-*-meta.yaml, content/skripsi/00-halaman-judul.md.
+judul:
+  # JD1 - penanda aksi/tujuan. Judul wajib memuat >= 1 penanda ini (memperbaiki
+  # mode kegagalan 5a: judul hanya berupa topik/frasa nomina tanpa tindakan).
+  judul_verba_aksi:
+    - Analisis
+    - Analisa
+    - Strategi
+    - Pengaruh
+    - Peran
+    - Dampak
+    - Evaluasi
+    - Penerapan
+    - Implementasi
+    - Pengembangan
+    - Mengembangkan
+    - Perbandingan
+    - Kajian
+    - Studi
+    - Optimalisasi
+    - Peningkatan
+    - Efektivitas
+    - Menembus
+    - Menganalisis
+    - Mengukur
+    - Menilai
+    - Menguji
+    - Mengidentifikasi
+    - Memetakan
+    - Menjelaskan
+    - Merancang
+    - Membangun
+    - Menyusun
+    - Memodelkan
+    - Klasifikasi
+    - Pemodelan
+    - Penilaian
+    - Perancangan
+    - Pengukuran
+    - Pemanfaatan
+    - Prediksi
+    # Padanan Inggris (EN)
+    - Analysis
+    - Strategy
+    - Effect
+    - Impact
+    - Evaluation
+    - Implementation
+    - Development
+    - Comparison
+    - Assessment
+    - Optimization
+    - Improvement
+    - Examining
+    - Analyzing
+    - Measuring
+    - Assessing
+    - Testing
+    - Identifying
+    - Mapping
+    - Designing
+    - Predicting
+    - Classification
+    - Prediction
+    - Modeling
+    - Modelling
+    - Enhancing
+    - Evaluating
+    - Performance
+  # JD2 - penanda lingkup. Jumlah kemunculan <= 2 (ambang terkalibrasi korpus;
+  # memperbaiki mode kegagalan 5b: lingkup terlalu luas/terlalu banyak objek).
+  judul_penanda_lingkup:
+    - dan
+    - serta
+    - atau
+    - vs
+    - versus
+    - meliputi
+    - berbagai
+    - across
+    - through
+    - using
+    - antara
+    - and
+    - or
+  # JD2 - penanda wilayah/venue supranasional. Jumlah <= 1. Nama negara yang
+  # menjadi aktor/objek penelitian (mis. Indonesia, Tiongkok) tidak dihitung di
+  # sini; penumpukan aktor ditangkap oleh batas judul_penanda_lingkup.
+  judul_penanda_wilayah:
+    - Eropa
+    - Asia
+    - Afrika
+    - Amerika
+    - ASEAN
+    - Asia Tenggara
+    - Timur Tengah
+    - Pasifik
+    - global
+    - internasional
+    - dunia
+    - regional
+  # JD3 - penanda masalah. Judul wajib memuat penanda masalah ATAU solusi
+  # (memperbaiki mode kegagalan 5c: tidak menyatakan masalah/kontribusi).
+  judul_penanda_masalah:
+    - kesenjangan
+    - celah
+    - masalah
+    - kendala
+    - hambatan
+    - tantangan
+    - kegagalan
+    - ketimpangan
+    - krisis
+    - penurunan
+    - problematika
+    - gap
+    - keterbatasan
+    - problem
+    - challenge
+    - crisis
+    - decline
+    - inequality
+    - failure
+    - obstacle
+    - barrier
+    - bottleneck
+  # JD3 - penanda solusi/kontribusi.
+  judul_penanda_solusi:
+    - strategi
+    - solusi
+    - model
+    - kerangka
+    - pendekatan
+    - rekomendasi
+    - kebaruan
+    - kontribusi
+    - optimalisasi
+    - peningkatan
+    - inovasi
+    - efektivitas
+    - efisiensi
+    - strategy
+    - solution
+    - framework
+    - approach
+    - recommendation
+    - novelty
+    - contribution
+    - optimization
+    - improvement
+    - innovation
+    - effectiveness
+    - efficiency
+    - architecture
+  # JD5 - penanda kabur/terlarang (frasa dicocokkan utuh).
+  judul_terlarang:
+    - berbagai aspek
+    - secara umum
+    - secara luas
+    - di segala bidang
+    - dan lain-lain
+    - dan sebagainya
+    - dll
+    - dsb
 
 # --- Formula kalimat (id -> teks). Dipakai di artikel dan bab skripsi. ---
 formula:
@@ -473,6 +647,72 @@ kosakata_baku:
   - {salah: terimakasih, benar: "terima kasih"} # 2× (hi-jhi-umy-malaysia)
   - {salah: kerjasama, benar: "kerja sama"}    # 30× (8 paper: hi-jiir-uinsa, hi-jhi-umy-konstruktivis, hi-dinamika-bali-democracy, …)
 
+# --- Istilah asing (kata miring, EYD Edisi V butir G.3) ---
+# Kata/ungkapan bahasa asing lazim yang WAJIB dimiringkan (*istilah*) di prosa.
+# Nama diri/merek (Health Silk Road, KYT, IKEA, PT) TIDAK didaftarkan
+# (EYD G.3 catatan a: nama diri tidak dimiringkan).
+istilah_asing:
+  - {istilah: "soft power"}
+  - {istilah: "nation branding"}
+  - {istilah: "public diplomacy"}
+  - {istilah: "vaccine diplomacy"}
+  - {istilah: "health diplomacy"}
+  - {istilah: "brand equity"}
+  - {istilah: "country of origin"}
+  - {istilah: "country-of-origin"}
+  - {istilah: "perceived quality"}
+  - {istilah: "target market"}
+  - {istilah: "marketing mix"}
+  - {istilah: "entry mode"}
+  - {istilah: "full face"}
+  - {istilah: "business matching"}
+
+# --- Istilah teknis (glos Inggris wajib pada penyebutan prosa pertama) ---
+# Setiap istilah teknis Indonesia WAJIB diikuti glos Inggris dalam tanda kurung
+# pada penyebutan prosa pertama: "istilah (english gloss)". Bila glos itu sendiri
+# terdaftar di istilah_asing, tulis miring: "istilah (*english gloss*)".
+# Berlaku di prosa/heading; DIKECUALIKAN di blok abstrak, tabel, caption, label
+# kata kunci, fence, dan komentar (sama seperti LT3).
+istilah_teknis:
+  - {istilah: "diplomasi publik", inggris: "public diplomacy"}
+  - {istilah: "diplomasi vaksin", inggris: "vaccine diplomacy"}
+  - {istilah: "kebijakan luar negeri", inggris: "foreign policy"}
+  - {istilah: "kedaulatan digital", inggris: "digital sovereignty"}
+  - {istilah: "kecerdasan artifisial", inggris: "artificial intelligence"}
+  - {istilah: "penanaman modal asing", inggris: "foreign direct investment"}
+  - {istilah: "tata kelola", inggris: "governance"}
+  - {istilah: "legitimasi", inggris: "legitimacy"}
+  - {istilah: "persepsi publik", inggris: "public perception"}
+  - {istilah: "negara berkembang", inggris: "developing country"}
+  - {istilah: "hubungan bilateral", inggris: "bilateral relations"}
+  - {istilah: "bauran pemasaran", inggris: "marketing mix"}
+  - {istilah: "ekuitas merek", inggris: "brand equity"}
+  - {istilah: "negara asal", inggris: "country of origin"}
+  - {istilah: "daya saing", inggris: "competitiveness"}
+  - {istilah: "rantai pasok", inggris: "supply chain"}
+  - {istilah: "akuisisi lahan", inggris: "land acquisition"}
+  - {istilah: "penolakan lokal", inggris: "local opposition"}
+  - {istilah: "komunikasi publik", inggris: "public communication"}
+  - {istilah: "keamanan kesehatan", inggris: "health security"}
+  - {istilah: "aktor non-negara", inggris: "non-state actor"}
+  - {istilah: "celah penelitian", inggris: "research gap"}
+
+# --- Tanda pisah (prosa) ---
+tanda_pisah:
+  dilarang: ["—", " - "]      # em dash + hyphen berspasi
+  diizinkan: "–"              # en dash untuk rentang angka (mis. 2020–2022)
+  catatan: "Em dash dan hyphen berspasi dilarang di prosa; gunakan koma, titik dua, atau titik. En dash hanya untuk rentang angka."
+
+# --- Singkatan dan kepanjangan (EYD Edisi V butir F.3) ---
+# Setiap singkatan WAJIB dijabarkan pada penyebutan pertama di prosa dengan
+# pola "SINGKATAN (Kepanjangan)" dan terdaftar di DAFTAR SINGKATAN.
+# 'varian' = kepanjangan alternatif yang diterima.
+singkatan:
+  - {singkatan: ASEAN, kepanjangan: "Association of Southeast Asian Nations"}
+  - {singkatan: FPA, kepanjangan: "Foreign Policy Analysis", varian: ["Analisis Kebijakan Luar Negeri"]}
+  - {singkatan: ECE, kepanjangan: "Economic Commission for Europe"}
+  - {singkatan: SWOT, kepanjangan: "Strengths, Weaknesses, Opportunities, Threats"}
+
 # --- Frasa pengisi bergaya AI generik -> pengganti bergaya korpus ---
 frasa_ai_generik:
   - {frasa: "pada era digital saat ini", ganti: "saat ini"}
@@ -524,6 +764,7 @@ kutipan:
   gaya_korpus: numerik_kurung
   contoh_apa: ["Menurut X (2020), …", "X (2020) menyatakan bahwa …", "(X, 2020)", "(X, 2020; Y, 2021)"]
   contoh_numerik: ["… [1]", "… [2], [3]", "… [7]–[9]", "… [1]-[3]", "… [7] -[12]", "… [4-7]", "… [2-4]"]
+  lokator_contoh: "[@hall2013struggle, hlm. 12]"
   paper_numerik: [s1-register, s1-telkomnika, s2-ijccs, s2-ilkom, s2-jiki, s2-jisebi, s2-jti, s2-resti, s2-sji, s3-coreit, s3-juti, s3-mib, s3-sisfokom, s3-sistemasi, s4-jsi, s4-scan, s4-sitekin, s4-transformatika, s5-jatisi, s5-misi, s5-nuansa, s6-jupiter, s6-jutik]
   paper_apa: [s2-jptk, s2-jsinbis, s2-jtie, s3-jsce, s3-jsi-ui, s3-sinkron]
 
@@ -532,6 +773,45 @@ daftar_pustaka:
   gaya_korpus: numerik
   paper_apa: [s2-jptk, s2-jsinbis, s2-jtie, s3-jsce, s3-jsi-ui, s3-sinkron]
   jumlah_entri_teramati: [12, 78]
+  blok_refs: "::: {#refs} :::"
+
+# --- Catatan kaki (footnote) ---
+# Catatan kaki HANYA untuk keterangan penjelas. Catatan kaki sebagai GAYA SITASI
+# (Chicago notes) bukan gaya build repo; didokumentasikan sebagai varian.
+catatan_kaki:
+  jenis: penjelas
+  larangan: ["sitasi [@key]", "di dalam abstrak"]
+  gaya_alternatif: "catatan_kaki_sitasi (Chicago notes) — didokumentasikan, bukan gaya build repo"
+  contoh: "Lihat Bab II untuk uraian lengkap."
+
+# --- Kutipan langsung (EYD Edisi V, tanda petik J) ---
+kutipan_langsung:
+  tanda_petik: "melengkung “…” (EYD Edisi V, tanda petik J)"
+  lokator: "sertakan lokator pada sitasi kutipan langsung: [@key, hlm. N]"
+  larangan: ["tanda petik lurus \"…\" di prosa"]
+
+# --- BAB I / Pendahuluan (docs/bab1-framework.md; A1-A8/B1-B3) ---
+bab1:
+  subbagian: [Latar Belakang, Rumusan Masalah, Batasan Masalah, Tujuan, Manfaat]
+  formula_tag: [latar_belakang, rumusan_masalah, batasan_masalah, tujuan, manfaat]
+  latar_belakang_panjang: [700, 1300]
+  latar_belakang_sitasi_min: 15
+  batasan_lima: [waktu, objek, kerangka, data, pengecualian]
+  manfaat: [teoretis, praktis]
+
+# --- Kebaruan bukti (ER1-ER3; kerangka: docs/citation-framework.md) ---
+recency:
+  max_tahun: 5
+  periode_default: "2020–2025"
+  catatan: "Sumber bukti (Berita/Siaran pers/Artikel/Web) wajib <= 5 tahun dan di dalam periode sasaran."
+
+# --- Artikel (docs/article-framework.md; AR1-AR8) ---
+artikel:
+  kepala_bagian: [pendahuluan, metode, hasil, simpulan, ucapan, pustaka]
+  abstrak_panjang: [150, 250]
+  kata_kunci: [3, 6]
+  pendahuluan_beat: [konteks, penelitian terdahulu, celah, tujuan]
+  pendahuluan_panjang: [700, 900]
 
 # --- Rujukan silang ke dokumen riset ---
 catatan_riset: docs/kamus-riset-korpus.md

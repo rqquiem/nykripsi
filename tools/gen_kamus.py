@@ -380,6 +380,68 @@ def render_doc(d):
             )
         )
         L.append("")
+    tp = d.get("tanda_pisah", {}) or {}
+    if tp:
+        dilarang = ", ".join("`%s`" % x for x in tp.get("dilarang", []))
+        L.append(
+            "- Tanda pisah prosa: dilarang %s; diizinkan `%s` (rentang angka)."
+            % (dilarang, tp.get("diizinkan", ""))
+        )
+        if tp.get("catatan"):
+            L.append("- %s" % tp["catatan"])
+        L.append("")
+
+    # --- Istilah Asing (Kata Miring) ---
+    istilah = d.get("istilah_asing", []) or []
+    if istilah:
+        L.append("## Istilah Asing (Kata Miring)")
+        L.append("")
+        L.extend(
+            _table(
+                ["Istilah", "Aturan"],
+                [[x.get("istilah", ""), "tulis miring: *%s*" % x.get("istilah", "")] for x in istilah],
+            )
+        )
+        L.append("")
+
+    # --- Istilah Teknis (Dwibahasa) ---
+    teknis = d.get("istilah_teknis", []) or []
+    if teknis:
+        L.append("## Istilah Teknis (Dwibahasa)")
+        L.append("")
+        L.append(
+            "Setiap istilah teknis WAJIB diikuti glos Inggris dalam tanda kurung "
+            "pada penyebutan prosa pertama: `istilah (english gloss)`. Bila glos "
+            "terdaftar di Istilah Asing, tulis miring: `istilah (*english gloss*)`."
+        )
+        L.append("")
+        L.extend(
+            _table(
+                ["Istilah", "Glos Inggris"],
+                [[x.get("istilah", ""), x.get("inggris", "")] for x in teknis],
+            )
+        )
+        L.append("")
+
+    # --- Singkatan dan Kepanjangan ---
+    singkatan = d.get("singkatan", []) or []
+    if singkatan:
+        L.append("## Singkatan dan Kepanjangan")
+        L.append("")
+        L.extend(
+            _table(
+                ["Singkatan", "Kepanjangan", "Varian"],
+                [
+                    [
+                        x.get("singkatan", ""),
+                        x.get("kepanjangan", ""),
+                        ", ".join(x.get("varian", []) or []) or "—",
+                    ]
+                    for x in singkatan
+                ],
+            )
+        )
+        L.append("")
 
     # --- Kosakata Baku ---
     L.append("## Kosakata Baku")
@@ -451,7 +513,61 @@ def render_doc(d):
         "- Daftar pustaka: default **%s**; varian korpus **%s** (didokumentasikan, bukan gaya build repo)."
         % (dp.get("gaya_default", "APA"), dp.get("gaya_korpus", "numerik"))
     )
+    if dp.get("blok_refs"):
+        L.append("- Blok daftar pustaka yang dirender: `%s`." % dp["blok_refs"])
+    if ku.get("lokator_contoh"):
+        L.append("- Lokator kutipan langsung: contoh `%s`." % ku["lokator_contoh"])
     L.append("")
+
+    # --- Kutipan Langsung ---
+    kl = d.get("kutipan_langsung", {}) or {}
+    if kl:
+        L.append("## Kutipan Langsung")
+        L.append("")
+        L.append("- Tanda petik: %s" % kl.get("tanda_petik", ""))
+        L.append("- Lokator: %s" % kl.get("lokator", ""))
+        L.append("- Larangan: %s" % ", ".join(kl.get("larangan", [])))
+        L.append("")
+
+    # --- Catatan Kaki ---
+    ck = d.get("catatan_kaki", {}) or {}
+    if ck:
+        L.append("## Catatan Kaki")
+        L.append("")
+        L.append("- Jenis: %s" % ck.get("jenis", ""))
+        L.append("- Larangan: %s" % ", ".join(ck.get("larangan", [])))
+        L.append("- Gaya alternatif: %s" % ck.get("gaya_alternatif", ""))
+        L.append("- Contoh: `%s`" % ck.get("contoh", ""))
+        L.append("")
+
+    # --- BAB I / Pendahuluan ---
+    b1 = d.get("bab1", {}) or {}
+    if b1:
+        L.append("## BAB I / Pendahuluan")
+        L.append("")
+        L.append("- Subbagian (urutan): %s" % " → ".join(b1.get("subbagian", [])))
+        L.append("- Tag formula `kamus:f`: %s" % ", ".join("`%s`" % x for x in b1.get("formula_tag", [])))
+        lb = b1.get("latar_belakang_panjang", [])
+        if lb:
+            L.append("- Latar Belakang: %s kata, ≥ %s sitasi." % ("–".join(str(x) for x in lb), b1.get("latar_belakang_sitasi_min", "")))
+        L.append("- Batasan Masalah (lima): %s" % ", ".join(b1.get("batasan_lima", [])))
+        L.append("- Manfaat: %s" % ", ".join(b1.get("manfaat", [])))
+        L.append("")
+
+    # --- Artikel ---
+    ar = d.get("artikel", {}) or {}
+    if ar:
+        L.append("## Artikel")
+        L.append("")
+        L.append("- Kepala bagian (urutan): %s" % " → ".join(ar.get("kepala_bagian", [])))
+        ap = ar.get("abstrak_panjang", [])
+        if ap:
+            L.append("- Abstrak: %s kata; kata kunci %s." % ("–".join(str(x) for x in ap), "–".join(str(x) for x in ar.get("kata_kunci", []))))
+        L.append("- Pendahuluan (beat): %s" % " → ".join(ar.get("pendahuluan_beat", [])))
+        pp = ar.get("pendahuluan_panjang", [])
+        if pp:
+            L.append("- Pendahuluan: %s kata." % "–".join(str(x) for x in pp))
+        L.append("")
 
     # --- Daftar Periksa ---
     L.append("## Daftar Periksa")

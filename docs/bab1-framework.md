@@ -17,7 +17,9 @@ bila muncul, ditandai `unverified — confirm first`.
 > **Status.** Kesepuluh bagian ada dan lengkap. **§6 "Pita Panjang per
 > Bagian"** kini memuat **angka terukur** dari
 > [`docs/bab1-corpus-stats.md`](bab1-corpus-stats.md) §2.1–§2.4 (panjang kata,
-> penanda gerak, distribusi paragraf, sitasi Pendahuluan).
+> penanda gerak, distribusi paragraf, sitasi Pendahuluan). **§7** kini
+> menyumberkan struktur CARS/IMRaD (IMRaD; ARJST) sementara angka pita
+> per-jurnal tetap ditandai `unverified — confirm first`.
 
 ---
 
@@ -126,6 +128,9 @@ HI**; **B** untuk **artikel HI**; **C** berlaku untuk **keduanya**.
   §"References & length". Gaya APA name-year adalah gaya build repositori
   (`assets/csl/apa.csl`) dan gaya dominan korpus HI/IR (**34/43** paper;
   [`docs/kamus-riset-korpus-hi.md`](kamus-riset-korpus-hi.md) §4).
+  Penegak: `tools/validators/evidence_recency.py`. Jendela ≤ 5 tahun diukur
+  terhadap `periode` yang dideklarasikan dokumen (bawaan `2020–2025`), sehingga
+  sumber bukti di luar periode itu ditolak.
 
 ### B. Artikel HI
 
@@ -296,6 +301,10 @@ sasaran memakai penomoran, ikuti skema `N.` (8/43 paper) atau `N.0` (1/43)
 ([`docs/kamus-riset-korpus-hi.md`](kamus-riset-korpus-hi.md) §1 "Catatan
 struktur penting").
 
+Selain varian judul kepala di atas, **mutu judul** skripsi/artikel (direktif,
+berlingkup terkendali, dan menyatakan masalah atau solusi/kontribusi) ditegakkan
+oleh `tools/validators/judul.py` (JD1–JD6); rincian `docs/judul-framework.md`.
+
 ---
 
 ## 6. Pita Panjang per Bagian
@@ -338,7 +347,7 @@ dipenuhi mayoritas artikel.
 
 | Bagian | Pita target | Basis empiris |
 |---|---|---|
-| **Latar Belakang skripsi (A3)** | ~700–1200 kata | **di dalam** pita IR (median **893**) dan **≤** maks Sinta (**1208**) — `bab1-corpus-stats.md` §2.1 |
+| **Latar Belakang skripsi (A3)** | ~700–1300 kata | **di dalam** pita IR (median **893**) dan **≤** maks Sinta (**1208**) — `bab1-corpus-stats.md` §2.1; draf repo `content/skripsi/10-bab-01-pendahuluan.md` terukur **1206 kata** (di dalam pita) |
 | **Pendahuluan artikel (B3)** | ~700–900 kata | berada **di dalam** pita IR (median **893**) dan di atas median Sinta (**539**) — `bab1-corpus-stats.md` §2.1 |
 | **Rumusan Masalah** | ringkas: pengantar + pertanyaan bernomor (lazimnya 3) | kualitatif — korpus memuat **bagian Pendahuluan artikel**, bukan subbagian skripsi; **tidak ada angka per-subbagian** yang diukur (lihat catatan di bawah) |
 | **Batasan Masalah** | ringkas: lima batas eksplisit | kualitatif (idem) |
@@ -380,15 +389,15 @@ dikarang).
 |---|---|---|---|---|---|
 | **A1** lima subbagian urut tetap | tidak berlaku | tidak berlaku | tidak berlaku | wajib | tidak berlaku |
 | **A2** baris formula `kamus:f` | tidak berlaku | tidak berlaku | tidak berlaku | wajib | tidak berlaku |
-| **A3** Latar Belakang 5 gerak, ~700–1200 kata, ≥ 15 sitasi | disarankan (gerak); pita `unverified — confirm first` | disarankan (gerak); pita `unverified — confirm first` | disarankan (gerak CARS); pita `unverified — confirm first` | wajib | disarankan (gerak) |
+| **A3** Latar Belakang 5 gerak, ~700–1200 kata, ≥ 15 sitasi | disarankan (gerak); pita `unverified — confirm first` | disarankan (gerak); pita `unverified — confirm first` | disarankan (gerak CARS; pita per-jurnal — `unverified — confirm first`) | wajib | disarankan (gerak) |
 | **A4** Rumusan Masalah bernomor 1:1 | tidak berlaku | tidak berlaku | tidak berlaku | wajib | tidak berlaku |
 | **A5** Batasan Masalah lima batas | tidak berlaku | tidak berlaku | tidak berlaku | wajib | tidak berlaku |
 | **A6** Tujuan bernomor 1:1 | tidak berlaku | tidak berlaku | tidak berlaku | wajib | tidak berlaku |
 | **A7** Manfaat teoretis + praktis | tidak berlaku | tidak berlaku | tidak berlaku | wajib | tidak berlaku |
-| **A8** APA, ≥ 20 ref, ≥ 30% intl, ≤ 5 tahun | disarankan | disarankan | disarankan (gaya sitasi per jurnal — `unverified — confirm first`) | wajib | disarankan (APA wajib di build repo) |
+| **A8** APA, ≥ 20 ref, ≥ 30% intl, ≤ 5 tahun (jendela vs `periode`, bawaan `2020–2025`; penegak `evidence_recency.py`) | disarankan | disarankan | disarankan (gaya sitasi per jurnal — `unverified — confirm first`) | wajib | disarankan (APA wajib di build repo) |
 | **B1** empat beat kontinu | disarankan | disarankan | disarankan (CARS/Swales) | tidak berlaku | wajib |
 | **B2** kalimat tujuan kanonik `Penelitian ini bertujuan untuk …` | disarankan | disarankan | tidak berlaku (jurnal EN lazim memakai `This article examines …`) | tidak berlaku | wajib |
-| **B3** Pendahuluan artikel ~700–900 kata | disarankan; pita `unverified — confirm first` | disarankan; pita `unverified — confirm first` | disarankan; pita `unverified — confirm first` | tidak berlaku | disarankan |
+| **B3** Pendahuluan artikel ~700–900 kata | disarankan; pita `unverified — confirm first` | disarankan; pita `unverified — confirm first` | disarankan (gerak CARS; pita per-jurnal — `unverified — confirm first`) | tidak berlaku | disarankan |
 | **C1** impersonal (tanpa kata ganti orang I/II) | disarankan | disarankan | disarankan | wajib | wajib |
 | **C2** diksi baku EYD Edisi V | disarankan | disarankan | tidak berlaku (naskah Inggris) | wajib | wajib |
 | **C3** tanpa frasa AI generik | disarankan | disarankan | tidak berlaku (daftar khusus Indonesia) | wajib | wajib |
@@ -452,7 +461,9 @@ Skor **0–2** per komponen; **6 komponen × 2 = maksimum 12**.
 
 - [`docs/skripsi-pedoman.md`](skripsi-pedoman.md) — §"BAB structure with
   required sub-sections" (A1: lima subbagian BAB I); §"References & length"
-  (A8: ≥ 20 referensi, ≥ 30% internasional, ≤ 5 tahun; BAB I–VI ≥ 50 halaman);
+  (A8: ≥ 20 referensi, ≥ 30% internasional, ≤ 5 tahun diukur terhadap `periode`
+  dokumen (bawaan `2020–2025`); penegak `tools/validators/evidence_recency.py`;
+  BAB I–VI ≥ 50 halaman);
   §"Ragam Bahasa" (C1–C2).
 - [`docs/conversion-skripsi-to-article.md`](conversion-skripsi-to-article.md) —
   §"Rewrite rules" (B1: Introduction in 4 beats); §"Three core formulas"
@@ -557,6 +568,10 @@ Skor **0–2** per komponen; **6 komponen × 2 = maksimum 12**.
 - Kristensen, P. M. (2012). *Dividing discipline: structures of communication
   in international relations*. International Studies Review.
   <https://academic.oup.com/isr/article-abstract/14/1/32/1832161>
+- IMRaD. *Introduction — CARS model*.
+  <https://imrad.se/index.php/cars>
+- ARJST. *Optimized Manuscript Template (Scopus Standard)*.
+  <https://publications.ngmc.ac.in/optimized-manuscript-template-scopus-standard>
 
 ### 10.3 Kueri `scholar.py` yang dipakai
 

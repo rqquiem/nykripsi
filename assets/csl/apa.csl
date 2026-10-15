@@ -1855,7 +1855,7 @@
       <if variable="DOI">
         <text prefix="https://doi.org/" variable="DOI"/>
       </if>
-      <else-if variable="URL">
+      <else-if match="all" type="webpage post-weblog post" variable="URL">
         <group delimiter=" ">
           <choose>
             <if match="none" variable="issued status">

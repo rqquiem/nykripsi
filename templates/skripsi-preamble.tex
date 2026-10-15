@@ -5,6 +5,9 @@
 \setmonofont{Liberation Mono}
 
 \usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm]{geometry}
+% Suppress automatic hyphenation at line breaks (LT8)
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
 \usepackage{setspace}
 \usepackage{fancyhdr}
 \usepackage{titlesec}
@@ -13,6 +16,10 @@
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{arydshln}
 \usepackage{caption}
 
 % Authoritative spacing/paragraph rules (run after pandoc's template setup)

@@ -120,6 +120,8 @@ Mirrors the register linter (`tools/check-bahasa.sh`) run by `make check`:
 - [ ] Core formulas used: `Penelitian ini bertujuan untuk …`,
       `Hasil penelitian menunjukkan bahwa …`,
       `Berdasarkan hasil penelitian dan pembahasan, dapat disimpulkan bahwa …`.
+- [ ] Tidak ada em dash `—` atau hyphen berspasi ` - ` di prosa; en dash `–` hanya untuk rentang angka (LT8; `assets/bahasa/kamus-id.yaml` §`tanda_pisah`).
+- [ ] Setiap istilah teknis §`istilah_teknis` diikuti padanan Inggris dalam kurung pada kemunculan prosa pertama, miring bila padanannya istilah asing (LT9; `assets/bahasa/kamus-id.yaml` §`istilah_teknis`).
 
 ## Register Anti-AI (Gaya Korpus)
 
@@ -172,6 +174,40 @@ di bawah memberi padanan konkret "pakai ini / jangan ini".
 5. **Tipografi**: simbol `%` menempel angka dengan koma desimal
    (`73,57%`, `12,92%`); istilah asing teknis dibiarkan verbatim
    (`soft power`, `dataset`); kutipan memakai tanda melengkung `“…”`.
+
+## Tipografi: Tanda Pisah dan Istilah Teknis Dwibahasa
+
+Dua kaidah tipografi tambahan ditegakkan mesin oleh
+`tools/validators/layout_typography.py` (lihat juga
+[`docs/layout-framework.md`](layout-framework.md) LT8 dan LT9).
+
+**Tanda pisah (LT8).** Pada prosa akademik:
+
+- **EM DASH `—` (U+2014) dilarang.** Gantikan dengan koma, titik dua, atau
+  titik, mis. `kebijakan ini, yang diambil pada 2020, terbukti …` bukan
+  `kebijakan ini — yang diambil pada 2020 — terbukti …`.
+- **HYPHEN ASCII BERSPASI ` - ` dilarang.** Gantikan dengan koma, titik dua,
+  atau titik.
+- **EN DASH `–` (U+2013) hanya untuk rentang angka**, mis. `2020–2022`,
+  `hlm. 15–20`, `[7]–[9]`. Jangan pakai en dash sebagai penghubung klausa.
+- **Hyphenasi otomatis ditekan.** Kedua preamble
+  (`templates/skripsi-preamble.tex`, `templates/artikel-preamble.tex`) memuat
+  `\hyphenpenalty=10000` dan `\exhyphenpenalty=10000`, sehingga tidak ada
+  hyphen yang muncul pada kata yang terpotong di ujung baris.
+
+Sumber: `assets/bahasa/kamus-id.yaml` §`tanda_pisah` (konvensi "tanda pisah");
+`templates/skripsi-preamble.tex`; `templates/artikel-preamble.tex`.
+
+**Istilah teknis dwibahasa (LT9).** Setiap istilah teknis Indonesia tingkat
+lanjut yang terdaftar di `assets/bahasa/kamus-id.yaml` §`istilah_teknis`
+**wajib** diikuti padanan bahasa Inggrisnya dalam tanda kurung pada
+**kemunculan prosa pertama**: `istilah (english gloss)`. Bila padanan itu
+sendiri istilah asing yang terdaftar di §`istilah_asing`, tulis padanannya
+miring: `istilah (*english gloss*)` (EYD Edisi V G.3). Dikecualikan: blok
+abstrak, tabel, *caption*, label kata kunci, *fence* kode, dan komentar.
+
+Sumber: `assets/bahasa/kamus-id.yaml` §`istilah_teknis` dan §`istilah_asing`;
+[`docs/layout-framework.md`](layout-framework.md) LT9.
 
 ## Korpus Studi
 

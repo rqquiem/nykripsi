@@ -1,6 +1,6 @@
 ---
 name: nykripsi
-description: "Author and build the Nykripsi v2 skripsi (undergraduate thesis) and Sinta-targeted journal article in this Markdown+Pandoc workspace. Use when asked to author or draft a skripsi/thesis chapter (BAB I–VI), scaffold BAB I–VI from the Sinta-derived templates, write or revise content/skripsi/*.md or content/artikel/artikel-sinta.md, build the skripsi PDF or the Sinta article, search Google Scholar or find references/papers for a topic, add BibTeX citations to assets/refs.bib, resolve a DOI, run make check/validate, or follow the Indonesian academic register (ragam bahasa ilmiah) and the STMIK Triguna Dharma pedoman. Covers the whole workspace: chapter scaffolding, Google Scholar / Crossref / OpenAlex reference gathering into BibTeX, citation [@key] wiring, and validation of citations, DOIs, journals, and workflow."
+description: "Author and build the Nykripsi v2 skripsi (undergraduate thesis) and Sinta-targeted journal article in this Markdown+Pandoc workspace. Use when asked to author or draft a skripsi/thesis chapter (BAB I–VI), scaffold BAB I–VI from the Sinta-derived templates, write or revise content/skripsi/*.md or content/artikel/artikel-sinta.md, build the skripsi PDF or the Sinta article (make artikel, make artikel-arai), search Google Scholar or find references/papers for a topic, add BibTeX citations to assets/refs.bib, resolve a DOI, run make check/validate, or follow the Indonesian academic register (ragam bahasa ilmiah) and the STMIK Triguna Dharma pedoman. Also use it to keep layout and typography machine-checked (LT1–LT9, including the Sinta centered article layout rendered by tools/pandoc_filters/sinta_layout.lua, the bilingual lang=en italic rule via tools/pandoc_filters/bilingual.lua, the dash ban (no em dash or spaced hyphen; en dash only for numeric ranges; hyphenation suppressed) plus the bilingual English gloss for technical terms, verified with make check-layout, plus the .table generator via make tables) and to enforce title quality (JD1–JD6, the judul validator, docs/judul-framework.md). Covers the whole workspace: chapter scaffolding, Google Scholar / Crossref / OpenAlex reference gathering into BibTeX, citation [@key] wiring, and validation of citations, DOIs, journals, layout/typography, titles, and workflow."
 argument-hint: "<topik skripsi atau kueri referensi>"
 user-invocable: true
 ---
@@ -34,12 +34,19 @@ violate the register rules — `make check` will reject them.
 | Path | Role |
 | --- | --- |
 | `content/skripsi/*.md` | Skripsi chapters + front matter (00–06, 10–15, 90), concatenated in filename order |
-| `content/artikel/artikel-sinta.md` | The Sinta journal article source |
+| `content/artikel/artikel-sinta.md` | The Sinta journal article source (`content/artikel/artikel-kyt.md` and `content/artikel/artikel-arai.md` also exist alongside it) |
+| `content/artikel/artikel-hi.md` | The Indonesian HI/IR (Hubungan Internasional) article source (varian `artikel-hi`) |
+| `content/artikel-en/artikel-hi-en.md` | The English HI/IR article source (varian `artikel-hi-en`) |
+| `docs/ir-article-framework.md` | Kerangka artikel HI/IR dwibahasa (IA1–IA8) |
+| `templates/artikel-hi-meta.yaml` | Metadata for the Indonesian HI/IR article build (`make artikel-hi`) |
+| `templates/artikel-hi-en-meta.yaml` | Metadata for the English HI/IR article build (`make artikel-hi-en`) |
 | `assets/refs.bib` | BibTeX database (all citations resolve against this file) |
-| `assets/bahasa/kamus-id.yaml` | Structure + diction dictionary (`kepala_bagian`, `formula`, `kosakata_baku`, `rangkai_argumen`) |
+| `assets/bahasa/kamus-id.yaml` | Structure + diction dictionary (`kepala_bagian`, `kepala_tambahan`, `formula`, `kosakata_baku`, `istilah_asing`, `singkatan`, `istilah_teknis`, `tanda_pisah`, `frasa_ai_generik`, `leksikon_verba`, `konektor`, `kutipan`, `rangkai_argumen`, `judul`) |
 | `assets/csl/apa.csl` | CSL style used by `--citeproc` (default APA 7) |
-| `templates/` | `skripsi-preamble.tex`, `artikel-preamble.tex`, `artikel-meta.yaml`, `journal-reference.docx` |
+| `templates/` | `skripsi-preamble.tex`, `artikel-preamble.tex`, `artikel-meta.yaml`, `artikel-kyt-meta.yaml`, `artikel-arai-meta.yaml`, `journal-reference.docx` |
 | `docs/skripsi-pedoman.md` | STMIK Triguna Dharma pedoman (layout, typography, ≥ 20 references, BAB sub-sections) |
+| `docs/layout-framework.md` | Kerangka tata letak & tipografi (LT1–LT9); tata letak Sinta terpusat via `tools/pandoc_filters/sinta_layout.lua` (LT2, LT6); bahasa kedua miring via `tools/pandoc_filters/bilingual.lua` (LT7); larangan em dash/hyphen berspasi + en dash hanya rentang angka (LT8); padanan Inggris istilah teknis pada kemunculan pertama (LT9) |
+| `docs/judul-framework.md` | Kerangka mutu judul — JD1–JD6, ditegakkan `tools/validators/judul.py` |
 | `docs/sinta-reference.md` | Sinta ranking / ARJUNA notes and journal requirements |
 | `docs/conversion-skripsi-to-article.md` | Skripsi → Sinta article mapping and rewrite rules |
 | `docs/bahasa-artikel.md` | Sourced Indonesian register rules |
@@ -48,9 +55,17 @@ violate the register rules — `make check` will reject them.
 | `docs/workflow.md` | Numbered build walkthrough |
 | `docs/fulltext-framework.md` | Full-text acquisition + verification framework (F1–F8) |
 | `docs/subject-framework.md` | Subject-sweep framework (S1–S8) |
+| `docs/webgrab-framework.md` | Web-grab framework (WG1–WG8): curl-first acquisition, headless escalation when chaotic, provenance in `docs/web-corpus/manifest.tsv` |
 | `docs/argument-framework.md` | Kerangka alur argumen & kohesi paragraf (K1–K5) |
-| `docs/diagram-framework.md` | Kerangka diagram, tabel & caption (D1–D6) |
-| `docs/sintesa-diagram-framework.md` | Kerangka diagram sintesa teori (TS1–TS6) |
+| `docs/diagram-framework.md` | Kerangka diagram, tabel & caption (D1–D6); tabel generatif `.table` via `tools/table.py` (`make tables`) |
+| `docs/sintesa-diagram-framework.md` | Kerangka diagram sintesa teori (TS1–TS6); skema empat lapis (`teori_utama`/`teori_pendukung`/`cabang_bukti`/`lingkup`/`lensa`) |
+| `docs/bagan-diagram-framework.md` | Kerangka bagan simpul-sisi (BG1–BG5) |
+| `docs/citation-framework.md` | Kerangka sitasi & catatan kaki (CT1–CT6) |
+| `docs/bab1-framework.md` | Kerangka BAB I / Pendahuluan (A1–A8, B1–B3) |
+| `docs/article-framework.md` | Kerangka anatomi artikel (AR1–AR9) |
+| `docs/abstrak-framework.md` | Kerangka penulisan abstrak artikel jurnal |
+| `docs/research-gap.md` | Ketersediaan judul & perumusan celah penelitian |
+| `docs/source-classification.md` | Primary/secondary source-classification framework |
 | `sources/registry.json` | Multi-source search store (JSON array of source records) |
 | `sources/index.md` | Generated index of the registry (`make sources`) |
 | `subjects/registry.json` | Per-subject secondary-coverage registry |
@@ -58,12 +73,20 @@ violate the register rules — `make check` will reject them.
 | `research/gap-<slug>.md` | Research-gap report scaffold (weakness dimensions + angle + novelty) |
 | `research/index.md` | Generated index of the judul registry (`make research`) |
 | `content/drafts/` | Staging folder for draft material before promotion |
-| `tools/validate.py` + `tools/validators/` | Validator suite (`workflow`, `journals`, `papers`, `research_notes`, `doi`, `sources`, `research`) |
+| `tools/validate.py` + `tools/validators/` | Validator suite, in registration order (`workflow`, `journals`, `papers`, `article_framework`, `bab1_framework`, `argument_flow`, `figures_tables`, `sintesa_diagram`, `bagan_diagram`, `layout_typography`, `citation_framework`, `evidence_recency`, `research_notes`, `ir_journals`, `ir_research_notes`, `libgen_corpus`, `doi`, `sources`, `subjects`, `web_corpus`, `research`, `judul`) |
+| `tools/pandoc_filters/sinta_layout.lua` | Sinta layout Pandoc filter (centered front matter/headings; LT6) |
+| `tools/pandoc_filters/bilingual.lua` | Pandoc filter that italicizes second-language `lang=en` blocks (LT7) |
+| `tools/pandoc_filters/table.lua` + `tools/table.py` | `.table` generator: renders `{.table}` YAML fences into **native** tables (LaTeX/OOXML) |
+| `tools/webgrab.py` | Web grab: `fetch <url>` (curl-first, escalate to headless puppeteer/chrome when chaotic), `discover "<q>" --fetch`; archives raw+text in git-ignored `docs/web-corpus/` with provenance in `docs/web-corpus/manifest.tsv` (`make webgrab`/`make webdiscover`) |
 | `tools/check.sh`, `tools/check-bahasa.sh` | Build + register linters run by `make check` |
 
-**Make targets:** `setup`, `skripsi`, `artikel`, `check`, `kamus`, `corpus`,
-`fulltext`, `check-drafts`, `promote`, `sources`, `subjects`, `scrape`,
-`research`, `validate`, `validate-agent`, `validate-offline`, `clean`.
+**Make targets:** `setup`, `skripsi`, `artikel`, `artikel-kyt`, `artikel-arai`,
+`artikel-datacenter`, `artikel-hi`, `artikel-hi-en`,
+`check`, `check-kyt`, `check-bab1`, `check-alur`, `check-figures`,
+`check-layout`, `check-citations`, `kamus`, `diagrams`, `tables`, `corpus`, `corpus-hi`,
+`corpus-libgen`, `fulltext`, `check-drafts`, `promote`, `sources`, `subjects`,
+`scrape`, `research`, `webgrab`, `webdiscover`, `check-web`, `validate`,
+`validate-agent`, `validate-offline`, `clean`.
 
 Chapter skeleton spec: [`references/skripsi-structure.md`](references/skripsi-structure.md).
 
@@ -95,6 +118,19 @@ Chapter skeleton spec: [`references/skripsi-structure.md`](references/skripsi-st
    enforced by the `papers` validator.
 7. **Run `make check` before declaring anything done**, and keep
    `python3 tools/validate.py` green.
+8. **Italicize every `istilah_asing` term** (hard-failed by LT3). Wrap each
+   registered foreign term in `*…*` in prose/headings; see
+   [`docs/layout-framework.md`](../../../docs/layout-framework.md) LT3 and
+   `assets/bahasa/kamus-id.yaml` §`istilah_asing`.
+9. **Tulis judul yang direktif, berlingkup terkendali, dan menyatakan masalah atau solusi/kontribusi** (hard-failed by the `judul` validator, JD1–JD6; maps to workflow step 25). A title must be entirely Indonesian or entirely English — never mixed. See [`docs/judul-framework.md`](../../../docs/judul-framework.md).
+10. **Build the Sinta article so its layout is centered and machine-checked (LT2, LT6):** front matter + `ABSTRAK`/`ABSTRACT` centered, six canonical headings ALL-CAPS centered, justified body, `Gambar`/`Tabel` labels, italic foreign terms — via `tools/pandoc_filters/sinta_layout.lua`; verify with `make check-layout`. See [`docs/layout-framework.md`](../../../docs/layout-framework.md).
+11. **Write second-language blocks as `::: {lang=en} … :::`** (the article `ABSTRACT` carries `lang=en`); when `bahasa.utama` in `assets/bahasa/kamus-id.yaml` differs, `tools/pandoc_filters/bilingual.lua` italicizes them (LT7, `make check-layout`). Write generated tables as `.table` YAML fences and render them with `make tables` (`tools/table.py` + `tools/pandoc_filters/table.lua`) into **native** tables, never as images.
+12. **Ban the em dash and spaced hyphen (LT8).** In prose, never use the em dash `—` (U+2014) or the spaced ASCII hyphen ` - `; use a comma, colon, or period instead. The en dash `–` (U+2013) is allowed only for numeric ranges (`2020–2022`). Automatic LaTeX hyphenation is suppressed by `\hyphenpenalty=10000` and `\exhyphenpenalty=10000` in both `templates/*-preamble.tex`; verify with `make check-layout`. See [`docs/layout-framework.md`](../../../docs/layout-framework.md) LT8 and `assets/bahasa/kamus-id.yaml` §`tanda_pisah`.
+13. **Gloss every advanced technical term bilingually (LT9).** At the first prose occurrence of each `istilah_teknis` term in `assets/bahasa/kamus-id.yaml`, follow it with an English gloss in parentheses: `istilah (english gloss)`, or `istilah (*english gloss*)` when the gloss is itself a registered `istilah_asing` term (EYD G.3 italics). Abstract blocks, tables, captions, keyword labels, code fences, and comments are excluded. Verify with `make check-layout`. See [`docs/layout-framework.md`](../../../docs/layout-framework.md) LT9.
+14. **Retrieve web pages curl-first and record provenance.** Fetch every page with `tools/webgrab.py` (or `make webgrab`/`make webdiscover`): start from `curl`, and escalate to headless puppeteer then headless chrome only when the fetched HTML is chaotic (SPA markers, "enable JavaScript", many scripts with little visible text, or little visible text in a large body). Archive raw+text in the git-ignored `docs/web-corpus/` and record provenance in `docs/web-corpus/manifest.tsv`; **never** fabricate a URL, hash, byte count, or text length — if the page stays chaotic and no headless engine is available, record `chaotic-unresolved`. Verify with `python3 tools/validate.py web_corpus`. See [`docs/webgrab-framework.md`](../../../docs/webgrab-framework.md) (WG1–WG8).
+15. **Build the bilingual HI/IR article from secondary data only.** The HI/IR variant is two files with two targets: `content/artikel/artikel-hi.md` (Indonesian) built with `make artikel-hi`, and `content/artikel-en/artikel-hi-en.md` (English) built with `make artikel-hi-en`. It uses **secondary data only** (no primary data); every `[@key]` must close against `assets/refs.bib`, and a source must never be fabricated. Keep the five canonical headings (`Pendahuluan` → `Metode Penelitian` → `Hasil dan Pembahasan` → `Simpulan dan Saran` → `Daftar Pustaka`) **without** `Ucapan Terima Kasih`. See [`docs/ir-article-framework.md`](../../../docs/ir-article-framework.md) (IA1–IA10); verify with `python3 tools/validate.py article_framework`.
+16. **Kebaruan bukti.** Sumber bukti (Berita/Siaran pers/Artikel/Web) wajib ≤ 5 tahun dan di dalam `periode` dokumen (default `2020–2025`); tandai kanal pada `note` bib (`note = {Berita, diakses …}`); penegak `tools/validators/evidence_recency.py`. See [`docs/bab1-framework.md`](../../../docs/bab1-framework.md) A8 and [`docs/ir-article-framework.md`](../../../docs/ir-article-framework.md) IA9.
+17. **Tautan daftar pustaka.** Hanya berita/siaran pers/web menampilkan URL; karya akademik menampilkan DOI (`assets/csl/apa.csl` `source-DOI-URL`), tidak pernah URL; penegak CT7 di `tools/validators/citation_framework.py`. See [`docs/citation-framework.md`](../../../docs/citation-framework.md) and [`docs/ir-article-framework.md`](../../../docs/ir-article-framework.md) IA10.
 
 ## Workflow A — Google Scholar references
 
@@ -252,7 +288,9 @@ and scaffold the research-gap report. Full framework:
 **BLOCKED** by the `research` validator (wired into `make check`). A normalized
 **exact** title match is `duplicate`; token-Jaccard similarity **≥ 0.80** is
 `too-similar`; otherwise `available`. The threshold is overridable with
-`--threshold`.
+`--threshold`. Besides availability (the `research` validator), title *quality*
+is enforced by the `judul` validator (JD1–JD6); see
+[`docs/judul-framework.md`](../../../docs/judul-framework.md).
 
 **Keyless `check`** searches Crossref + OpenAlex + Google Scholar (via
 `scholar.py`) + the local registry, computes the verdict, and appends a judul
@@ -289,6 +327,39 @@ picking at least two dimensions on which the new study deliberately differs;
 (d) formulate the **gap + novelty**. Never invent a match — every match comes
 from a live retrieval or the agent's browser pass.
 
+## Workflow E — Sinta article layout & title quality
+
+Build the Sinta article with the centered layout and enforce title quality —
+workflow steps 24–25 in [`docs/workflow.md`](../../../docs/workflow.md).
+
+**Build the article.** `make artikel` (or `make artikel-arai`) renders
+`out/artikel-*.docx`/`.pdf` with the Sinta layout (LT2, LT6) via
+`tools/pandoc_filters/sinta_layout.lua`.
+
+**Verify layout.** `make check-layout` enforces LT1–LT9 (front matter +
+`ABSTRAK`/`ABSTRACT` centered, six canonical headings ALL-CAPS
+centered, justified body, `Gambar`/`Tabel` labels, italic foreign terms; LT7
+italicizes second-language `lang=en` blocks when `bahasa.utama` differs; LT8
+bans the em dash `—` and spaced hyphen ` - ` in prose, restricts the en dash `–`
+to numeric ranges, and suppresses hyphenation via
+`\hyphenpenalty`/`\exhyphenpenalty` in `templates/*-preamble.tex`; LT9 requires
+an English gloss in parentheses at the first prose occurrence of every
+`istilah_teknis` term). See
+[`docs/layout-framework.md`](../../../docs/layout-framework.md).
+
+**Generated tables & bilingual blocks.** Write `.table` fences and run
+`make tables` (rendered by `tools/table.py` + `tools/pandoc_filters/table.lua`
+into **native** tables). Mark second-language blocks as `::: {lang=en} … :::`
+(the article `ABSTRACT` carries `lang=en`); `tools/pandoc_filters/bilingual.lua`
+italicizes them. Workflow step 26 covers this.
+
+**Verify title quality.** `python3 tools/validate.py judul` enforces JD1–JD6
+over `research/judul.json`, `templates/artikel-*-meta.yaml`, and
+`content/skripsi/00-halaman-judul.md`. See
+[`docs/judul-framework.md`](../../../docs/judul-framework.md).
+
+`make check` runs everything.
+
 ## Scripts
 
 | Script | Purpose |
@@ -318,6 +389,9 @@ python3 tools/validate.py papers
 python3 tools/validate.py doi
 python3 tools/validate.py sources
 python3 tools/validate.py research
+python3 tools/validate.py judul
+python3 tools/validate.py layout_typography
+make check-layout
 make check
 ```
 

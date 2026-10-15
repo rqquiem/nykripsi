@@ -1,1 +1,208 @@
-[]
+[
+  {
+    "id": "subject-2026-10-09-arai",
+    "name": "Arai",
+    "aliases": [
+      "Arai Helmet",
+      "Arai Helm",
+      "Arai Japan"
+    ],
+    "accessed": "2026-10-09",
+    "channels": {
+      "press": {
+        "required": true,
+        "count": 24
+      },
+      "news": {
+        "required": true,
+        "count": 22
+      },
+      "article": {
+        "required": true,
+        "count": 52
+      },
+      "official": {
+        "required": true,
+        "count": 20
+      },
+      "web": {
+        "required": true,
+        "count": 24
+      }
+    },
+    "queries": [
+      "Arai press release",
+      "Arai"
+    ],
+    "saturation": {
+      "k": 3,
+      "barren_rounds": 3,
+      "saturated": true
+    },
+    "status": "complete",
+    "notes": ""
+  },
+  {
+    "id": "subject-2026-10-10-pusat-data-ai-indonesia",
+    "name": "Pusat Data AI Indonesia",
+    "aliases": [
+      "AI data center Indonesia",
+      "pusat data kecerdasan artifisial"
+    ],
+    "accessed": "2026-10-10",
+    "channels": {
+      "press": {
+        "required": true,
+        "count": 21
+      },
+      "news": {
+        "required": true,
+        "count": 10
+      },
+      "article": {
+        "required": true,
+        "count": 10
+      },
+      "official": {
+        "required": true,
+        "count": 10
+      },
+      "web": {
+        "required": true,
+        "count": 15
+      }
+    },
+    "queries": [
+      "Pusat Data AI Indonesia press release",
+      "Pusat Data AI Indonesia"
+    ],
+    "saturation": {
+      "k": 3,
+      "barren_rounds": 3,
+      "saturated": true
+    },
+    "status": "complete",
+    "notes": ""
+  },
+  {
+    "id": "subject-2026-10-10-bdx-data-center-jatiluhur",
+    "name": "BDx Data Center Jatiluhur",
+    "aliases": [
+      "BDx Jatiluhur",
+      "BDx AI Campus Jatiluhur",
+      "BDx Data Center Purwakarta"
+    ],
+    "accessed": "2026-10-10",
+    "channels": {
+      "press": {
+        "required": true,
+        "count": 0
+      },
+      "news": {
+        "required": true,
+        "count": 16
+      },
+      "article": {
+        "required": true,
+        "count": 10
+      },
+      "official": {
+        "required": true,
+        "count": 0
+      },
+      "web": {
+        "required": true,
+        "count": 0
+      }
+    },
+    "queries": [
+      "BDx Data Center Jatiluhur press release",
+      "BDx Data Center Jatiluhur"
+    ],
+    "saturation": {
+      "k": 3,
+      "barren_rounds": 3,
+      "saturated": true
+    },
+    "status": "incomplete",
+    "notes": ""
+  },
+  {
+    "id": "subject-2026-10-10-alpinestars-indonesia",
+    "name": "Alpinestars Indonesia",
+    "aliases": [],
+    "accessed": "2026-10-10",
+    "channels": {
+      "press": {
+        "required": true,
+        "count": 8
+      },
+      "news": {
+        "required": true,
+        "count": 5
+      },
+      "article": {
+        "required": true,
+        "count": 10
+      },
+      "official": {
+        "required": true,
+        "count": 10
+      },
+      "web": {
+        "required": true,
+        "count": 5
+      }
+    },
+    "queries": [
+      "Alpinestars Indonesia press release",
+      "Alpinestars Indonesia"
+    ],
+    "saturation": {
+      "k": 3,
+      "barren_rounds": 0,
+      "saturated": false
+    },
+    "status": "incomplete",
+    "notes": ""
+  },
+  {
+    "id": "subject-2026-10-10-kebijakan-tarif-impor-indonesia",
+    "name": "Kebijakan Tarif Impor Indonesia",
+    "aliases": [],
+    "accessed": "2026-10-10",
+    "channels": {
+      "press": {
+        "required": true,
+        "count": 10
+      },
+      "news": {
+        "required": true,
+        "count": 10
+      },
+      "article": {
+        "required": true,
+        "count": 10
+      },
+      "official": {
+        "required": true,
+        "count": 0
+      },
+      "web": {
+        "required": true,
+        "count": 10
+      }
+    },
+    "queries": [
+      "Kebijakan Tarif Impor Indonesia press release",
+      "Kebijakan Tarif Impor Indonesia"
+    ],
+    "saturation": {
+      "k": 3,
+      "barren_rounds": 0,
+      "saturated": false
+    },
+    "status": "incomplete",
+    "notes": ""
+  }
+]

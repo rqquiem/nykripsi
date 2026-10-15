@@ -1,11 +1,28 @@
 \usepackage{fontspec}
 \setmainfont{Liberation Serif}
 \usepackage[a4paper,margin=2.5cm]{geometry}
+% Suppress automatic hyphenation at line breaks (LT8)
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
 \usepackage{setspace}
-\onehalfspacing
+\setstretch{1.15}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt}
 \usepackage{titlesec}
 \usepackage{graphicx}
 \usepackage{caption}
-\titleformat{\section}{\normalfont\bfseries\fontsize{11}{13}\selectfont}{\thesection}{0.5em}{}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{arydshln}
+% Headings: empty number label (numbering is in the heading text), centered, ALL-CAPS
+\titleformat{\section}{\centering\normalfont\bfseries\fontsize{12}{14}\selectfont}{}{0pt}{}
+\titlespacing*{\section}{0pt}{1.5\baselineskip}{0.75\baselineskip}
+\titleformat{\subsection}{\normalfont\bfseries\fontsize{11}{13}\selectfont}{}{0pt}{}
+\setcounter{secnumdepth}{0}
+% Captions: Indonesian labels, bold, centered
+\renewcommand{\figurename}{Gambar}
+\renewcommand{\tablename}{Tabel}
+\captionsetup{font={small,bf},labelsep=period,justification=centering,skip=6pt}
+\captionsetup[table]{position=above}
+\captionsetup[figure]{position=below}

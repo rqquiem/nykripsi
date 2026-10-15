@@ -68,7 +68,7 @@ dan panjangnya; Tabel 2.2 merangkum konvensi anatomi yang berlaku umum.
 |Jurnal Sinta S1–S6|Register, TELKOMNIKA (S1); IJCCS, JISEBI (S2); Sistemasi (S3); JSI, JUSIFOR (S4); JATISI, MISI (S5); JuTIK, JUPITER (S6)|IMRaD (Pendahuluan → Metode → Hasil dan Pembahasan → Simpulan → Daftar Pustaka)|3.000–8.000 kata / 10–20 halaman|`docs/sinta-reference.md`; `docs/sinta-corpus/MANIFEST.md`|
 |Jurnal HI Indonesia|Jurnal Hubungan Internasional (UNAIR/UMY), Global: Jurnal Politik Internasional (UI), IJIR (AIHII), Mandala (UPNVJ), JHII (Unila), PADJIR|Pendahuluan → Metode → Hasil dan Pembahasan → Simpulan → Daftar Pustaka|5.000–7.000 kata (Global UI)|`docs/ir-corpus/MANIFEST.md`; <https://scholarhub.ui.ac.id/global/styleguide.html>|
 |Jurnal akademik internasional/Scopus|(jurnal HI internasional)|IMRaD + gerak CARS|per *author guidelines*|`docs/bab1-framework.md` §10 (Swales); kolom Scopus `unverified — confirm first`|
-|Skripsi HI|skripsi STMIK Triguna Dharma|BAB I lima subbagian → BAB II–VI|BAB I–VI ≥ 50 halaman; ≥ 20 referensi ≤ 5 tahun|`docs/skripsi-pedoman.md`|
+|Skripsi HI|skripsi STMIK Triguna Dharma|BAB I lima subbagian → BAB II–VI|BAB I–VI ≥ 50 halaman; ≥ 20 referensi ≤ 5 tahun (ditegakkan pada sumber bukti via `tools/validators/evidence_recency.py`; jendela diukur terhadap `periode`, bawaan `2020–2025`)|`docs/skripsi-pedoman.md`; `docs/bab1-framework.md` A8|
 |Proposal / paper riset|proposal penelitian HI|Latar Belakang → Rumusan Masalah → Tujuan & Manfaat → Tinjauan Pustaka → Metode|ringkas|`docs/skripsi-pedoman.md`; Global UI guidelines|
 
 Global: Jurnal Politik Internasional (UI) menetapkan secara eksplisit bahwa

@@ -21,12 +21,41 @@ import yaml
 
 GLOBS = (
     "content/artikel/*.md",
+    "content/artikel-en/*.md",
     "content/skripsi/1[0-5]-*.md",
     "content/drafts/*.md",
 )
-DIAGRAM_OPEN_RE = re.compile(r"^```\{\.(mermaid|chart|tikz|sintesa)\b([^}]*)\}")
+DIAGRAM_OPEN_RE = re.compile(r"^```\{\.(mermaid|chart|tikz|sintesa|bagan)\b([^}]*)\}")
 ASSET_DIR = "assets/figures"
 MERMAID_TIMEOUT = 120
+
+
+def _wrap(teks: str, lebar: int) -> list[str]:
+    """Bungkus `teks` menjadi baris <= `lebar` karakter (kata utuh)."""
+    kata, baris, cur = str(teks).split(), [], ""
+    for w in kata:
+        if cur and len(cur) + 1 + len(w) > lebar:
+            baris.append(cur); cur = w
+        else:
+            cur = f"{cur} {w}".strip()
+    if cur:
+        baris.append(cur)
+    return baris or [""]
+
+def _kotak(ax, x, y, w, h, teks, warna, lebar_kar=18, fs=8):
+    """Kotak ber-`w`/`h` dengan teks terbungkus di tengah; kembalikan (x_tengah, y_tengah)."""
+    from matplotlib.patches import FancyBboxPatch
+    ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.008",
+                 linewidth=0.8, edgecolor="#444444", facecolor=warna))
+    baris = _wrap(teks, lebar_kar)
+    ax.text(x + w / 2, y + h / 2, "\n".join(baris), ha="center", va="center", fontsize=fs)
+    return x + w / 2, y + h / 2
+
+def _panah(ax, x0, y0, x1, y1):
+    """Garis sambung berujung panah dari (x0,y0) ke (x1,y1)."""
+    from matplotlib.patches import FancyArrowPatch
+    ax.add_patch(FancyArrowPatch((x0, y0), (x1, y1), arrowstyle="-|>",
+                 mutation_scale=8, color="#555555", linewidth=0.8))
 
 
 def _blok(root: str):
@@ -110,60 +139,220 @@ def _render_sintesa(body: str, png: str) -> None:
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
 
     spec = yaml.safe_load(body) or {}
-    teori = spec.get("teori") or []
-    lensa = spec.get("lensa") or {}
-    lintas = spec.get("lintas_tahap") or []
-    tahap = spec.get("tahap") or []
-    if not isinstance(teori, list) or len(teori) < 2:
-        raise ValueError("sintesa butuh 'teori' >= 2")
-    if not isinstance(lensa, dict) or not lensa.get("nama") \
-            or len(lensa.get("gabungan") or []) < 2:
-        raise ValueError("sintesa butuh 'lensa.nama' + 'lensa.gabungan' >= 2")
-    if not isinstance(tahap, list) or len(tahap) < 2:
-        raise ValueError("sintesa butuh 'tahap' >= 2")
+    if not isinstance(spec, dict):
+        raise ValueError("sintesa: badan harus mapping YAML")
 
-    fig = plt.figure(figsize=(8, 5))
+    lensa = spec.get("lensa")
+    if not isinstance(lensa, dict) or not str(lensa.get("nama", "")).strip():
+        raise ValueError("sintesa: butuh 'lensa.nama' tak kosong")
+    if not isinstance(lensa.get("gabungan"), list) or len(lensa["gabungan"]) < 2:
+        raise ValueError("sintesa: butuh 'lensa.gabungan' >= 2")
+
+    utama = spec.get("teori_utama")
+    if not isinstance(utama, dict) or not str(utama.get("nama", "")).strip() \
+            or not str(utama.get("peran", "")).strip():
+        raise ValueError("sintesa: butuh 'teori_utama' dengan 'nama' + 'peran'")
+
+    def daftar_peran(kunci: str) -> list[dict]:
+        val = spec.get(kunci)
+        if not isinstance(val, list) or not val:
+            raise ValueError(f"sintesa: butuh '{kunci}' list >= 1")
+        for it in val:
+            if not isinstance(it, dict) or not str(it.get("nama", "")).strip() \
+                    or not str(it.get("peran", "")).strip():
+                raise ValueError(f"sintesa: '{kunci}' tiap entri butuh 'nama' + 'peran'")
+        return val
+
+    pendukung = daftar_peran("teori_pendukung")
+    cabang = daftar_peran("cabang_bukti")
+
+    lingkup = spec.get("lingkup")
+    if not isinstance(lingkup, list) or not lingkup \
+            or any(not str(s).strip() for s in lingkup):
+        raise ValueError("sintesa: butuh 'lingkup' list >= 1 string tak kosong")
+
+    judul = spec.get("judul") or lensa["nama"]
+
+    def label(it: dict) -> str:
+        return f"{it['nama']}\n({it['peran']})"
+
+    # L0 judul, L1 teori_utama, L2 teori_pendukung, L3 cabang_bukti, L4 lingkup
+    L1 = [label(utama)]
+    L2 = [label(t) for t in pendukung]
+    L3 = [label(c) for c in cabang]
+    L4 = [str(s) for s in lingkup]
+
+    n_max = max(len(L2), len(L3), len(L4))
+    w = 0.9 / n_max
+    lebar_kar = max(12, int(w * 90))
+    gap = 0.06
+    jumlah_lapisan = 5
+
+    def tinggi(items: list[str]) -> float:
+        return 0.055 * max(len(_wrap(t, lebar_kar)) for t in items)
+
+    tinggi_lapisan = [0.06, tinggi(L1), tinggi(L2), tinggi(L3), tinggi(L4)]
+    warna = [None, "#eaf2fb", "#e8f5e9", "#fff3e0", "#f3e5f5"]
+    isi = [None, L1, L2, L3, L4]
+
+    fig = plt.figure(figsize=(8.5, 1.2 + 1.05 * jumlah_lapisan))
     ax = fig.add_axes([0, 0, 1, 1])
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.axis("off")
 
-    def kotak(x, y, w, h, teks, warna):
+    tengah: dict[tuple[int, int], tuple[float, float]] = {}
+    y_top = 1.0
+    for li in range(jumlah_lapisan):
+        h = tinggi_lapisan[li]
+        y0 = y_top - h
+        items = isi[li]
+        if li == 0:
+            ax.text(0.5, y_top - h / 2, judul, ha="center", va="center",
+                    fontsize=11, fontweight="bold")
+        else:
+            n = len(items)
+            for i, teks in enumerate(items):
+                x = (1.0 - n * w) / 2 + i * w
+                tengah[(li, i)] = _kotak(ax, x, y0, w, h, teks, warna[li],
+                                         lebar_kar=lebar_kar)
+        y_top = y0 - gap
+
+    def terdekat(n_src: int, n_dst: int, j: int) -> int:
+        if n_src <= 1:
+            return 0
+        return round(j * (n_dst - 1) / (n_src - 1))
+
+    for j in range(len(L2)):
+        _panah(ax, *tengah[(1, 0)], *tengah[(2, j)])
+    for j in range(len(L2)):
+        _panah(ax, *tengah[(2, j)], *tengah[(3, terdekat(len(L2), len(L3), j))])
+    for j in range(len(L3)):
+        _panah(ax, *tengah[(3, j)], *tengah[(4, terdekat(len(L3), len(L4), j))])
+
+    fig.savefig(png, dpi=150, bbox_inches="tight")
+    plt.close(fig)
+
+def _render_bagan(body: str, png: str) -> None:
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import FancyBboxPatch
+
+    spec = yaml.safe_load(body) or {}
+    simpul = spec.get("simpul") or []
+    sisi = spec.get("sisi") or []
+    if not isinstance(simpul, list) or len(simpul) < 2:
+        raise ValueError("bagan butuh 'simpul' >= 2")
+    ids: list[str] = []
+    teks: dict[str, str] = {}
+    induk: dict[str, str] = {}
+    for s in simpul:
+        if not isinstance(s, dict) or not str(s.get("id", "")).strip() \
+                or not str(s.get("teks", "")).strip():
+            raise ValueError("bagan tiap simpul butuh 'id' + 'teks'")
+        sid = str(s["id"]).strip()
+        if sid in teks:
+            raise ValueError(f"bagan id duplikat: {sid}")
+        ids.append(sid)
+        teks[sid] = str(s["teks"]).strip()
+        induk[sid] = str(s.get("induk", "")).strip()
+    for sid, par in induk.items():
+        if par and par not in teks:
+            raise ValueError(f"bagan induk '{par}' tidak ada (simpul '{sid}')")
+    for e in sisi:
+        if not isinstance(e, dict) or str(e.get("dari", "")).strip() not in teks \
+                or str(e.get("ke", "")).strip() not in teks:
+            raise ValueError("bagan tiap sisi butuh 'dari' + 'ke' yang ada")
+
+    anak: dict[str, list[str]] = {sid: [] for sid in ids}
+    akar: list[str] = []
+    for sid in ids:
+        if induk[sid]:
+            anak[induk[sid]].append(sid)
+        else:
+            akar.append(sid)
+
+    # kedalaman BFS dari akar
+    depth: dict[str, int] = {}
+    queue = list(akar)
+    for sid in akar:
+        depth[sid] = 0
+    while queue:
+        cur = queue.pop(0)
+        for ch in anak[cur]:
+            depth[ch] = depth[cur] + 1
+            queue.append(ch)
+
+    # posisi-x: daun diberi kolom berurutan (DFS), simpul dalam = rata-rata anak
+    xpos: dict[str, float] = {}
+    counter = [0]
+
+    def tetapkan(sid: str) -> float:
+        if not anak[sid]:
+            xpos[sid] = float(counter[0])
+            counter[0] += 1
+        else:
+            xs = [tetapkan(c) for c in anak[sid]]
+            xpos[sid] = sum(xs) / len(xs)
+        return xpos[sid]
+
+    for sid in akar:
+        tetapkan(sid)
+    maks_d = max(depth.values()) if depth else 0
+    lebar = max(1, counter[0])
+
+    # lebar kotak dihitung dari jumlah kotak pada tingkat terdalam (kolom terpadat)
+    kolom_per_tingkat: dict[int, int] = {}
+    for sid in ids:
+        d = depth.get(sid, maks_d + 1)
+        kolom_per_tingkat[d] = kolom_per_tingkat.get(d, 0) + 1
+    n_terdalam = max(kolom_per_tingkat.values()) if kolom_per_tingkat else 1
+    bw = min(0.9, 0.9 * lebar / max(1, n_terdalam))
+    lebar_kar = max(8, int((bw / lebar) * 90))
+
+    def bbox_h(sid: str) -> float:
+        nbaris = len(_wrap(teks[sid], lebar_kar))
+        return min(0.78, 0.2 * nbaris + 0.22)
+
+    # figsize tumbuh bersama kedalaman (baris) dan jumlah daun (kolom)
+    fig = plt.figure(figsize=(max(8.0, 1.1 * lebar), 0.9 + 0.9 * (maks_d + 1)))
+    ax = fig.add_axes([0, 0, 1, 1])
+    ax.set_xlim(-0.5, lebar - 0.5)
+    ax.set_ylim(-0.5, maks_d + 0.9)
+    ax.axis("off")
+    ax.text((lebar - 1) / 2, maks_d + 0.85, spec.get("judul") or "Bagan",
+            ha="center", va="top", fontsize=11, fontweight="bold")
+
+    for sid in ids:
+        if sid not in depth:      # tak terjangkau dari akar: taruh di baris dasar
+            depth[sid] = maks_d + 1
+            xpos[sid] = float(counter[0])
+            counter[0] += 1
+        x, y = xpos[sid], maks_d - depth[sid]
+        bh = bbox_h(sid)
         ax.add_patch(FancyBboxPatch(
-            (x, y), w, h, boxstyle="round,pad=0.008",
-            linewidth=0.8, edgecolor="#444444", facecolor=warna))
-        ax.text(x + w / 2, y + h / 2, teks, ha="center", va="center", fontsize=8)
+            (x - bw / 2, y - bh / 2), bw, bh,
+            boxstyle="round,pad=0.02", linewidth=0.8,
+            edgecolor="#444444", facecolor="#eaf2fb"))
+        ax.text(x, y, "\n".join(_wrap(teks[sid], lebar_kar)),
+                ha="center", va="center", fontsize=7)
+        par = induk[sid]
+        if par and par in depth:
+            xp, yp = xpos[par], maks_d - depth[par]
+            yb = yp - bbox_h(par) / 2   # dasar kotak induk
+            yt = y + bh / 2             # puncak kotak anak
+            ym = (yb + yt) / 2
+            ax.plot([xp, xp], [yb, ym], color="#555555", linewidth=0.8)
+            ax.plot([xp, x], [ym, ym], color="#555555", linewidth=0.8)
+            ax.plot([x, x], [ym, yt], color="#555555", linewidth=0.8)
 
-    ax.text(0.5, 0.97, spec.get("judul") or lensa["nama"], ha="center",
-            va="top", fontsize=11, fontweight="bold")
-
-    n = len(teori)
-    for i, t in enumerate(teori):
-        w = 0.9 / n
-        kotak(0.05 + i * w, 0.72, w * 0.92, 0.16,
-              f"{t.get('nama', '')}\n({t.get('peran', '')})", "#eaf2fb")
-
-    kotak(0.05, 0.40, 0.52, 0.20,
-          lensa["nama"] + "\n= " + " + ".join(lensa.get("gabungan") or []),
-          "#e8f5e9")
-    nl = len(lintas)
-    for i, l in enumerate(lintas):
-        h = 0.20 / nl
-        kotak(0.62, 0.60 - (i + 1) * h, 0.33, h * 0.9,
-              f"{l.get('nama', '')}\n({l.get('peran', '')})", "#fff3e0")
-
-    m = len(tahap)
-    for i, s in enumerate(tahap):
-        w = 0.9 / m
-        x = 0.05 + i * w
-        kotak(x, 0.08, w * 0.85, 0.16, str(s), "#f3e5f5")
-        if i:
-            ax.add_patch(FancyArrowPatch(
-                (x - w * 0.13, 0.16), (x - 0.005, 0.16),
-                arrowstyle="-|>", mutation_scale=8, color="#555555"))
+    for e in sisi:
+        xd, yd = xpos[str(e["dari"]).strip()], maks_d - depth[str(e["dari"]).strip()]
+        xk, yk = xpos[str(e["ke"]).strip()], maks_d - depth[str(e["ke"]).strip()]
+        ax.plot([xd, xk], [yd, yk], color="#b71c1c", linewidth=0.7, linestyle="--")
 
     fig.savefig(png, dpi=150, bbox_inches="tight")
     plt.close(fig)
@@ -191,6 +380,8 @@ def cmd_render(root: str) -> int:
                 _render_tikz(body, png, tmp)
             elif jenis == "sintesa":
                 _render_sintesa(body, png)
+            elif jenis == "bagan":
+                _render_bagan(body, png)
             else:
                 _render_mermaid(body, png, tmp)
             dibuat += 1

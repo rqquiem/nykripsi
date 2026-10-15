@@ -9,7 +9,7 @@ from .base import Context, Finding, read, register
 CITE_RE = re.compile(r"\[@([A-Za-z0-9_:\-]+)\]")
 ENTRY_RE = re.compile(r"^@(\w+)\{([^,]+),", re.MULTILINE)
 FIELD_RE = re.compile(r"^\s*(\w+)\s*=", re.MULTILINE)
-ABSTRACT_RE = re.compile(r'::: \{custom-style="Abstract"\}(.*?)\n:::', re.DOTALL)
+ABSTRACT_RE = re.compile(r'::: \{custom-style="Abstract"[^}]*\}(.*?)\n:::', re.DOTALL)
 
 REQUIRED = {
     "article": ("author", "title", "journal", "year"),

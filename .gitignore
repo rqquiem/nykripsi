@@ -16,3 +16,10 @@ __pycache__/
 # `make corpus`, `make corpus-hi`, or `make corpus-libgen`.
 docs/*-corpus/*.pdf
 docs/fulltext-corpus/*.pdf
+
+# Web-retrieval corpus: raw + extracted pages are third-party content.
+docs/web-corpus/*.html
+docs/web-corpus/*.txt
+docs/web-corpus/*.pdf
+docs/web-corpus/*.json
+docs/web-corpus/*.xml

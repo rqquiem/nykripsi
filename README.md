@@ -18,8 +18,8 @@ plain text and reproducible — no proprietary word processor in the loop.
 
 The current thesis is:
 
-> **Diplomasi Publik Tiongkok terhadap Indonesia melalui Diplomasi Vaksin pada
-> Masa Pandemi Covid-19 Tahun 2020–2022**
+> **Analisis Strategi Diplomasi Publik Tiongkok terhadap Indonesia melalui
+> Diplomasi Vaksin pada Masa Pandemi Covid-19 Tahun 2020–2022**
 
 It analyses China's vaccine diplomacy towards Indonesia as a case of public
 diplomacy, using a qualitative case-study method and a Foreign Policy Analysis
@@ -34,6 +34,8 @@ public-diplomacy/soft-power lens with FPA as a cross-stage level of analysis.
 | `out/skripsi.pdf` | The full skripsi PDF. |
 | `out/artikel-sinta.docx` | The Sinta article draft (content-and-style draft). |
 | `out/artikel-sinta.pdf` | The Sinta article PDF. |
+| `out/artikel-datacenter.docx` | The `artikel-datacenter` article draft (content-and-style draft). |
+| `out/artikel-datacenter.pdf` | The `artikel-datacenter` article PDF. |
 
 `out/` is build output and is **not** tracked.
 
@@ -45,11 +47,12 @@ public-diplomacy/soft-power lens with FPA as a cross-stage level of analysis.
 | `content/artikel/artikel-sinta.md` | The Sinta journal article source. |
 | `content/drafts/` | Work-in-progress chapters; **excluded** from `make check`. |
 | `assets/refs.bib` | BibTeX database — every `[@key]` citation resolves against this file. |
-| `assets/bahasa/kamus-id.yaml` | Structure + diction dictionary (headings, formulas, standard vocabulary, argument phrasing). |
+| `assets/bahasa/kamus-id.yaml` | Structure + diction dictionary (headings, formulas, standard vocabulary, argument phrasing, `istilah_asing`, `singkatan`, `istilah_teknis`, `tanda_pisah`). |
 | `assets/csl/apa.csl` | CSL style used by `--citeproc` (default APA 7). |
 | `assets/figures/` | Figures referenced by the chapters. |
 | `templates/` | LaTeX preambles, article metadata, and the reference DOCX. |
-| `tools/` | Build/validation scripts (`check.sh`, `check-bahasa.sh`, `gen_kamus.py`, `validate.py`, `promote.py`, `libgen.py`, corpus fetchers). |
+| `tools/` | Build/validation scripts (`check.sh`, `check-bahasa.sh`, `gen_kamus.py`, `validate.py`, `promote.py`, `libgen.py`, `table.py`, corpus fetchers). |
+| `tools/pandoc_filters/` | Pandoc Lua filters (`sinta_layout.lua`, `figure_table.lua`, `bilingual.lua`, `table.lua`). |
 | `tools/validators/` | Individual validators (papers, sources, research, journals, corpora, workflow, …). |
 | `docs/` | Project documentation, plus the downloaded research corpora. |
 | `research/` | Title-availability registry (`judul.json`) and research-gap reports. |
@@ -85,8 +88,12 @@ chmod +x ~/.local/bin/pandoc
 | `make setup` | Prepare the toolchain (run once). |
 | `make skripsi` | Build `out/skripsi.pdf`. |
 | `make artikel` | Build the Sinta article (`out/artikel-sinta.docx` + `.pdf`). |
+| `make artikel-datacenter` | Build `artikel-datacenter.md` → `out/artikel-datacenter.docx` + `.pdf`. |
+| `make artikel-hi` | Build the Indonesian HI/IR article → `out/artikel-hi.docx` + `.pdf`. |
+| `make artikel-hi-en` | Build the English HI/IR article → `out/artikel-hi-en.docx` + `.pdf`. |
 | `make all` | Build both (default target). |
 | `make check` | Build both, then run every check below (the main gate). |
+| `make check-bab1` | Validate the BAB I framework (`10-bab-01-pendahuluan.md`). |
 | `make validate` | Run the validator suite (`tools/validate.py`). |
 | `make validate-agent` | Same, plus an LLM re-read pass confirming each claim (needs the `claude` CLI). |
 | `make validate-offline` | Validator suite without network access. |
@@ -99,7 +106,10 @@ chmod +x ~/.local/bin/pandoc
 | `make corpus` | Download the Sinta journal study corpus into `docs/sinta-corpus/`. |
 | `make corpus-hi` | Download the Hubungan Internasional journal corpus into `docs/ir-corpus/`. |
 | `make corpus-libgen` | Download the LibGen reference corpus into `docs/libgen-corpus/`. |
+| `make webgrab` | Fetch one URL (`URL=<url>`) into the git-ignored web corpus (`docs/web-corpus/`). |
+| `make webdiscover` | Discover candidate URLs for a query (`Q="<q>"`) and fetch them. |
 | `make kamus` | Regenerate structure & documents from the dictionary (`assets/bahasa/kamus-id.yaml`). |
+| `make tables` | Render `.table` blocks (`tools/table.py`) into native tables. |
 | `make clean` | Remove build artifacts. |
 
 ## Validation
@@ -118,6 +128,38 @@ chmod +x ~/.local/bin/pandoc
      *and* every bib entry is cited somewhere (no orphan entries);
    - **sources / research / journals / corpora / workflow** — schema and
      consistency checks for `sources/`, `research/`, and the corpus manifests.
+   - **web_corpus** — enforces WG1–WG8 / manifest consistency for
+     `docs/web-corpus/manifest.tsv`: nine columns
+     (`slug,url,accessed,mode,status,http,bytes,sha256,text_chars`), unique valid
+     slugs, dated `accessed`, `mode` ∈ {`curl`, `headless-puppeteer`,
+     `headless-chrome`}, 64-hex `sha256`, and a `MANIFEST.md` `FAILED=<n>` that
+     matches the non-`ok` rows (curl-first acquisition, headless escalation, and
+     provenance are never fabricated).
+   - **bab1_framework** — menegakkan aturan BAB I (lima subbagian, tag formula,
+     pita Latar Belakang, lima Batasan, Manfaat teoretis+praktis);
+   - **article_framework** — kini mencakup `artikel-kyt.md` (fail) **dan**
+     `artikel-sinta.md` (warn), serta varian HI/IR `content/artikel/artikel-hi.md`
+     (fail) dan `content/artikel-en/artikel-hi-en.md` (fail).
+   - **citation_framework** — enforces CT1–CT7 over
+     `content/{artikel,skripsi,drafts}` + `assets/refs.bib`; **CT7** menegakkan
+     tautan daftar pustaka (hanya berita/siaran pers/web menampilkan URL; karya
+     akademik menampilkan DOI, tidak pernah URL).
+   - **evidence_recency** — menegakkan kebaruan bukti: sumber bukti
+     (Berita/Siaran pers/Artikel/Web) wajib ≤ 5 tahun dan di dalam `periode`
+     dokumen (`assets/bahasa/kamus-id.yaml` §`recency`; bawaan `2020–2025`).
+   - **layout_typography**: enforces the Sinta article layout (LT2, LT6) via
+     `tools/pandoc_filters/sinta_layout.lua`: centered front matter/abstract,
+     ALL-CAPS headings, justified body, italic foreign terms; it also enforces
+     LT7 via `tools/pandoc_filters/bilingual.lua` (second-language `::: {lang=en}`
+     blocks, e.g. `ABSTRACT`, are italicized when `bahasa.utama` differs), LT8
+     (no em dash `—` or spaced hyphen ` - ` in prose, en dash `–` only for
+     numeric ranges, and automatic hyphenation suppressed via
+     `\hyphenpenalty`/`\exhyphenpenalty` in `templates/*-preamble.tex`), and LT9
+     (each `istilah_teknis` term carries an English gloss in parentheses at its
+     first prose occurrence). The
+     `.table` generator (`tools/table.py`, filter `tools/pandoc_filters/table.lua`)
+     emits **native** tables; `.table` columns wrap by default, and `make tables`
+     renders them. `make diagrams` renders the diagram tree.
 
 A successful run prints `SEMUA PEMERIKSAAN LULUS.`, `KAMUS: SELARAS.`,
 `RAGAM BAHASA: LULUS.`, and `VALIDASI: LULUS.`.
@@ -146,6 +188,14 @@ Write BAB headings in the Markdown source in **ALL CAPS**, e.g.:
 ```markdown
 # PENDAHULUAN
 ```
+
+## Convention: bilingual blocks and generated tables
+
+Mark a second-language block with `::: {lang=en} … :::` (the article's
+`ABSTRACT` carries `lang=en`); when `bahasa.utama` in `assets/bahasa/kamus-id.yaml`
+differs, `tools/pandoc_filters/bilingual.lua` italicizes the block (LT7).
+Write generated tables as a `{.table #tbl-<slug>}` fence containing YAML; run
+`make tables` to render them via `tools/table.py` into **native** tables.
 
 ## Workspace skill
 
@@ -193,9 +243,18 @@ resulting structure, register, and citations.
 - [docs/research-gap.md](docs/research-gap.md) — title-availability + research-gap method.
 - [docs/fulltext-framework.md](docs/fulltext-framework.md) — full-text acquisition + verification framework.
 - [docs/subject-framework.md](docs/subject-framework.md) — subject-sweep (secondary-source) framework.
+- [docs/webgrab-framework.md](docs/webgrab-framework.md) — web-grab (curl → headless escalation) framework (WG1–WG8).
 - [docs/argument-framework.md](docs/argument-framework.md) — kerangka alur argumen & kohesi paragraf (drafting jurnal/riset/paper).
-- [docs/diagram-framework.md](docs/diagram-framework.md) — kerangka diagram, tabel & fungsi keluaran (caption, penomoran, D1–D6).
-- [docs/sintesa-diagram-framework.md](docs/sintesa-diagram-framework.md) — kerangka diagram sintesa teori / lensa terpadu (TS1–TS6).
+- [docs/diagram-framework.md](docs/diagram-framework.md) — kerangka diagram, tabel & fungsi keluaran (caption, penomoran, D1–D7; termasuk generator tabel `.table` yang membungkus kolom secara bawaan, dan `make diagrams` yang merender pohon).
+- [docs/sintesa-diagram-framework.md](docs/sintesa-diagram-framework.md) — kerangka diagram sintesa teori / lensa terpadu (TS1–TS6; skema empat lapis `teori_utama`/`teori_pendukung`/`cabang_bukti`/`lingkup`/`lensa`).
+- [docs/bagan-diagram-framework.md](docs/bagan-diagram-framework.md) — kerangka bagan simpul-sisi/pohon (BG1–BG5).
+- [docs/layout-framework.md](docs/layout-framework.md): kerangka tata letak & tipografi (LT1–LT9; kata miring, singkatan/kepanjangan, tata letak Sinta terpusat, bahasa kedua miring, larangan em dash/hyphen berspasi, padanan Inggris istilah teknis).
+- [docs/judul-framework.md](docs/judul-framework.md) — mutu judul ditegakkan oleh validator `judul` (JD1–JD6) via `tools/validators/judul.py`.
+- [docs/citation-framework.md](docs/citation-framework.md) — kerangka sitasi & catatan kaki (CT1–CT6; `[@key]`, `[@a; @b]`, footnote penjelas, kutipan langsung).
+- [docs/bab1-framework.md](docs/bab1-framework.md) — kerangka BAB I / Pendahuluan (A1–A8/B1–B3; gerak CARS, pita panjang).
+- [docs/bab1-corpus-stats.md](docs/bab1-corpus-stats.md) — statistik korpus BAB I (85 paper).
+- [docs/article-framework.md](docs/article-framework.md) — kerangka artikel jurnal (AR1–AR8; IMRaD, abstrak dwibahasa, konversi skripsi).
+- [docs/ir-article-framework.md](docs/ir-article-framework.md) — kerangka artikel HI/IR dwibahasa (IA1–IA8).
 - [CONTRIBUTING.md](CONTRIBUTING.md) — development workflow and conventions.
 
 ## License & status

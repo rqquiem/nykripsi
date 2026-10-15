@@ -197,7 +197,7 @@
     "id": "judul-2026-10-09-strategi-pemasaran-kyt-indonesia-pt-tarakusuma-indah-dalam-menembus-pasar-eropa-tahun-20202025",
     "judul": "Strategi Pemasaran KYT Indonesia (PT Tarakusuma Indah) dalam Menembus Pasar Eropa Tahun 2020–2025",
     "judul_norm": "strategi pemasaran kyt indonesia pt tarakusuma indah dalam menembus pasar eropa tahun 20202025",
-    "status": "selected",
+    "status": "candidate",
     "verdict": "available",
     "threshold": 0.8,
     "origin": "auto",
@@ -292,6 +292,457 @@
         "year": 2025,
         "backend": "crossref",
         "similarity": 0.16,
+        "kind": "similar"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "id": "judul-2026-10-09-strategi-eksporimpor-helm-arai-di-pasar-berkembang-indonesia",
+    "judul": "Strategi Ekspor–Impor Helm Arai di Pasar Berkembang Indonesia",
+    "judul_norm": "strategi eksporimpor helm arai di pasar berkembang indonesia",
+    "status": "candidate",
+    "verdict": "available",
+    "threshold": 0.8,
+    "origin": "browser",
+    "checked": "2026-10-09",
+    "query": "Strategi Ekspor–Impor Helm Arai di Pasar Berkembang Indonesia",
+    "matches": [
+      {
+        "title": "Kerangka Baru Analisis Citra Negara 98765",
+        "url": "registry:judul-2026-10-08-kerangka-baru-analisis-citra-negara-98765",
+        "doi": null,
+        "year": null,
+        "backend": "registry",
+        "similarity": 0.0,
+        "kind": "similar"
+      },
+      {
+        "title": "Strategi Pemasaran KYT Indonesia (PT Tarakusuma Indah) dalam Menembus Pasar Eropa Tahun 2020–2025",
+        "url": "registry:judul-2026-10-09-strategi-pemasaran-kyt-indonesia-pt-tarakusuma-indah-dalam-menembus-pasar-eropa-tahun-20202025",
+        "doi": null,
+        "year": null,
+        "backend": "registry",
+        "similarity": 0.16666666666666666,
+        "kind": "similar"
+      },
+      {
+        "title": "Tantangan dan Strategi Peningkatan Ekspor Produk Halal Indonesia di Pasar Global",
+        "url": "https://doi.org/10.12962/j22759970.v2i1.246",
+        "doi": "10.12962/j22759970.v2i1.246",
+        "year": 2022,
+        "backend": "crossref",
+        "similarity": 0.26666666666666666,
+        "kind": "similar"
+      },
+      {
+        "title": "Upaya  Meningkatkan Daya Saing Di Pasar Internasional Pada Era Globalisasi (Studi Kasus Ekspor Impor Di Indonesia)",
+        "url": "https://doi.org/10.46799/arl.v6i1.94",
+        "doi": "10.46799/arl.v6i1.94",
+        "year": 2022,
+        "backend": "crossref",
+        "similarity": 0.15,
+        "kind": "similar"
+      },
+      {
+        "title": "Penawaran Ekspor dan Permintaan Impor Lada Indonesia di Pasar Internasional",
+        "url": "https://doi.org/10.52496/rasi.v1i2.49",
+        "doi": "10.52496/rasi.v1i2.49",
+        "year": 2021,
+        "backend": "crossref",
+        "similarity": 0.2,
+        "kind": "similar"
+      },
+      {
+        "title": "PENGARUH EKSPOR, IMPOR DAN NILAI KURS TERHADAP INFLASI DAN DAMPAKNYA TERHADAP RETURN PASAR  DI BURSA EFEK INDONESIA",
+        "url": "https://doi.org/10.35137/jmbk.v3i1.94",
+        "doi": "10.35137/jmbk.v3i1.94",
+        "year": 2015,
+        "backend": "crossref",
+        "similarity": 0.15,
+        "kind": "similar"
+      },
+      {
+        "title": "Analisis Strategi Peningkatan Ekspor Rumput Laut Indonesia di Pasar Global",
+        "url": "https://doi.org/10.62335/aksioma.v2i2.919",
+        "doi": "10.62335/aksioma.v2i2.919",
+        "year": 2025,
+        "backend": "crossref",
+        "similarity": 0.2857142857142857,
+        "kind": "similar"
+      },
+      {
+        "title": "PENGARUH INFLASI, EKSPOR DAN IMPOR TERHADAP PDB DI INDONESIA PERIODE 2015 “ 2018",
+        "url": "https://doi.org/10.24114/niaga.v9i1.17656",
+        "doi": "10.24114/niaga.v9i1.17656",
+        "year": 2020,
+        "backend": "crossref",
+        "similarity": 0.1111111111111111,
+        "kind": "similar"
+      },
+      {
+        "title": "Analisis Trend Ekspor Kopi Indonesia Di Pasar Internasional",
+        "url": "https://doi.org/10.47134/agri.v2i2.2449",
+        "doi": "10.47134/agri.v2i2.2449",
+        "year": 2024,
+        "backend": "crossref",
+        "similarity": 0.23076923076923078,
+        "kind": "similar"
+      },
+      {
+        "title": "Strategi Peningkatan Pertumbuhan Ekonomi Di Indonesia Melalui Kebijakan Ekspor Impor Dalam Bisnis Internasional",
+        "url": "https://doi.org/10.55606/jupiman.v3i1.3255",
+        "doi": "10.55606/jupiman.v3i1.3255",
+        "year": 2023,
+        "backend": "crossref",
+        "similarity": 0.16666666666666666,
+        "kind": "similar"
+      },
+      {
+        "title": "Strategi Peningkatan Ekspor Kopi Indonesia di Pasar Dunia",
+        "url": "https://doi.org/10.30588/jmp.v14i2.2007",
+        "doi": "10.30588/jmp.v14i2.2007",
+        "year": 2025,
+        "backend": "crossref",
+        "similarity": 0.3333333333333333,
+        "kind": "similar"
+      },
+      {
+        "title": "DAMPAK  IMPOR DAN EKSPOR JAGUNG TERHADAP   PRODUKTIVITAS JAGUNG  DI INDONESIA",
+        "url": "https://doi.org/10.15408/etk.v11i2.1891",
+        "doi": "10.15408/etk.v11i2.1891",
+        "year": 2012,
+        "backend": "crossref",
+        "similarity": 0.13333333333333333,
+        "kind": "similar"
+      },
+      {
+        "title": "Strategies for Empowering Local Product Msmes In Facing Competition With Imported Foreign Products",
+        "url": "https://engagement.pdfaii.org/index.php/i/article/view/167",
+        "doi": null,
+        "year": 2025,
+        "backend": "scholar",
+        "similarity": 0.0,
+        "kind": "similar"
+      },
+      {
+        "title": "Perdagangan internasional & strategi pengendalian impor",
+        "url": "http://repository.unas.ac.id/id/eprint/4920/1/PERDAGANGAN%20INTERNASIONAL.pdf",
+        "doi": null,
+        "year": 2021,
+        "backend": "scholar",
+        "similarity": 0.08333333333333333,
+        "kind": "similar"
+      },
+      {
+        "title": "Strategi Ekspor Produk UMKM BanaHalu: Analisis Potensi dan Peluang di Pasar Jepang",
+        "url": "https://teewanjournal.com/index.php/peng/article/view/1379",
+        "doi": null,
+        "year": 2025,
+        "backend": "scholar",
+        "similarity": 0.17647058823529413,
+        "kind": "similar"
+      },
+      {
+        "title": "Perumusan Strategi Pemasaran Dalam Mendukung Ekspansi Pasar Produk Alas Kaki Adorable Projects Ke Jepang",
+        "url": "https://journal.andalanpublisher.id/index.php/AJEB/article/view/14",
+        "doi": null,
+        "year": 2025,
+        "backend": "scholar",
+        "similarity": 0.1,
+        "kind": "similar"
+      },
+      {
+        "title": "PT Astra Honda Motor: Inovasi Teknologi Sepeda Motor dan Adaptasi Produk Global untuk Pasar Indonesia",
+        "url": "https://books.google.com/books?hl=en&lr=&id=CzmfEQAAQBAJ&oi=fnd&pg=PA2&dq=Strategi+Ekspor%E2%80%93Impor+Helm+Arai+di+Pasar+Berkembang+Indonesia&ots=EYK63oahQK&sig=gKbK11BuX_jDT_ZpyhO_2osHoIE",
+        "doi": null,
+        "year": 2025,
+        "backend": "scholar",
+        "similarity": 0.1,
+        "kind": "similar"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "id": "judul-2026-10-10-analisis-strategi-investasi-pusat-data-ai-asing-dan-penolakan-masyarakat-lokal-di-indonesia",
+    "judul": "Analisis Strategi Investasi Pusat Data AI Asing dan Penolakan Masyarakat Lokal di Indonesia",
+    "judul_norm": "analisis strategi investasi pusat data ai asing dan penolakan masyarakat lokal di indonesia",
+    "status": "selected",
+    "verdict": "available",
+    "threshold": 0.8,
+    "origin": "browser",
+    "checked": "2026-10-10",
+    "query": "Analisis Strategi Investasi Pusat Data AI Asing dan Penolakan Masyarakat Lokal di Indonesia",
+    "matches": [
+      {
+        "title": "Kerangka Baru Analisis Citra Negara 98765",
+        "url": "registry:judul-2026-10-08-kerangka-baru-analisis-citra-negara-98765",
+        "doi": null,
+        "year": null,
+        "backend": "registry",
+        "similarity": 0.05555555555555555,
+        "kind": "similar"
+      },
+      {
+        "title": "Strategi Pemasaran KYT Indonesia (PT Tarakusuma Indah) dalam Menembus Pasar Eropa Tahun 2020–2025",
+        "url": "registry:judul-2026-10-09-strategi-pemasaran-kyt-indonesia-pt-tarakusuma-indah-dalam-menembus-pasar-eropa-tahun-20202025",
+        "doi": null,
+        "year": null,
+        "backend": "registry",
+        "similarity": 0.08333333333333333,
+        "kind": "similar"
+      },
+      {
+        "title": "Strategi Ekspor–Impor Helm Arai di Pasar Berkembang Indonesia",
+        "url": "registry:judul-2026-10-09-strategi-eksporimpor-helm-arai-di-pasar-berkembang-indonesia",
+        "doi": null,
+        "year": null,
+        "backend": "registry",
+        "similarity": 0.16666666666666666,
+        "kind": "similar"
+      },
+      {
+        "title": "ANALISIS PERBANDINGAN KINERJA REKSADANA SAHAM YANG DIKELOLA PERUSAHAAN INVESTASI LOKAL DAN ASING DI INDONESIA",
+        "url": "https://doi.org/10.2139/ssrn.5255813",
+        "doi": "10.2139/ssrn.5255813",
+        "year": 2025,
+        "backend": "crossref",
+        "similarity": 0.35,
+        "kind": "similar"
+      },
+      {
+        "title": "Determinan Investasi Asing Langsung di Indonesia: Analisis Empiris PDB, Stabilitas Politik, dan Rasio Pajak",
+        "url": "https://doi.org/10.32424/jle.v5i1.20287",
+        "doi": "10.32424/jle.v5i1.20287",
+        "year": 2026,
+        "backend": "crossref",
+        "similarity": 0.2857142857142857,
+        "kind": "similar"
+      },
+      {
+        "title": "ANALISIS FAKTOR – FAKTOR YANG MEMPENGARUHI INVESTASI ASING LANGSUNG DI INDONESIA",
+        "url": "https://doi.org/10.22437/pim.v5i3.13894",
+        "doi": "10.22437/pim.v5i3.13894",
+        "year": 2017,
+        "backend": "crossref",
+        "similarity": 0.29411764705882354,
+        "kind": "similar"
+      },
+      {
+        "title": "STUDI KASUS PERILAKU PENOLAKAN VAKSIN COVID-19 DI INDONESIA: ANALISIS PENYEBAB DAN STRATEGI INTERVENSI BERDASARKAN PERSPEKTIF TEORI PLANNED BEHAVIOR",
+        "url": "https://doi.org/10.37887/jimkesmas.v6i3.20178",
+        "doi": "10.37887/jimkesmas.v6i3.20178",
+        "year": 2021,
+        "backend": "crossref",
+        "similarity": 0.23076923076923078,
+        "kind": "similar"
+      },
+      {
+        "title": "ANALISIS PENGARUH REMITANSI, INVESTASI ASING LANGSUNG, IMPOR DAN PERTUMBUHAN EKONOMI DI INDONESIA",
+        "url": "https://doi.org/10.24036/jkep.v2i4.10383",
+        "doi": "10.24036/jkep.v2i4.10383",
+        "year": 2020,
+        "backend": "crossref",
+        "similarity": 0.3157894736842105,
+        "kind": "similar"
+      },
+      {
+        "title": "ANALISIS KAUSALITAS INVESTASI ASING LANGSUNG (FDI), EKSPOR DAN PERTUMBUHAN EKONOMI DI INDONESIA",
+        "url": "https://doi.org/10.24036/jkep.v1i2.6180",
+        "doi": "10.24036/jkep.v1i2.6180",
+        "year": 2019,
+        "backend": "crossref",
+        "similarity": 0.3157894736842105,
+        "kind": "similar"
+      },
+      {
+        "title": "Analisis Pengaruh Remitasi, Investasi Asing Langsung, Import dan Pertumbuhan Ekonomi di Indonesia",
+        "url": "https://doi.org/10.24036/jkep.v3i1.13517",
+        "doi": "10.24036/jkep.v3i1.13517",
+        "year": 2021,
+        "backend": "crossref",
+        "similarity": 0.3157894736842105,
+        "kind": "similar"
+      },
+      {
+        "title": "ANALISIS KEWAJIBAN ALIH  TEKNOLOGI DALAM INVESTASI ASING  DI INDONESIA",
+        "url": "https://doi.org/10.15408/sjsbs.v1i2.1545",
+        "doi": "10.15408/sjsbs.v1i2.1545",
+        "year": 2014,
+        "backend": "crossref",
+        "similarity": 0.29411764705882354,
+        "kind": "similar"
+      },
+      {
+        "title": "MODEL DAN STRATEGI PENYUNTINGAN DI PUSAT PEMBINAAN DAN PENGEMBANGAN BADAN BAHASA SEBAGAI PENOPANG EKSISTENSI PENULIS INDONESIA : MENYUNTING KORAN LOKAL METRO MALUKU",
+        "url": "https://doi.org/10.31219/osf.io/k2fr8",
+        "doi": "10.31219/osf.io/k2fr8",
+        "year": 2019,
+        "backend": "crossref",
+        "similarity": 0.2222222222222222,
+        "kind": "similar"
+      },
+      {
+        "title": "Analisis Dampak Investasi Asing Langsung Terhadap Pertumbuhan Ekonomi dan Kesejahteraan Masyarakat di Negara Berkembang",
+        "url": "https://doi.org/10.71094/ecoin.v2i1.198",
+        "doi": "10.71094/ecoin.v2i1.198",
+        "year": 2025,
+        "backend": "crossref",
+        "similarity": 0.2857142857142857,
+        "kind": "similar"
+      },
+      {
+        "title": "Tinjauan Yuridis terhadap Efektivitas Arbitrase Internasional dalam Menyelesaikan Sengketa Investasi Asing di Indonesia dan Tantangan Struktural",
+        "url": "https://openalex.org/W7220215145",
+        "doi": null,
+        "year": 2025,
+        "backend": "openalex",
+        "similarity": 0.20833333333333334,
+        "kind": "similar"
+      },
+      {
+        "title": "SMART LIVING DAN HARMONISASI DI INDONESIA",
+        "url": "https://doi.org/10.6578/triwikrama.v5i12.7902",
+        "doi": "10.6578/triwikrama.v5i12.7902",
+        "year": 2024,
+        "backend": "openalex",
+        "similarity": 0.1875,
+        "kind": "similar"
+      },
+      {
+        "title": "Legalitas dan Birokrasi dalam Pendirian Fasilitas Kesehatan serta Diskrepansi Regulasi dan Implikasi Yuridis bagi Investasi dan Akses Layanan Kesehatan di Indonesia",
+        "url": "https://doi.org/10.62383/majelis.v2i4.1164",
+        "doi": "10.62383/majelis.v2i4.1164",
+        "year": 2025,
+        "backend": "openalex",
+        "similarity": 0.14814814814814814,
+        "kind": "similar"
+      },
+      {
+        "title": "ANALISIS PRIORITASI PEMILIHAN KOMODITAS DAN LOKASI SENTRA PENGEMBANGAN INDUSTRI PENGOLAHAN PERIKANAN DI KAWASAN TIMUR INDONESIA",
+        "url": "https://doi.org/10.15578/jppi.11.9.2005.27-39",
+        "doi": "10.15578/jppi.11.9.2005.27-39",
+        "year": 2017,
+        "backend": "openalex",
+        "similarity": 0.16666666666666666,
+        "kind": "similar"
+      },
+      {
+        "title": "PERLINDUNGAN HUKUM TENAGA KERJA INDONESIA DI PT MUCOINDO PRAKASA TERHADAP PENGGUNAAN TENAGA KERJA ASING DALAM KERANGKA MEA",
+        "url": "https://doi.org/10.25170/paradigma.v5i02.2082",
+        "doi": "10.25170/paradigma.v5i02.2082",
+        "year": 2021,
+        "backend": "openalex",
+        "similarity": 0.12,
+        "kind": "similar"
+      },
+      {
+        "title": "Spiritualitas Wanggameti : Bingkai Eko-Teologia Gereja Kristen Sumba dalam Penolakan Pertambangan Emas di Sumba",
+        "url": "https://doi.org/10.53827/lz.v6i2.122",
+        "doi": "10.53827/lz.v6i2.122",
+        "year": 2023,
+        "backend": "openalex",
+        "similarity": 0.08333333333333333,
+        "kind": "similar"
+      },
+      {
+        "title": "Pancasila sebagai Living Ideology: Strategi Deradikalisasi dan Penguatan Toleransi di Tengah Arus Globalisasi Digital",
+        "url": "https://doi.org/10.55606/jurrish.v4i3.6013",
+        "doi": "10.55606/jurrish.v4i3.6013",
+        "year": 2025,
+        "backend": "openalex",
+        "similarity": 0.125,
+        "kind": "similar"
+      },
+      {
+        "title": "Politik Hukum Keimigrasian dalam Pengaturan Mobilitas Orang Asing: Studi Perbandingan Indonesia dan Malaysia Immigration Law Politics in Regulating Foreigner Mobility: A Comparative Study of Indonesia and Malaysia",
+        "url": "https://doi.org/10.23969/jp.v11i03.64366",
+        "doi": "10.23969/jp.v11i03.64366",
+        "year": 2026,
+        "backend": "openalex",
+        "similarity": 0.08571428571428572,
+        "kind": "similar"
+      },
+      {
+        "title": "Strategi Internasionalisasi UMKM Indonesia ke Pasar Rusia: Integrasi Model Uppsala, Jaringan Sosial dan Adaptasi Pemasaran",
+        "url": "https://doi.org/10.37817/ikraith-ekonomika.v8i3.5469",
+        "doi": "10.37817/ikraith-ekonomika.v8i3.5469",
+        "year": 1970,
+        "backend": "openalex",
+        "similarity": 0.12,
+        "kind": "similar"
+      },
+      {
+        "title": "Indonesia dalam Kancah Geopolitik di Indo-Pasifik",
+        "url": "https://doi.org/10.55981/brin.2075",
+        "doi": "10.55981/brin.2075",
+        "year": 2026,
+        "backend": "openalex",
+        "similarity": 0.1111111111111111,
+        "kind": "similar"
+      },
+      {
+        "title": "Fragmentasi Umat dan Penciptaan Otoritas Keagamaan:  Tanggapan terhadap ‘Islam Lokal’ dan ‘Islam Asing’ di Indonesia",
+        "url": "https://doi.org/10.14203/jmb.v21i1.828",
+        "doi": "10.14203/jmb.v21i1.828",
+        "year": 2019,
+        "backend": "crossref",
+        "similarity": 0.23809523809523808,
+        "kind": "similar"
+      },
+      {
+        "title": "Determinan fluktuasi foreign direct investment di Indonesia: analisis makroekonomi dan indeks saham global",
+        "url": "https://doi.org/10.26740/jim.v11n1.p90-103",
+        "doi": "10.26740/jim.v11n1.p90-103",
+        "year": 2023,
+        "backend": "crossref",
+        "similarity": 0.18181818181818182,
+        "kind": "similar"
+      },
+      {
+        "title": "Analisis Pest Terhadap Hambatan Dan Peluang Investasi Asing  Di Kabupaten Bireuen Provinsi Aceh",
+        "url": "https://doi.org/10.51179/vrs.v13i1.527",
+        "doi": "10.51179/vrs.v13i1.527",
+        "year": 2021,
+        "backend": "crossref",
+        "similarity": 0.23809523809523808,
+        "kind": "similar"
+      },
+      {
+        "title": "The Strategic Stakes of Local Data-Center Opposition",
+        "url": "https://www.governing.com/infrastructure/the-strategic-stakes-of-local-data-center-opposition",
+        "doi": null,
+        "year": null,
+        "backend": "web",
+        "similarity": 0.05,
+        "kind": "similar"
+      },
+      {
+        "title": "AI data centers are booming but locals are pushing back",
+        "url": "https://restofworld.org/2025/ai-data-centers-fallout",
+        "doi": null,
+        "year": null,
+        "backend": "web",
+        "similarity": 0.1,
+        "kind": "similar"
+      },
+      {
+        "title": "Meneropong Ledakan Investasi Data Center dan Ekosistem AI di Indonesia: Menuju Kapasitas Gigawatt",
+        "url": "https://vibiznews.com/index.php/2026/07/25/meneropong-ledakan-investasi-data-center-dan-ekosistem-ai-di-indonesia-menuju-kapasitas-gigawatt",
+        "doi": null,
+        "year": null,
+        "backend": "web",
+        "similarity": 0.3,
+        "kind": "similar"
+      },
+      {
+        "title": "Investasi Data Center Asing Serbu Indonesia, Rekrut 15.000 Insinyur Tanah Air",
+        "url": "https://konstruksimedia.com/investasi-data-center-asing-serbu-indonesia-rekrut-15-000-insinyur-tanah-air",
+        "doi": null,
+        "year": null,
+        "backend": "web",
+        "similarity": 0.19047619047619047,
         "kind": "similar"
       }
     ],

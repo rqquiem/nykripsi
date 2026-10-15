@@ -19,7 +19,7 @@ GLOBS = ("content/artikel/*.md", "content/skripsi/1[0-5]-*.md")
 TOKEN_RE = re.compile(r"[a-zA-Z\u00c0-\u00ff]+")
 CITE_RE = re.compile(r"\[@[^\]]+\]")
 PAREN_RE = re.compile(r"\([^)]*\)")
-ABSTRACT_RE = re.compile(r'::: \{custom-style="Abstract"\}.*?\n:::', re.DOTALL)
+ABSTRACT_RE = re.compile(r'::: \{custom-style="Abstract"[^}]*\}.*?\n:::', re.DOTALL)
 SKIP_PREFIX = ("#", ":::", "|", "-", "*", "<", ">", "`", "1.", "2.", "3.", "4.", "5.")
 STOPWORDS = frozenset(
     """yang dan di ke dari untuk dengan pada dalam ini itu adalah sebagai oleh akan tidak

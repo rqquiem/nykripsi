@@ -14,7 +14,7 @@ Hubungan Internasional STMIK Triguna Dharma dan dinyatakan LULUS.
 Nama          & : & [Nama Mahasiswa] \\
 NIM           & : & [NIM Mahasiswa] \\
 Program Studi & : & Hubungan Internasional \\
-Judul         & : & Diplomasi Publik Tiongkok terhadap Indonesia melalui Diplomasi Vaksin pada Masa Pandemi Covid-19 Tahun 2020–2022 \\
+Judul         & : & Analisis Strategi Diplomasi Publik Tiongkok terhadap Indonesia melalui Diplomasi Vaksin pada Masa Pandemi Covid-19 Tahun 2020–2022 \\
 \end{tabular}
 
 \vspace{1.5cm}

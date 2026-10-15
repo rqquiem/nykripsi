@@ -19,6 +19,7 @@ bab memakai angka Romawi dengan titik (`I.`, `II.`, …) **tanpa kata "BAB"**.
 
 ## Front matter & pagination
 
+- [ ] **DAFTAR SINGKATAN** (setelah DAFTAR ISI) di `content/skripsi/07-daftar-singkatan.md`; setiap singkatan dijabarkan `SINGKATAN (Kepanjangan)` pada penyebutan pertama. Rincian: `docs/layout-framework.md`.
 - [ ] Front-matter items followed by **Abstrak** in Times New Roman **12 pt**, with **roman** page numbers at **bottom-center**.
 - [ ] Chapter (BAB) pages use **arabic** page numbers: chapter opening page at **bottom-center**, other pages at **top-right**.
 
@@ -32,6 +33,8 @@ bab memakai angka Romawi dengan titik (`I.`, `II.`, …) **tanpa kata "BAB"**.
 ## References & length
 
 - [ ] ≥ **20 references**, all within the **last 5 years**.
+- [ ] Periode sasaran dideklarasikan pada `assets/bahasa/kamus-id.yaml` §`recency.periode_default`; sumber bukti di luar periode gagal `tools/validators/evidence_recency.py`.
+- [ ] Sitasi memakai markup `[@key]` (APA author-date); catatan kaki hanya penjelas (tanpa sitasi); daftar pustaka dirender lewat blok `::: {#refs} :::`. Rincian: `docs/citation-framework.md`.
 - [ ] ≥ **30%** of sources are **international journal/proceedings**.
 - [ ] **BAB I–VI** total ≥ **50 pages**.
 
@@ -43,6 +46,7 @@ bab memakai angka Romawi dengan titik (`I.`, `II.`, …) **tanpa kata "BAB"**.
   - Batasan Masalah
   - Tujuan
   - Manfaat
+  Aturan BAB I (A1–A8/B1–B3) ditegakkan mesin: `docs/bab1-framework.md`.
 - **BAB II Tinjauan Pustaka**
   - Objek Penelitian
   - Bidang Ilmu

@@ -473,6 +473,66 @@ _Tidak ada rangkai argumen khusus._
 | label kata kunci | 'Kata kunci:'/'Kata Kunci:' 25× dan 'Keywords:'/'Keywords' 66× di 63 paper; pemisah koma atau titik koma (lihat abstrak). |
 | label abstrak | 'Abstract' 73× di 67 paper dan 'Abstrak' 23× di 23 paper; paper HI sering dwibahasa Abstrak+Abstract (14/43). |
 
+- Tanda pisah prosa: dilarang `—`, ` - `; diizinkan `–` (rentang angka).
+- Em dash dan hyphen berspasi dilarang di prosa; gunakan koma, titik dua, atau titik. En dash hanya untuk rentang angka.
+
+## Istilah Asing (Kata Miring)
+
+| Istilah | Aturan |
+|---|---|
+| soft power | tulis miring: *soft power* |
+| nation branding | tulis miring: *nation branding* |
+| public diplomacy | tulis miring: *public diplomacy* |
+| vaccine diplomacy | tulis miring: *vaccine diplomacy* |
+| health diplomacy | tulis miring: *health diplomacy* |
+| brand equity | tulis miring: *brand equity* |
+| country of origin | tulis miring: *country of origin* |
+| country-of-origin | tulis miring: *country-of-origin* |
+| perceived quality | tulis miring: *perceived quality* |
+| target market | tulis miring: *target market* |
+| marketing mix | tulis miring: *marketing mix* |
+| entry mode | tulis miring: *entry mode* |
+| full face | tulis miring: *full face* |
+| business matching | tulis miring: *business matching* |
+
+## Istilah Teknis (Dwibahasa)
+
+Setiap istilah teknis WAJIB diikuti glos Inggris dalam tanda kurung pada penyebutan prosa pertama: `istilah (english gloss)`. Bila glos terdaftar di Istilah Asing, tulis miring: `istilah (*english gloss*)`.
+
+| Istilah | Glos Inggris |
+|---|---|
+| diplomasi publik | public diplomacy |
+| diplomasi vaksin | vaccine diplomacy |
+| kebijakan luar negeri | foreign policy |
+| kedaulatan digital | digital sovereignty |
+| kecerdasan artifisial | artificial intelligence |
+| penanaman modal asing | foreign direct investment |
+| tata kelola | governance |
+| legitimasi | legitimacy |
+| persepsi publik | public perception |
+| negara berkembang | developing country |
+| hubungan bilateral | bilateral relations |
+| bauran pemasaran | marketing mix |
+| ekuitas merek | brand equity |
+| negara asal | country of origin |
+| daya saing | competitiveness |
+| rantai pasok | supply chain |
+| akuisisi lahan | land acquisition |
+| penolakan lokal | local opposition |
+| komunikasi publik | public communication |
+| keamanan kesehatan | health security |
+| aktor non-negara | non-state actor |
+| celah penelitian | research gap |
+
+## Singkatan dan Kepanjangan
+
+| Singkatan | Kepanjangan | Varian |
+|---|---|---|
+| ASEAN | Association of Southeast Asian Nations | — |
+| FPA | Foreign Policy Analysis | Analisis Kebijakan Luar Negeri |
+| ECE | Economic Commission for Europe | — |
+| SWOT | Strengths, Weaknesses, Opportunities, Threats | — |
+
 ## Kosakata Baku
 
 | Tidak baku | Baku |
@@ -553,6 +613,36 @@ _Tidak ada rangkai argumen khusus._
 - Paper bergaya numerik (23): `s1-register`, `s1-telkomnika`, `s2-ijccs`, `s2-ilkom`, `s2-jiki`, `s2-jisebi`, `s2-jti`, `s2-resti`, `s2-sji`, `s3-coreit`, `s3-juti`, `s3-mib`, `s3-sisfokom`, `s3-sistemasi`, `s4-jsi`, `s4-scan`, `s4-sitekin`, `s4-transformatika`, `s5-jatisi`, `s5-misi`, `s5-nuansa`, `s6-jupiter`, `s6-jutik`
 - Paper bergaya APA: `s2-jptk`, `s2-jsinbis`, `s2-jtie`, `s3-jsce`, `s3-jsi-ui`, `s3-sinkron`
 - Daftar pustaka: default **APA**; varian korpus **numerik** (didokumentasikan, bukan gaya build repo).
+- Blok daftar pustaka yang dirender: `::: {#refs} :::`.
+- Lokator kutipan langsung: contoh `[@hall2013struggle, hlm. 12]`.
+
+## Kutipan Langsung
+
+- Tanda petik: melengkung “…” (EYD Edisi V, tanda petik J)
+- Lokator: sertakan lokator pada sitasi kutipan langsung: [@key, hlm. N]
+- Larangan: tanda petik lurus "…" di prosa
+
+## Catatan Kaki
+
+- Jenis: penjelas
+- Larangan: sitasi [@key], di dalam abstrak
+- Gaya alternatif: catatan_kaki_sitasi (Chicago notes) — didokumentasikan, bukan gaya build repo
+- Contoh: `Lihat Bab II untuk uraian lengkap.`
+
+## BAB I / Pendahuluan
+
+- Subbagian (urutan): Latar Belakang → Rumusan Masalah → Batasan Masalah → Tujuan → Manfaat
+- Tag formula `kamus:f`: `latar_belakang`, `rumusan_masalah`, `batasan_masalah`, `tujuan`, `manfaat`
+- Latar Belakang: 700–1300 kata, ≥ 15 sitasi.
+- Batasan Masalah (lima): waktu, objek, kerangka, data, pengecualian
+- Manfaat: teoretis, praktis
+
+## Artikel
+
+- Kepala bagian (urutan): pendahuluan → metode → hasil → simpulan → ucapan → pustaka
+- Abstrak: 150–250 kata; kata kunci 3–6.
+- Pendahuluan (beat): konteks → penelitian terdahulu → celah → tujuan
+- Pendahuluan: 700–900 kata.
 
 ## Daftar Periksa
 

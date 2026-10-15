@@ -23,7 +23,7 @@ keluarannya diproduksi dan diperiksa mesin dari sumber Markdown.
 ## 1. Definisi dan Fungsi
 
 **Definisi.** *Sumber diagram* adalah **blok kode berpagar (*fenced code block*)
-Markdown** yang diberi kelas `mermaid`, `chart`, atau `tikz` dan dirender menjadi
+Markdown** yang diberi kelas `mermaid`, `chart`, `tikz`, atau `bagan` dan dirender menjadi
 **berkas gambar**. *Aset gambar* adalah berkas hasil render yang disimpan di
 `assets/figures/<slug>.png`. *Caption* adalah **judul bernomor** yang diletakkan
 **di atas tabel** dan **di bawah gambar**. *Cross-reference* adalah **rujukan
@@ -56,7 +56,9 @@ daftar, rujukan).
 |Grafik data|fence `chart` ber-id `#fig-slug`|`tools/diagrams.py` (matplotlib)|`assets/figures/fig-slug.png`|`matplotlib` (luring)|
 |Gambar vektor|fence `tikz` ber-id `#fig-slug`|`tools/diagrams.py` (XeLaTeX `standalone`)|`assets/figures/fig-slug.png`|`xelatex` + `pdftoppm` (luring)|
 | Diagram sintesa teori | fence `sintesa` ber-id `#fig-slug` | `tools/diagrams.py` (matplotlib) | `assets/figures/fig-slug.png` | `matplotlib` (luring) |
+| Bagan simpul-sisi | fence `bagan` ber-id `#fig-slug` | `tools/diagrams.py` (matplotlib) | `assets/figures/fig-slug.png` | `matplotlib` (luring) |
 |Tabel|pipe table Markdown|Pandoc|caption + `\listoftables`|—|
+|Tabel generatif|fence `{.table #tbl-slug}` berisi YAML|`tools/table.py`|tabel native (LaTeX/OOXML)|—|
 
 > **Bentuk fence lengkap (contoh):** fence dibuka dengan tiga *backtick* lalu
 > ``{.mermaid #fig-slug}`` pada baris yang sama, diikuti badan diagram, lalu
@@ -75,11 +77,53 @@ daftar, rujukan).
 
 Sumber: `docs/skripsi-pedoman.md`; `content/skripsi/06-daftar-isi.md`.
 
+### Generator Tabel (`.table`)
+
+Selain *pipe table* Markdown, tabel dapat ditulis sebagai **fence generatif**
+`{.table #tbl-<slug>}` yang berisi YAML, lalu dirender oleh `tools/table.py`
+menjadi **tabel native** — bukan gambar. Pada keluaran PDF tabel menjadi
+struktur tabel LaTeX; pada DOCX menjadi **OOXML** (`w:tbl`) sehingga sel tetap
+dapat disunting dan dibaca mesin.
+
+Kunci skema YAML:
+
+|Kunci|Arti|
+|---|---|
+|`judul`|Judul tabel (dipakai sebagai caption bila tak ada paragraf `Tabel <n>` di atas blok)|
+|`kolom`|Daftar kolom; tiap kolom `{judul, lebar, rata}` (`rata`: `kiri`/`tengah`/`kanan`; `lebar` opsional, fraksi `\linewidth`)|
+|`baris`|Daftar baris data; tiap sel boleh teks, angka, `{rumus: "=…"}`, atau string berawalan `=`|
+|`border`|Opsional; peta ketebalan/garis. Bawaan 1pt solid di tiap tepi. Kunci: `luar: {atas, bawah, kiri, kanan}` (pt, 0 = tanpa garis), `dalam: {baris, kolom}` (pt), `warna: "#RRGGBB"`, `gaya: solid\|dashed\|dotted`|
+|`isi`|Opsional; isian warna sel. Kunci: `kepala: "#RRGGBB"` (baris header), `zebra: ["#FFFFFF", "#F2F2F2"]` (warna baris bergantian)|
+|`gabung`|Opsional; penggabungan sel. Daftar `{baris, kolom, tinggi, lebar}` (sel jangkar 1-based + rentang)|
+
+> **Pembungkusan kolom (bawaan).** Kolom `.table` **membungkus secara bawaan**:
+> bila kunci `lebar` tidak ada, `tools/table.py` memancarkan `p{<w>\linewidth}`
+> dengan `w = 0.98 / <jumlah kolom>` — bukan huruf perataan `l/r/c` yang tidak
+> membungkus. Kunci `lebar` eksplisit tetap dipakai bila diberikan.
+
+**Sel terhitung (*computed cell*).** Sel dapat memuat fungsi `SUM`, `AVERAGE`
+(alias `AVG`), `MIN`, `MAX`, `COUNT`, dan `ROUND` atas rentang sel lain,
+mis. `=SUM(B2:B5)`.
+
+**Sel matematis.** Sel dapat memuat rumus matematika di antara `$…$`
+(mis. `$\\sigma$`, `$\\frac{a}{b}$`), dirender sebagai matematika native
+(LaTeX pada PDF, OMML pada DOCX).
+
+**Aturan D6 untuk `.table`.** Tabel generatif **wajib** memiliki `kolom` ≥ 1 dan
+`baris` ≥ 2 — konsisten dengan D6 (tabel berheader, ≥ 2 baris data). Penegak:
+`tools/validators/figures_tables.py`. Sumber: `tools/table.py`;
+`docs/skripsi-pedoman.md`.
+
+**Aturan D7 untuk `.table`.** Tabel generatif **wajib** memiliki `kolom` ≥ 2,
+`baris` data ≥ 3, dan **tanpa sel kosong** (setiap sel data harus string tak
+kosong atau angka). Penegak: `tools/validators/figures_tables.py`. Sumber:
+`tools/table.py`.
+
 ---
 
-## 3. Aturan Absolut (D1–D6)
+## 3. Aturan Absolut (D1–D7)
 
-Keenam aturan berikut bersifat **absolut**: naskah yang melanggarnya belum layak
+Ketujuh aturan berikut bersifat **absolut**: naskah yang melanggarnya belum layak
 disebut memiliki diagram dan tabel yang reprodusibel. Setiap butir menyebut
 definisi, penegak, dan sumbernya.
 
@@ -92,7 +136,7 @@ definisi, penegak, dan sumbernya.
    `content/artikel/*.md` bernomor `Tabel <n>` / `Gambar <n>`. Penegak: idem.
 3. **D3 — Caption ringkas.** Judul caption **tanpa titik akhir** dan **≤ 15 kata**
    (peringatan bila lebih). Penegak: idem.
-4. **D4 — Blok diagram berlabel.** Setiap blok `mermaid`/`chart`/`tikz`
+4. **D4 — Blok diagram berlabel.** Setiap blok `mermaid`/`chart`/`tikz`/`bagan`
    **wajib** memiliki `#fig-<slug>` unik; aset `assets/figures/fig-<slug>.png`
    diharapkan ada setelah `make diagrams` (peringatan bila belum dirender).
    Penegak: idem.
@@ -100,7 +144,11 @@ definisi, penegak, dan sumbernya.
    `Gambar <n>` di prosa **wajib** menunjuk ke nomor caption yang ada di berkas
    yang sama. Penegak: idem.
 6. **D6 — Tabel berheader.** Setiap pipe table **wajib** memiliki baris header
-   dan **≥ 2 baris data**. Penegak: idem.
+   dan **≥ 2 baris data**. Untuk tabel generatif `{.table}`: `kolom` ≥ 1 dan
+   `baris` ≥ 2. Penegak: idem.
+7. **D7 — Tabel generatif utuh.** Setiap blok `{.table}` **wajib** memiliki
+   `kolom` ≥ 2, `baris` data ≥ 3, dan **tanpa sel kosong** (setiap sel data
+   string tak kosong atau angka). Penegak: idem.
 
 ---
 
@@ -123,13 +171,15 @@ Sumber: `docs/skripsi-pedoman.md`.
 
 Sebuah gambar/tabel yang sehat tersusun dari lima komponen fungsional:
 
-- **Blok sumber** — kode berkelas (`mermaid`/`chart`/`tikz`) dengan id
+- **Blok sumber** — kode berkelas (`mermaid`/`chart`/`tikz`/`bagan`) dengan id
   `#fig-<slug>`.
 - **Aset gambar** — berkas hasil render di `assets/figures/`.
 - **Caption** — paragraf `Gambar <n> <Judul>` atau `Tabel <n> <Judul>`.
 - **Filter** — `tools/pandoc_filters/figure_table.lua` yang mengubah caption
   menjadi caption Pandoc sungguhan dan menggantikan blok diagram dengan gambar.
-- **Renderer** — `tools/diagrams.py` yang merender blok menjadi aset PNG.
+- **Renderer** — `tools/diagrams.py` yang merender blok menjadi aset PNG; dan
+  `tools/table.py` (dengan filter `tools/pandoc_filters/table.lua`) yang
+  merender blok `{.table}` menjadi **tabel native**.
 
 Sumber: `docs/skripsi-pedoman.md`; Pandoc Lua filters
 <https://pandoc.org/lua-filters.html>.
@@ -146,6 +196,9 @@ Sumber: `docs/skripsi-pedoman.md`; Pandoc Lua filters
 |Panjang caption|**≤ 15** kata|warn (D3)|
 |Nomor `n` berurutan dari|**1**|fail (D2)|
 |Baris data minimum tabel|**≥ 2**|fail (D6)|
+|Kolom minimum tabel generatif|**≥ 2**|fail (D7)|
+|Baris data minimum tabel generatif|**≥ 3**|fail (D7)|
+|Sel kosong pada tabel generatif|**0**|fail (D7)|
 |Cross-reference harus resolve|**ada**|fail (D5)|
 
 Ambang pada (a) dikalibrasi pada **8 berkas** repositori ini (**2 tabel, 0
@@ -165,8 +218,9 @@ ini harus diubah **bersamaan** agar tetap selaras.
 |D4 — Blok diagram berlabel|wajib|wajib|unverified — confirm first|wajib|wajib|
 |D5 — Cross-reference sah|wajib|wajib|unverified — confirm first|wajib|wajib|
 |D6 — Tabel berheader|wajib|wajib|unverified — confirm first|wajib|wajib|
+|D7 — Tabel generatif utuh|wajib|wajib|unverified — confirm first|wajib|wajib|
 
-D1–D6 **wajib** untuk semua kolom: diagram dan tabel yang reprodusibel adalah
+D1–D7 **wajib** untuk semua kolom: diagram dan tabel yang reprodusibel adalah
 syarat kelayakan dasar, bukan pilihan gaya. Kolom **Scopus** ditandai
 **`unverified — confirm first`**: status indeksasi venue internasional tidak
 dapat diverifikasi dari korpus lokal, konsisten dengan sikap
@@ -188,7 +242,7 @@ eksplisit.
 
 ## 9. Rubrik Penilaian
 
-Nilai **0–2** untuk setiap komponen D1–D6; skor maksimum **12**.
+Nilai **0–2** untuk setiap komponen D1–D7; skor maksimum **14**.
 
 |Komponen|0|1|2|
 |---|---|---|---|
@@ -198,8 +252,9 @@ Nilai **0–2** untuk setiap komponen D1–D6; skor maksimum **12**.
 |D4 — Blok diagram berlabel|Tanpa `#fig-<slug>`|Sebagian berlabel|Semua blok berlabel unik|
 |D5 — Cross-reference sah|Rujukan menggantung|Sebagian menggantung|Semua rujukan resolve|
 |D6 — Tabel berheader|Tanpa header|Header < 2 baris data|Header + ≥ 2 baris data|
+|D7 — Tabel generatif utuh|`kolom` < 2 atau sel kosong|`kolom` ≥ 2 tetapi `baris` < 3|`kolom` ≥ 2, `baris` ≥ 3, tanpa sel kosong|
 
-**Tafsiran:** **12** = patuh penuh; **9–11** = revisi ringan; **5–8** = perlu
+**Tafsiran:** **14** = patuh penuh; **10–13** = revisi ringan; **5–9** = perlu
 perbaikan; **≤ 4** = belum layak.
 
 ---
@@ -216,10 +271,14 @@ perbaikan; **≤ 4** = belum layak.
 - `templates/skripsi-preamble.tex` — preamble skripsi.
 - `templates/artikel-preamble.tex` — preamble artikel.
 - `assets/figures/` — direktori aset gambar.
-- `tools/validators/figures_tables.py` — penegak D1–D6.
+- `tools/validators/figures_tables.py` — penegak D1–D7.
 - `tools/diagrams.py` — perender diagram.
 - `tools/pandoc_filters/figure_table.lua` — filter caption/gambar.
+- `tools/table.py` — generator tabel `.table` (tabel native, bukan gambar).
+- `tools/pandoc_filters/table.lua` — filter blok `.table` saat build.
 - `docs/sintesa-diagram-framework.md` — kerangka diagram sintesa teori (TS1–TS6).
+- `docs/bagan-diagram-framework.md` — kerangka bagan simpul-sisi/pohon (BG1–BG5).
+- `tools/validators/bagan_diagram.py` — penegak BG1–BG5 untuk blok bagan.
 
 ### 10.2 Literatur/dokumen eksternal
 

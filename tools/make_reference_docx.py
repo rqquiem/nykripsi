@@ -17,6 +17,7 @@ import tempfile
 import zipfile
 
 from docx import Document
+from docx.enum.style import WD_STYLE_TYPE
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Cm, Pt
 
@@ -135,7 +136,7 @@ def main() -> int:
     if abstract is not None:
         set_style_font_xml(abstract, FONT)
         abstract.font.size = Pt(10)
-        abstract.font.italic = True
+        abstract.font.italic = False
         abstract.font.name = FONT
         apf = abstract.paragraph_format
         apf.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
@@ -148,16 +149,39 @@ def main() -> int:
         h1.font.bold = True
         h1.font.italic = False
         h1.font.name = FONT
-        h1.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.LEFT
+        h1.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
     h2 = style("Heading 2")
     if h2 is not None:
         set_style_font_xml(h2, FONT)
         h2.font.size = Pt(11)
         h2.font.bold = True
-        h2.font.italic = True
+        h2.font.italic = False
         h2.font.name = FONT
         h2.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.LEFT
+
+    # --- Sinta front matter / abstract paragraph styles -------------------
+    def ensure_style(name, size, alignment, bold=False):
+        st = style(name)
+        if st is None:
+            st = styles.add_style(name, WD_STYLE_TYPE.PARAGRAPH)
+        set_style_font_xml(st, FONT)
+        st.font.size = Pt(size)
+        st.font.bold = bold
+        st.font.italic = False
+        st.font.name = FONT
+        st.paragraph_format.alignment = alignment
+        return st
+
+    ensure_style("AbstractTitle", 11, WD_ALIGN_PARAGRAPH.CENTER, bold=True)
+    ensure_style("SintaMasthead", 9, WD_ALIGN_PARAGRAPH.CENTER)
+    ensure_style("SintaAffiliation", 10, WD_ALIGN_PARAGRAPH.CENTER)
+    ensure_style("SintaKeywords", 10, WD_ALIGN_PARAGRAPH.JUSTIFY)
+
+    for name in ("BodyText", "Body Text", "FirstParagraph", "First Paragraph"):
+        st = style(name)
+        if st is not None:
+            st.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
 
     compact = style("Compact")
     if compact is not None:

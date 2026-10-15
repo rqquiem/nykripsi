@@ -33,6 +33,9 @@ Judul yang **dipilih** (selected) dan berverdict `duplicate` atau `too-similar`
 **DIBLOKIR** oleh validator `research` yang tertanam pada `make check`. Ambang
 kemiripan dapat diubah dengan bendera `--threshold F` (misalnya `--threshold 0.85`).
 
+Selain ketersediaan (duplikat/terlalu mirip), **mutu** judul ditegakkan oleh
+`tools/validators/judul.py` (JD1–JD6); lihat `docs/judul-framework.md`.
+
 ## Dua jalur pemeriksaan
 
 Pemeriksaan judul menempuh **dua jalur** yang saling melengkapi:

@@ -6,7 +6,7 @@
 
 ```{=latex}
 \begin{center}
-{\large\bfseries Diplomasi Publik Tiongkok terhadap Indonesia melalui Diplomasi Vaksin pada Masa Pandemi Covid-19 Tahun 2020–2022\par}
+{\large\bfseries Analisis Strategi Diplomasi Publik Tiongkok terhadap Indonesia melalui Diplomasi Vaksin pada Masa Pandemi Covid-19 Tahun 2020–2022\par}
 \vspace{1.5cm}
 \includegraphics[width=3cm]{assets/figures/contoh.png}\par
 \vspace{1.5cm}
